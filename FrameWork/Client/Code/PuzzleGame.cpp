@@ -336,7 +336,5 @@ CPuzzleGame * CPuzzleGame::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CPuzzleGame::Free()
 {
-	if (m_pLightCamera != nullptr)
-		m_pLightCamera->Release_TransformCom();
 	Engine::CScene::Free();
 }

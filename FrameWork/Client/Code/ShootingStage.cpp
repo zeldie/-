@@ -311,6 +311,7 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 		}
 	}
 	////////////////////////////////
+	m_pLightCamera->Update_GameObject(dTimeDelta);
 	m_dEnterSceneTime += dTimeDelta;
 	if (!m_bEnterScene && m_dEnterSceneTime > 5)
 	{
@@ -443,7 +444,5 @@ CShootingStage * CShootingStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CShootingStage::Free()
 {
-	if (m_pLightCamera != nullptr)
-		m_pLightCamera->Release_TransformCom();
 	Engine::CScene::Free();
 }
