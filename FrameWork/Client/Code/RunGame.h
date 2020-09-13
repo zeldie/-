@@ -18,8 +18,10 @@ public:
 	virtual void	Render_Scene() override;
 
 private:
-	void			RenderTime();
-	void			StageTimeCheck(const _double& dTimeDelta);
+	void			RenderTime();	//»Ò¡§√ﬂ∞°
+	void			RenderPoints();	//»Ò¡§√ﬂ∞°
+	void			StageTimeCheck(const _double& dTimeDelta); //»Ò¡§√ﬂ∞°
+	void			MakeComma(_uint iData, _tchar * szResult); //»Ò¡§√ﬂ∞°
 
 private:
 	HRESULT	Ready_Environment_Layer();
@@ -33,10 +35,13 @@ private:
 	CUIMgr*			m_pUIMgr;
 	_bool			m_bInit;
 
-	_tchar			m_szStageSecond[MIN_STR];//»Ò¡§
+	_tchar			m_szStageSecond[MIN_STR];	//»Ò¡§√ﬂ∞°
+	_double			m_dTotalTime;				//»Ò¡§√ﬂ∞°
+	_bool			m_bOneCreateUI;				//»Ò¡§√ﬂ∞°
+	_bool			m_bRenderStart;				//»Ò¡§√ﬂ∞°
+	_bool			m_bOne;						//»Ò¡§√ﬂ∞°
 
-	_double			m_dTotalTime;
-	_bool			m_bOneCreateUI;
+	
 
 public:
 	static CRunGame*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

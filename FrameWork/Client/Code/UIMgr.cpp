@@ -63,6 +63,9 @@
 #include "CustomizingFootUI.h"
 #include "CustomizingHandsUI.h"
 #include "CustomizingButton.h"
+#include "RunPlayerHP.h"
+#include "RunPlayerItem.h"
+#include "RunPlayerItemSlot.h"
 
 IMPLEMENT_SINGLETON(CUIMgr)
 
@@ -100,7 +103,8 @@ CUIMgr::CUIMgr()
 	m_pAITransfomCom1(nullptr),
 	m_pAITransfomCom2(nullptr),
 	m_bGetFlag(false),
-	m_bReCreateFlag(false)
+	m_bReCreateFlag(false),
+	m_iAccumulatedRunGamePoints(0)
 {
 	////플레이어 무기////////
 	m_ePlayerMainWeapon = TWOHANDSWORD;
@@ -1279,7 +1283,7 @@ HRESULT CUIMgr::CreateResultUI_Cartel(LPDIRECT3DDEVICE9 pGraphicDev)
 	// 2vs2
 	CSoundMgr::Get_Instance()->SetVolumeDown(0.3f);
 	CSoundMgr::Get_Instance()->HoSoundOn(16, 1.f);
-	CSoundMgr::Get_Instance()->HoSoundOn(56, 1.f);
+
 	return S_OK;
 }
 
@@ -1373,14 +1377,14 @@ HRESULT CUIMgr::CreateResultUI_Run(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 	//BackBar -> 메뉴 라인
-	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::WHITELINE, 757.9f, 300.2f, 480.f, 32.9f, 0.1f); // 107.9f, 300.2f,730.5f,32.9f
+	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::WHITELINE, 657.9f, 300.2f, 580.f, 32.9f, 0.1f); // 107.9f, 300.2f,730.5f,32.9f
 	if (pGameObject == nullptr)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
 	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 	//BackBar -> 남색 라인
-	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::INDIGOCOLORTYPE, 765.f, 332.f, 465.5f, 55.f, 0.1f); //115.f, 332.f,716.f, 55.f
+	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::INDIGOCOLORTYPE, 665.f, 332.f, 565.5f, 55.f, 0.1f); //115.f, 332.f,716.f, 55.f
 	if (pGameObject == nullptr)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
@@ -1517,13 +1521,70 @@ HRESULT CUIMgr::CreateNPCMissionUI(LPDIRECT3DDEVICE9 pGraphicDev)
 
 HRESULT CUIMgr::CreateRunUI(LPDIRECT3DDEVICE9 pGraphicDev)
 {
+	m_eUIType = UITYPE_RUN;
 	Engine::CGameObject* pGameObject = nullptr;
 
+	//카운트다운
 	pGameObject = CRunCountDown::Create(pGraphicDev, CRunCountDown::RUNCOUNTDOWNTYPE_GAMESTART, 605.f, 290.f, 75.f, 97.5f);
 	if (pGameObject == nullptr)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"RunCountDown", pGameObject);
 	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	///////////////////
+	//runplayerhp
+	pGameObject = CRunPlayerHP::Create(pGraphicDev,CRunPlayerHP::HP, 400.f, 50.f, 480.f, 20.f);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	Engine::Add_GameObject(Engine::UI, L"RunPlayerHP", pGameObject);
+	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+	//runplayerhp
+	pGameObject = CRunPlayerHP::Create(pGraphicDev, CRunPlayerHP::BACKBAR, 397.4f, 47.3f, 485.5f, 24.3f,0.1f);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	Engine::Add_GameObject(Engine::UI, L"RunPlayerHP", pGameObject);
+	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	///////////////////
+	
+	//runplayeritem
+	pGameObject = CRunPlayerItem::Create(pGraphicDev, CRunPlayerItem::BIG, 1060.f, 25.4f, 82.f, 82.f);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	Engine::Add_GameObject(Engine::UI, L"RunPlayerItem", pGameObject);
+	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+	//runplayeritem
+	pGameObject = CRunPlayerItem::Create(pGraphicDev, CRunPlayerItem::SPEEDUP, 1143.4f, 25.4f, 82.f, 82.f);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	Engine::Add_GameObject(Engine::UI, L"RunPlayerItem", pGameObject);
+	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	/////////////////
+
+	for(_uint i = 0; i < 2; ++i)
+	{
+		pGameObject = CRunPlayerItemSlot::Create(pGraphicDev, CRunPlayerItemSlot::BASIC, CRunPlayerItemSlot::ITEMTYPE(i),true, 1060.f + (i*83.4f), 25.4f, 82.f, 82.f, 0.2f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"RunPlayerItemSlot", pGameObject);
+		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+		pGameObject = CRunPlayerItemSlot::Create(pGraphicDev, CRunPlayerItemSlot::RECHARGE, CRunPlayerItemSlot::ITEMTYPE(i), false, 1060.f + (i*83.4f), 25.4f, 82.f, 82.f, 0.1f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"RunPlayerItemSlot", pGameObject);
+		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+
+		pGameObject = CRunPlayerItemSlot::Create(pGraphicDev, CRunPlayerItemSlot::OUTLINE, CRunPlayerItemSlot::ITEMTYPE(i), true, 1060.f + (i*83.4f), 25.4f, 82.f, 82.f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"RunPlayerItemSlot", pGameObject);
+		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+	}
+
+
 
 	//노란머리NPC 의 미션을 클리어함
 	CQuestMgr::GetInstance()->Set_MissionCompleted(CQuestMgr::YELLOW, true);
@@ -1948,6 +2009,9 @@ void CUIMgr::SetZeroForAccumulatedVariables()
 	ZeroMemory(&m_tAlliance, sizeof(FLAG_RESULT));
 	ZeroMemory(&m_tEnemy_1, sizeof(FLAG_RESULT));
 	ZeroMemory(&m_tEnemy_2, sizeof(FLAG_RESULT));
+	
+	//런게임
+	m_iAccumulatedRunGamePoints = 0;
 }
 
 _bool CUIMgr::SceneChangeToApostle()
@@ -3206,6 +3270,24 @@ void CUIMgr::SetAnimationForParts()
 	pBody->Set_AnimationNum(2);
 }
 
+void CUIMgr::TakeOffParts(wstring wstrParts)
+{
+	CBody* pBody = dynamic_cast<CBody*>(Engine::Get_GameObject(Engine::GAMEOBJECT, L"Body"));
+
+	if (L"Pants" == wstrParts)
+	{
+		if (m_vecCustomPantsBack.empty())
+			return;
+		
+		for (auto& pPantsBack : m_vecCustomPantsBack)
+		{
+			pPantsBack->Set_IsWearing(false);
+		}
+
+		pBody->Release_Pants();
+	}
+}
+
 _bool CUIMgr::SceneChangeToCTF()
 {
 	if (0.f >= m_vecCurUI.size())
@@ -3815,6 +3897,11 @@ void CUIMgr::SetTimeOver_RunCountDown()
 	}
 }
 
+void CUIMgr::SetAccumulatedRunGamePoints(_uint iPoints)
+{
+	m_iAccumulatedRunGamePoints += iPoints;
+}
+
 void CUIMgr::CreateMouse(LPDIRECT3DDEVICE9 pGraphicDev, CMouse::MOUSETYPE eMouseType)
 {
 	Engine::CGameObject* pGameObject = nullptr;
@@ -3961,5 +4048,5 @@ void CUIMgr::KeyInput(const _double & dTimeDelta)
 	_vec3 vPos = dynamic_cast<Engine::CScreenTex*>(pBuffer)->Get_vStartPos();
 	_vec2 vSize = dynamic_cast<Engine::CScreenTex*>(pBuffer)->Get_vSize();
 
-	//cout << m_iNextIndex << '\t' << vPos.x << '\t' << vPos.y << '\t' << vSize.x << '\t' << vSize.y << endl;
+	cout << m_iNextIndex << '\t' << vPos.x << '\t' << vPos.y << '\t' << vSize.x << '\t' << vSize.y << endl;
 }

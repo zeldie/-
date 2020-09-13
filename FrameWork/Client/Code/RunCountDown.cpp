@@ -56,6 +56,7 @@ _int CRunCountDown::Update_GameObject(const _double & dTimeDelta)
 
 				//마우스 바꿔주고
 				m_pUIMgr->ChangeMouseType(CMouse::MOUSE_INVISIBLE);
+				CCameraMgr::GetInstance()->Set_MouseFix(true);
 			}
 			else
 			{
@@ -75,6 +76,11 @@ _int CRunCountDown::Update_GameObject(const _double & dTimeDelta)
 	CUIObject::Update_GameObject(dTimeDelta);
 
 	m_dTime -= dTimeDelta;
+
+
+	if (RUNCOUNTDOWNTYPE_REVIVAL == m_eRunCountDownType)
+		CCameraMgr::GetInstance()->Set_MouseFix(false);
+
 
 	return Engine::NO_EVENT;
 }

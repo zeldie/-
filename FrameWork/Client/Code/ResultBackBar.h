@@ -51,13 +51,16 @@ private:
 	_uint				m_iTotalDeath;
 	wstring				m_wstrTotalDeath;
 
-	_tchar m_szTotalDamage[MIN_STR];
-	_tchar m_szTotalBreak[MIN_STR];
+	_tchar				m_szTotalDamage[MIN_STR];
+	_tchar				m_szTotalBreak[MIN_STR];
 	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 	//깃발전 결과창
 	_tchar				m_szBlueTotalScore[4];
 	_tchar				m_szRedTotalScore[4];
 	TCHAR_FLAGRESULT	m_szFlagResult[FLAGRESULTINFO_END];
+	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+	//런게임 결과창
+	_tchar				m_szTotalRunGamePoints[MIN_STR];
 
 private:
 	HRESULT				Clone_Component(_float fX, _float fY, _float fSizeX, _float fSizeY, _float fViewZ);

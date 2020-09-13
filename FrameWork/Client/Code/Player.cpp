@@ -1816,6 +1816,8 @@ void CPlayer::MissionEnterDistanceCheck()
 
 				m_pUIMgr->CreateNPCMissionUI(m_pGraphicDev);
 				m_pUIMgr->ChangeMouseType(CMouse::MOUSE_INVISIBLE);
+				CCameraMgr::GetInstance()->Set_MouseFix(true);
+
 				m_bMissionMapCheck = true;
 			}
 			else if (CUIMgr::UITYPE_READY == m_pUIMgr->Get_UIType())

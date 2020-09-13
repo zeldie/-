@@ -198,6 +198,7 @@ void CNPCButton::CheckNPCQuest()
 			//UI 상태 업데이트
 			m_pUIMgr->Set_UIType(CUIMgr::UITYPE_MAIN);
 			m_pUIMgr->ChangeMouseType(CMouse::MOUSE_INVISIBLE);
+			CCameraMgr::GetInstance()->Set_MouseFix(true);
 		}
 	}
 	else if (DISAGREE1 == m_eButtonType)
@@ -282,6 +283,7 @@ void CNPCButton::CheckNPCQuest()
 		//UI 상태 업데이트
 		m_pUIMgr->Set_UIType(CUIMgr::UITYPE_MAIN);
 		m_pUIMgr->ChangeMouseType(CMouse::MOUSE_INVISIBLE);
+		CCameraMgr::GetInstance()->Set_MouseFix(true);
 	}
 	else if (OUTBUTTON1 == m_eButtonType)
 	{
@@ -374,7 +376,7 @@ void CNPCButton::CheckNPCQuest()
 			//UI 상태 업데이트
 			m_pUIMgr->Set_UIType(CUIMgr::UITYPE_MAIN);
 			m_pUIMgr->ChangeMouseType(CMouse::MOUSE_INVISIBLE);
-
+			CCameraMgr::GetInstance()->Set_MouseFix(true);
 
 		}
 		else if (CQuestMgr::YELLOW == m_eNPCType)
@@ -449,6 +451,7 @@ void CNPCButton::CheckNPCQuest()
 			//UI 상태 업데이트
 			m_pUIMgr->Set_UIType(CUIMgr::UITYPE_MAIN);
 			m_pUIMgr->ChangeMouseType(CMouse::MOUSE_INVISIBLE);
+			CCameraMgr::GetInstance()->Set_MouseFix(true);
 		}
 
 	}

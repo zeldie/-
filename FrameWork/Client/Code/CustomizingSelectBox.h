@@ -29,6 +29,8 @@ private:
 
 	_bool				m_bIsWearing; //내가 누른걸 착용 하고있는지 판별하는 변수
 
+	
+
 private:
 	HRESULT				Clone_Component(_float fX, _float fY, _float fSizeX, _float fSizeY, _float fViewZ);
 	HRESULT				Setup_ShaderProps(LPD3DXEFFECT& pEffect);

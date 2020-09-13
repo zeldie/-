@@ -114,6 +114,8 @@ HRESULT CShootingStage::Ready_Scene()
 	m_pUIMgr->SetZeroForAccumulatedVariables();
 	m_pUIMgr->Set_ZeroStageTime();
 
+	CCameraMgr::GetInstance()->Set_MouseFix(true);
+
 	return S_OK;
 }
 
@@ -298,7 +300,7 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 	////////////////////////////////
 	m_pLightCamera->Update_GameObject(dTimeDelta);
 	m_dEnterSceneTime += dTimeDelta;
-	if (!m_bEnterScene && m_dEnterSceneTime > 2)
+	if (!m_bEnterScene && m_dEnterSceneTime > 5)
 	{
 		CLoadingMgr::GetInstance()->Set_EndFade(true);
 		m_bEnterScene = true;
@@ -340,7 +342,6 @@ _int CShootingStage::LateUpdate_Scene(const _double & dTimeDelta)
 
 void CShootingStage::Render_Scene()
 {
-
 	++m_dwRenderCnt;
 	if (m_dTime >= 1)
 	{

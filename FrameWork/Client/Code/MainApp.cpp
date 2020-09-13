@@ -206,6 +206,7 @@ void CMainApp::Render_MainApp(const _double& dTimeDelta)
 	Engine::Render_End();
 }
 
+
 HRESULT CMainApp::SetUp_DefaultSetting(LPDIRECT3DDEVICE9 * ppGraphicDev)
 {
 	if (FAILED(Engine::Ready_GraphicDev(g_hWnd, Engine::MODE_WIN, WINCX, WINCY, &m_pDeviceClass)))

@@ -21,6 +21,7 @@ public:
 private:
 	PANTSTYPE			m_ePantsType; //CustomizingSelectBox의 인덱스번호와 같을예정
 	_bool				m_bChoose;
+	_bool				m_bCheckDouble;
 
 private:
 	HRESULT				Clone_Component(_float fX, _float fY, _float fSizeX, _float fSizeY, _float fViewZ);
