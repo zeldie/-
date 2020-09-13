@@ -26,10 +26,6 @@ HRESULT COrb::Ready_GameObject()
 	m_vEditPos = { 25.5f,-100.f,-0.5f };
 	m_pDynamicMeshCom->Set_AnimationSet(1);
 	m_pTransformCom->Rotation(Engine::ROT_Y, 180.f);
-	if (m_bItem)
-	{
-		//m_pTransformCom->Set_Scale(0.01f, 0.01f, 0.01f);
-	}
 
 	return S_OK;
 }

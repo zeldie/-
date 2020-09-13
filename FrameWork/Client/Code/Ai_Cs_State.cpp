@@ -703,7 +703,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 				TempPos.y += 1000.f;
 
 				m_pPlayer->Get_NaviMesh()->Find_Index(m_dwNaviIndex, &TempPos);
-				cout << "%%% W Find_Index발동 %%%" << endl;
+				//cout << "%%% W Find_Index발동 %%%" << endl;
 			}
 
 			_vec3 vTargetDir = Engine::GetDirNoY(pPlayer->Get_TargetPos(), pPlayer->GetPlayerPos());

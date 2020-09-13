@@ -42,7 +42,7 @@ public:
 	void			Set_ItemPos(_vec3 vPos) { m_vItemPos = vPos; }
 
 private:
-	_bool m_bItem;
+	_bool m_bItem = false;
 	_vec3 m_vItemPos;
 
 	_bool m_bIsCombat;
