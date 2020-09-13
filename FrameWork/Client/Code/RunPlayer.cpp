@@ -171,11 +171,13 @@ _int CRunPlayer::Update_GameObject(const _double & dTimeDelta)
 	}
 	if (Engine::KeyDown(DIK_6))
 	{
+		// 무적 치트
 		m_bImmortal = !m_bImmortal;
 	}
 	if (Engine::KeyDown(DIK_7))
 	{
-		--m_dPlayerSpeed;
+		// 도착지 이동 치트
+		m_dProgress = 0.95f;
 	}
 	if (Engine::KeyDown(DIK_8))
 	{
