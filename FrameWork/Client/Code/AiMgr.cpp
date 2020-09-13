@@ -1045,6 +1045,7 @@ void CAiMgr::Capture(CBasePlayer * pAi, const _double & dTimeDelta)
 				}
 			}
 
+			dynamic_cast<CAi_Player*>(pAi)->Set_AnimationSpeed(1);
 			pAi->Set_DownKey(KEY_Capture_Flag);
 		}
 		else // 깃발에서 좀 떨어져있을때
@@ -1330,7 +1331,7 @@ void CAiMgr::Check_CapturePlayer()
 				rAi->Set_Timer(L"Captureing");
 				// Ui 점령 표시 // 
 				float fFlagPeriod = rAi->Get_DyanmicMesh()->Get_Period();
-				CUIMgr::GetInstance()->CaptureingFlag(m_pGraphicDev, rAi->Get_Team(), fFlagPeriod);
+				CUIMgr::GetInstance()->CaptureingFlag(m_pGraphicDev, rAi->Get_Team(), (_double)fFlagPeriod);
 
 				////cout << "점령중" << endl;
 			}
@@ -1339,7 +1340,8 @@ void CAiMgr::Check_CapturePlayer()
 
 			float fPeriod = rAi->Get_DyanmicMesh()->Get_Period();
 
-			cout << rAi->Get_DyanmicMesh()->Get_TrackTime() << endl;
+
+			////cout << rAi->Get_DyanmicMesh()->Get_TrackTime() << endl;
 
 			if (rAi->Get_DyanmicMesh()->Get_TrackTime() > fPeriod * 0.9)
 			{

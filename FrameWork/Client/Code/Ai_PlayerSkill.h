@@ -44,6 +44,7 @@ private:
 
 	_vec3 vTargetPos;
 	_vec3 vStartPos;
+	_vec3 m_vOrbUltPos;
 
 	_float fLength;
 

@@ -64,14 +64,7 @@ HRESULT CBelatos_Arrow::Ready_GameObject(ARROW_TYPE eArrowType, _vec3 * pPos, _v
 	m_vecCollSphere[COLLSPHERETYPE::SPHERE_ATT].emplace_back(dynamic_cast<Engine::CSphereCollider*>(pAttCol));
 
 	BASE_INFO tBase;
-	if (eControlType == CTRL_PLAYER)
-		tBase.eObjectID = OBJECT_PLAYER;
-	else if (eControlType == CTRL_AI_ALLIANCE)
-		tBase.eObjectID = OBJECT_ALLIANCE;
-	else if (eControlType == CTRL_AI_ENERMY_1)
-		tBase.eObjectID = OBJECT_ENEMY_1;
-	else if (eControlType == CTRL_AI_ENERMY_2)
-		tBase.eObjectID = OBJECT_ENEMY_2;
+	tBase.eObjectID = OBJECT_MONSTER;
 
 	if (m_eArrowType == BASIC_ARROW)
 	{
