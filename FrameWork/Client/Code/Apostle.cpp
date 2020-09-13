@@ -257,7 +257,7 @@ void CApostle::Render_Geometry(const _double & dTimeDelta)
 
 void CApostle::Render_PostEffect(const _double & dTimeDelta)
 {
-	if (!m_bDying)
+	if (!m_bDissolveStart)
 	{
 		//Shader
 		LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
@@ -293,32 +293,35 @@ void CApostle::Render_PostEffect(const _double & dTimeDelta)
 
 void CApostle::Render_Shadow(const _double & dTimeDelta)
 {
-	////Shader
-	//LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
-	//if (pEffect == nullptr)
-	//	return;
-	//Engine::Safe_AddRef(pEffect);
-	//if (FAILED(Setup_ShaderProps(pEffect)))
-	//	return;
-	//_uint iPassMax = 0;
-	//pEffect->Begin(&iPassMax, 0);
-	//list<Engine::D3DXMESHCONTAINER_DERIVED*>* plistMeshContainer = m_pDynamicMeshCom->Get_MeshContainerlist();
-	//for (auto& iter : *plistMeshContainer)
-	//{
-	//	_ulong dwSubsetNum = m_pDynamicMeshCom->Get_SubsetNum(iter);
-	//	m_pDynamicMeshCom->Render_Meshes_Begin(iter);
-	//	for (_ulong i = 0; i < dwSubsetNum; ++i)
-	//	{
-	//		pEffect->BeginPass(6);
-	//		pEffect->CommitChanges();
-	//		m_pDynamicMeshCom->Render_Meshes(iter, i);
-	//		pEffect->EndPass();
-	//	}
-	//	m_pDynamicMeshCom->Render_Meshes_End(iter);
-	//}
-	//pEffect->End();
+	if (!m_bDissolveStart)
+	{
+		//Shader
+		LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
+		if (pEffect == nullptr)
+			return;
+		Engine::Safe_AddRef(pEffect);
+		if (FAILED(Setup_ShaderProps(pEffect, dTimeDelta)))
+			return;
+		_uint iPassMax = 0;
+		pEffect->Begin(&iPassMax, 0);
+		list<Engine::D3DXMESHCONTAINER_DERIVED*>* plistMeshContainer = m_pDynamicMeshCom->Get_MeshContainerlist();
+		for (auto& iter : *plistMeshContainer)
+		{
+			_ulong dwSubsetNum = m_pDynamicMeshCom->Get_SubsetNum(iter);
+			m_pDynamicMeshCom->Render_Meshes_Begin(iter);
+			for (_ulong i = 0; i < dwSubsetNum; ++i)
+			{
+				pEffect->BeginPass(6);
+				pEffect->CommitChanges();
+				m_pDynamicMeshCom->Render_Meshes(iter, i);
+				pEffect->EndPass();
+			}
+			m_pDynamicMeshCom->Render_Meshes_End(iter);
+		}
+		pEffect->End();
 
-	//Engine::Safe_Release(pEffect);
+		Engine::Safe_Release(pEffect);
+	}
 }
 
 HRESULT CApostle::Clone_Component()

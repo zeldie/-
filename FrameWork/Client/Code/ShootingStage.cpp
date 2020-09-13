@@ -28,7 +28,9 @@ CShootingStage::CShootingStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_bLateInit(true),
 	m_dCreateShootingResultUITime(2.f),
 	m_pPlayer(nullptr),
-	m_pApostle(nullptr)
+	m_pApostle(nullptr),
+	m_bOneClearUI(true),
+	m_dChangeScene(3.f)
 {
 }
 
@@ -122,10 +124,10 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 
 	if (m_bLateInit)
 	{
-	//  //Apostle 상태에서 생성중
-	//	//m_pUIMgr->CreateBattleUI(m_pGraphicDev, CUIMgr::UITYPE_SHOOTING);
-	//	//m_pUIMgr->CreatePlayerInfoUI(m_pGraphicDev, nullptr);
-		m_pUIMgr->CreateMouse(m_pGraphicDev,CMouse::MOUSE_INVISIBLE);
+		//  //Apostle 상태에서 생성중
+		//	//m_pUIMgr->CreateBattleUI(m_pGraphicDev, CUIMgr::UITYPE_SHOOTING);
+		//	//m_pUIMgr->CreatePlayerInfoUI(m_pGraphicDev, nullptr);
+		m_pUIMgr->CreateMouse(m_pGraphicDev, CMouse::MOUSE_INVISIBLE);
 		m_bLateInit = false;
 
 		CSoundMgr::Get_Instance()->AllStop();
@@ -134,6 +136,39 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 	}
 
 	m_pUIMgr->StageTimeCheck();
+
+	//변신 후 런게임 이동
+	if (!m_bOneClearUI)
+	{
+		m_dChangeScene -= dTimeDelta;
+		if (0.f >= m_dChangeScene)
+		{
+			if (!m_bFade)
+			{
+				CLoadingMgr::GetInstance()->Set_StartFade(true); //어둡게한다
+				m_bFade = true;
+			}
+			if (m_bFade)
+			{
+				if (CLoadingMgr::GetInstance()->Get_StartFade() == false) //다어두워지면
+				{
+					Engine::ClearSubject();
+					Engine::ClearRenderer();
+					m_pUIMgr->ClearPointerUI();
+
+					Engine::CScene*		pScene = nullptr;
+
+					pScene = CRunGame::Create(m_pGraphicDev);
+					if (pScene == nullptr)
+						return E_FAIL;
+
+					iExit = Engine::SetUp_Scene(pScene);
+					return iExit;
+				}
+			}
+		}
+
+	}
 
 	////////////////////////SceneChange
 	if (Engine::KeyPressing(DIK_LCONTROL))
@@ -243,59 +278,36 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 	{
 		if (CUIMgr::GetInstance()->CheckClickEXITButton())
 		{
-			m_pUIMgr->ClearUI();
-			//// Apostle end cutscene set
-			//int i = 0;
-			//
-			//// Player Cutscene et
-		
-			//if (!m_bFade)
-			//{
-			//	CLoadingMgr::GetInstance()->Set_StartFade(true); //어둡게한다
-			//	m_bFade = true;
-			//}
-			//if (m_bFade)
-			//{
-			//	if (CLoadingMgr::GetInstance()->Get_StartFade() == false) //다어두워지면
-			//	{
-			//		Engine::ClearSubject();
-			//		Engine::ClearRenderer();
-			//		m_pUIMgr->ClearPointerUI();
+			if (m_bOneClearUI)
+			{
+				m_pUIMgr->ClearUI();
 
-			//		Engine::CScene*		pScene = nullptr;
+				//// Apostle end cutscene set
+				//int i = 0;
+				//
+				//// Player Cutscene et
 
-			//		pScene = CRunGame::Create(m_pGraphicDev);
-			//		if (pScene == nullptr)
-			//			return E_FAIL;
+				// 변신
+				dynamic_cast<CPlayer*>(m_pPlayer)->Set_TransApostle(true);
+				dynamic_cast<CApostle*>(m_pApostle)->Set_Render(true);
 
-			//		iExit = Engine::SetUp_Scene(pScene);
-			//		return iExit;
-			//	}
-			//}
+				_vec3	vAngle = { 90.f,0.f,0.f };
+				_vec3 vPos = dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS];
+				BASE_INFO	tBaseInfo;
+				memcpy(&tBaseInfo, dynamic_cast<CPlayer*>(m_pPlayer)->Get_BaseInfo(), sizeof(BASE_INFO));
+				CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_SPHERE_GOLD2, &vPos, &vAngle, &tBaseInfo);
 
+				_vec3 vDir = Engine::GetDirNoY(vPos, CCameraMgr::GetInstance()->Get_Pos());
+				vAngle.x = 0.f;
+				vPos += +_vec3(0.f, 125.f, 0.f) - vDir*80.f;
+				CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_TRANS_APOSTLE, &vPos, &vAngle, &tBaseInfo);
 
-			// 변신
-			dynamic_cast<CPlayer*>(m_pPlayer)->Set_TransApostle(true);
-			dynamic_cast<CApostle*>(m_pApostle)->Set_Render(true);
+				Engine::CGameObject* pRunPlayer = CRunPlayer::Create(m_pGraphicDev, &dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS], &_vec3(0.f, 0.f, 0.f), &_vec3(0.5f, 0.5f, 0.5f));
+				Engine::Add_GameObject(Engine::GAMEOBJECT, L"RunPlayer", pRunPlayer);
+				dynamic_cast<CRunPlayer*>(pRunPlayer)->Set_Shooting(true);
 
-
-
-			_vec3	vAngle = { 90.f,0.f,0.f };
-			_vec3 vPos = dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS];
-			BASE_INFO	tBaseInfo;
-			memcpy(&tBaseInfo, dynamic_cast<CPlayer*>(m_pPlayer)->Get_BaseInfo(), sizeof(BASE_INFO));
-			CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_SPHERE_GOLD2, &vPos, &vAngle, &tBaseInfo);
-
-
-			_vec3 vDir = Engine::GetDirNoY(vPos, CCameraMgr::GetInstance()->Get_Pos());
-			vAngle.x = 0.f;
-			vPos += +_vec3(0.f, 125.f, 0.f) - vDir*80.f;
-			CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_TRANS_APOSTLE, &vPos, &vAngle, &tBaseInfo);
-
-			Engine::CGameObject* pRunPlayer = CRunPlayer::Create(m_pGraphicDev, &dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS], &_vec3(0.f, 0.f, 0.f), &_vec3(0.5f, 0.5f, 0.5f));
-			Engine::Add_GameObject(Engine::GAMEOBJECT, L"RunPlayer", pRunPlayer);
-			dynamic_cast<CRunPlayer*>(pRunPlayer)->Set_Shooting(true);
-			
+				m_bOneClearUI = false;
+			}
 		}
 	}
 	////////////////////////////////
@@ -369,8 +381,8 @@ HRESULT CShootingStage::Ready_GameObject_Layer()
 		return E_FAIL;
 	if (FAILED(pLayer->Add_GameObject(L"RealPlayer", pGameObject)))
 		return E_FAIL;
-
 	m_pLightCamera->Set_PlayerTransformCom(static_cast<CBaseObject*>(pGameObject)->Get_TransformCom());
+
 	pGameObject = CTerrain::Create(m_pGraphicDev, CTerrain::TERRAIN_SHOOTINGSTAGE);
 	if (pGameObject == nullptr)
 		return E_FAIL;
