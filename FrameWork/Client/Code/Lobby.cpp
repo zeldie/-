@@ -352,7 +352,7 @@ _int CLobby::Update_Scene(const _double & dTimeDelta)
 			}
 		}
 	}
-
+	
 	// 로비 -> 짝맞추기
 	if (CUIMgr::UITYPE_NPC == m_pUIMgr->Get_UIType())
 	{
@@ -520,8 +520,6 @@ CLobby * CLobby::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CLobby::Free()
 {
-	if (m_pLightCamera != nullptr)
-		m_pLightCamera->Release_TransformCom();
 	//m_pUIMgr->EraseMouse();
 	Engine::CScene::Free();
 	

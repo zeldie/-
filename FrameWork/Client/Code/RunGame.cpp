@@ -32,6 +32,7 @@ CRunGame::CRunGame(LPDIRECT3DDEVICE9 pGraphicDev)
 	, m_bInit(false)
 	, m_szStageSecond(L"")
 	, m_dTotalTime(0.f)
+	, m_bOneCreateUI(true)
 {
 }
 
@@ -116,7 +117,7 @@ HRESULT CRunGame::Ready_Scene()
 	CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Wall_Left.dat", LINETYPE::LINE_WALL_LEFT_MID, SECT_1);
 	CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Wall_Right.dat", LINETYPE::LINE_WALL_RIGHT_MID, SECT_1);
 	CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Top_Mid.dat", LINETYPE::LINE_TOP_MID, SECT_1);
-	
+
 	//CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Bot_Left2.dat", LINETYPE::LINE_BOTTOM_LEFT, SECT_2);
 
 	CCameraMgr::GetInstance()->SettingCamView();
@@ -238,11 +239,21 @@ _int CRunGame::Update_Scene(const _double & dTimeDelta)
 			return iExit;
 		}
 	}
-	
+
 	if (Engine::KeyDown(DIK_F8))
 	{
 		m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
 	}
+
+	if (CCameraMgr::GetInstance()->Get_ItemGetCheck())
+	{
+		if (m_bOneCreateUI)
+		{
+			m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
+			m_bOneCreateUI = false;
+		}
+	}
+
 	////////////////////////////////
 	// 로비로
 	if (CUIMgr::UITYPE_RESULT_Run == m_pUIMgr->Get_UIType())
@@ -306,8 +317,8 @@ void CRunGame::Render_Scene()
 	//////희정 추가
 	//실제게임에서는 위에 주석걸거니까.
 	//결과창일 때를 제외하고 시간이 보인다.
-	if(CUIMgr::UITYPE_RESULT_Run != CUIMgr::GetInstance()->Get_UIType())
-		RenderTime(); 
+	if (CUIMgr::UITYPE_RESULT_Run != CUIMgr::GetInstance()->Get_UIType())
+		RenderTime();
 
 }
 
@@ -316,20 +327,20 @@ void CRunGame::RenderTime()
 	//_double dStageTime = m_pUIMgr->Get_StageTime();
 	//시간 누적
 	m_pUIMgr->SetAccumulatedTime(m_dTotalTime);
-	
+
 	//앞에 초
 	wsprintf(m_szStageSecond, L"%d", (_uint)m_dTotalTime);
-	
+
 	//자릿수구하기-> 글자 위치
 	_uint iQuotient = (_uint)m_dTotalTime / 100;
 	_uint iUnitNumber = 0;
-	if ( 0 != iQuotient) //3자리수
+	if (0 != iQuotient) //3자리수
 	{
 		iUnitNumber = 3;
 	}
 	else
 	{
-		if (0 != (_uint)m_dTotalTime /10) // 2자리수
+		if (0 != (_uint)m_dTotalTime / 10) // 2자리수
 		{
 			iUnitNumber = 2;
 		}
@@ -381,7 +392,7 @@ void CRunGame::RenderTime()
 
 void CRunGame::StageTimeCheck(const _double& dTimeDelta)
 {
-	if(!m_pUIMgr->Get_RunGameTimeStop())
+	if (!m_pUIMgr->Get_RunGameTimeStop())
 		m_dTotalTime += dTimeDelta;
 	else
 	{
@@ -439,7 +450,7 @@ HRESULT CRunGame::Ready_GameObject_Layer()
 	Load_Architecture(pLayer, L"../../Data/Mesh/Map_Run001.dat");
 	//Load_Architecture(pLayer, L"../../Data/Mesh/Map_Run02.dat");
 	//Load_Architecture(pLayer, L"../../Data/Mesh/Map_RunTestBig.dat");
-	 
+
 	m_mapLayer.emplace(Engine::GAMEOBJECT, pLayer);
 
 	return S_OK;
@@ -453,7 +464,7 @@ HRESULT CRunGame::Ready_UI_Layer()
 
 	//Engine::CGameObject*		pGameObject = nullptr;
 	m_pUIMgr->Set_UIType(CUIMgr::UITYPE_RUN);
-	
+
 	m_mapLayer.emplace(Engine::UI, pLayer);
 	return S_OK;
 }
@@ -477,7 +488,7 @@ void CRunGame::LateInit()
 {
 	if (m_bInit)
 		return;
-	
+
 	CSoundMgr::Get_Instance()->AllStop();
 	CSoundMgr::Get_Instance()->BGMSTART(99);
 	m_bInit = true;

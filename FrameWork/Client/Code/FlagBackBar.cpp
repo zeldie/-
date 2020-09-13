@@ -40,19 +40,18 @@ _int CFlagBackBar::Update_GameObject(const _double & dTimeDelta)
 
 	m_dTime += dTimeDelta;
 
-	if (m_dMaxTime <= m_dTime)
-	{
-		m_dTime = m_dMaxTime;
-		m_bIsDead = true;
-	}
-
 	return Engine::NO_EVENT;
 }
 
 _int CFlagBackBar::LateUpdate_GameObject(const _double & dTimeDelta)
 {
-	CUIObject::LateUpdate_GameObject(dTimeDelta);
-
+	CUIObject::LateUpdate_GameObject(dTimeDelta);	
+	
+	if (m_dMaxTime <= m_dTime)
+	{
+		m_dTime = m_dMaxTime;
+		m_bIsDead = true;
+	}
 
 	if (GAGE == m_eBackBarType)
 	{

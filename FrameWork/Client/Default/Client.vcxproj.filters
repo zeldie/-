@@ -793,6 +793,12 @@
     <Filter Include="02.GameObject\04.UI\25.Customizing\07.CustomizingButton">
       <UniqueIdentifier>{72475da3-cafe-4119-a06c-c6423e7fd8b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1">
+      <UniqueIdentifier>{a37448b5-4015-4af1-891c-98185c739777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\01.Stage\104.RunWeapon_LongBow">
+      <UniqueIdentifier>{bb9d7411-9ddb-4caf-9a86-4e747ad9a64c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1527,12 +1533,6 @@
     <ClInclude Include="..\Code\CustomizingButton.h">
       <Filter>02.GameObject\04.UI\25.Customizing\07.CustomizingButton</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RunPlayerIdle1.h">
-      <Filter>98.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\RunWeapon_LongBow.h">
-      <Filter>98.Header</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\Orb.h">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
     </ClInclude>
@@ -1541,6 +1541,12 @@
     </ClInclude>
     <ClInclude Include="..\Code\Ai_Player.h">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerIdle1.h">
+      <Filter>02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunWeapon_LongBow.h">
+      <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1946,9 +1952,6 @@
     <ClCompile Include="..\Code\Ai_BasicCombo.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\01.Ai_BasicCombo</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Orb.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Ob</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\DualSword.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\01.Ds</Filter>
     </ClCompile>
@@ -2285,12 +2288,6 @@
     <ClCompile Include="..\Code\CustomizingButton.cpp">
       <Filter>02.GameObject\04.UI\25.Customizing\07.CustomizingButton</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RunPlayerIdle1.cpp">
-      <Filter>98.Header</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
-      <Filter>98.Header</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Orb.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
     </ClCompile>
@@ -2299,6 +2296,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\Ai_Player.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Orb.cpp">
+      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerIdle1.cpp">
+      <Filter>02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
+      <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

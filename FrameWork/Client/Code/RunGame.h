@@ -36,6 +36,7 @@ private:
 	_tchar			m_szStageSecond[MIN_STR];//»Ò¡§
 
 	_double			m_dTotalTime;
+	_bool			m_bOneCreateUI;
 
 public:
 	static CRunGame*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

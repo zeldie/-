@@ -117,6 +117,9 @@ _int CRunPlayer::Update_GameObject(const _double & dTimeDelta)
 		Power_SpeedUp(dTimeDelta);	// 스피드업 아이템 먹었을때 속도 빨라지는 함수
 		CollisionCheck();	// 충돌체크함수, 움직이고나서 하면된다.
 		CollisionItem();	// 아이템이랑 충돌했는지 확인하는 함수
+		if (CCameraMgr::GetInstance()->Get_ItemGetCheck())
+			Change_State(STATE_WAIT);
+
 	}
 
 
@@ -171,11 +174,14 @@ _int CRunPlayer::Update_GameObject(const _double & dTimeDelta)
 	}
 	if (Engine::KeyDown(DIK_6))
 	{
+		// 무적 치트
 		m_bImmortal = !m_bImmortal;
 	}
 	if (Engine::KeyDown(DIK_7))
 	{
-		--m_dPlayerSpeed;
+		// 도착지 이동 치트
+		m_dProgress = 0.95f;
+		m_eLineType = LINE_BOTTOM_MID;
 	}
 	if (Engine::KeyDown(DIK_8))
 	{
@@ -928,7 +934,7 @@ void CRunPlayer::CollisionItem()
 void CRunPlayer::CollisionResult()
 {
 	if (!m_bImmortal)
-		m_tBaseInfo.iHp -= 10;
+		m_tBaseInfo.iHp -= 2500;
 
 	m_dCollSlow = 0.4;
 	m_dCollSlowTime = g_dAccumulatedTime + 1.0;
