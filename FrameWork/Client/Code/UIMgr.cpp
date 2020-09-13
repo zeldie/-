@@ -2133,7 +2133,7 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 		{
 			//KarmaSlot
 			pGameObject = CKarmaSlot::Create(pGraphicDev, SELECTKARMATYPE_FORSWAP,
-				CKarmaSlot::INREADYUI, 418.1f + (66.9f*i), 490.f, 67.3f, 66.2f);
+				CKarmaSlot::INREADYUI, 485.0f + (66.9f*i), 490.f, 67.3f, 66.2f); //418.1f
 			if (pGameObject == nullptr)
 				return E_FAIL;
 			Engine::Add_GameObject(Engine::UI, L"KarmaSlot", pGameObject);
@@ -2151,7 +2151,7 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 			{
 				//Karma
 				pGameObject = CKarma::Create(pGraphicDev, SELECTKARMATYPE_FORSWAP,
-					eKarma, CKarma::KARMATYPE(i), 418.1f + (66.9f*iCnt), 490.f, 67.3f, 66.2f);
+					eKarma, CKarma::KARMATYPE(i), 485.0f + (66.9f*iCnt), 490.f, 67.3f, 66.2f);
 
 				if (pGameObject == nullptr)
 					return E_FAIL;
@@ -2316,7 +2316,7 @@ void CUIMgr::CheckEraseSwapPossible()
 			++iTrueCnt;
 	}
 
-	if (3 == iTrueCnt)
+	if (2 == iTrueCnt)
 	{
 		EraseSwapKarmaUI();
 		m_bEraseSwapKarmaUIPossible = true;

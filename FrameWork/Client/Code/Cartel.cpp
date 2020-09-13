@@ -105,6 +105,10 @@ HRESULT CCartel::Load_Architecture(Engine::CLayer* pLayer, WCHAR * wstrPath)
 
 HRESULT CCartel::Ready_Scene()
 {
+	m_pUIMgr->Set_PlayerMainWeapon(2); //대검
+	m_pUIMgr->Set_PlayerSubWeapon(3); //오브
+
+
 	if (FAILED(Ready_Environment_Layer()))
 		return E_FAIL;
 	if (FAILED(Ready_GameObject_Layer()))
@@ -159,7 +163,7 @@ _int CCartel::Update_Scene(const _double & dTimeDelta)
 
 		//플레이어&AI 아이디 설정 -->보스전 아이디는 UI-BACKBAR에서 직접 적어줌
 		_tchar szID[MIN_STR];
-		wsprintf(szID, L"플레이어");
+		wsprintf(szID, L"JUSIN103");
 		m_pUIMgr->Set_FlagPlayersID(OBJID::OBJECT_PLAYER, szID);
 
 		wsprintf(szID, L"동지");

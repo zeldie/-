@@ -40,6 +40,18 @@ void CLightMgr::Render_Light(LPD3DXEFFECT & pEffect)
 		iter->Render_Light(pEffect);
 }
 
+void CLightMgr::Delete_Light(_uint iIndex)
+{
+	auto iter = m_LightList.begin();
+
+	for (_uint i = 0; i < iIndex; ++i)
+		++iter;
+	Safe_Release(*iter);
+	m_LightList.pop_back();
+
+
+}
+
 void Engine::CLightMgr::Free()
 {
 	for_each(m_LightList.begin(), m_LightList.end(), CDeleteObj());

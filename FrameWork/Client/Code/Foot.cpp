@@ -18,9 +18,7 @@ HRESULT CFoot::Change_Foot(_uint iFoot, _uint iCurrentTrack, _double dTrackTime,
 {
 	m_pDynamicMeshCom = m_vecFoot[iFoot];
 	m_mapComponent[Engine::ID_STATIC][Engine::MESH] = m_vecFoot[iFoot];
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-	m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-
+	m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dTrackTime);
 	m_iFootIndex = iFoot;
 	return S_OK;
 }

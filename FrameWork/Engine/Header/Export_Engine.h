@@ -173,8 +173,9 @@ inline void				SetUp_OnShader(LPD3DXEFFECT& pEffect, RENDERTARGET eTargetTag, co
 
 ///////////////////////////////////////////////LightMgr//////////////////////////////////////////////////////////
 inline const D3DLIGHT9*		Get_Light(const _uint& iIndex);
-inline HRESULT				Ready_Light(LPDIRECT3DDEVICE9 pGraphicDev, const D3DLIGHT9* pLightInfo, const _uint& iIndex);
+inline HRESULT				Ready_Light(LPDIRECT3DDEVICE9 pGraphicDev,const D3DLIGHT9* pLightInfo, const _uint& iIndex);
 inline void					Render_Light(LPD3DXEFFECT& pEffect);
+inline void					Delete_Light(_uint iIndex);
 
 ///////////////////////////////////////////////TextureMgr//////////////////////////////////////////////////////////
 inline void					SetTexture(LPD3DXEFFECT& pEffect, const char* pContantName, const _uint& iIndex);
