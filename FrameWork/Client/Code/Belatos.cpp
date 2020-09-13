@@ -77,8 +77,8 @@ _int CBelatos::Update_GameObject(const _double & dTimeDelta)
 {
 	if (m_bIsDead)
 	{
-		m_pUIMgr->Set_CreateBossResultUI(true);
-		m_pUIMgr->Set_StageTimeStop();
+		//m_pUIMgr->Set_CreateBossResultUI(true);
+		//m_pUIMgr->Set_StageTimeStop();
 		_vec3 CreatePos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
 		CreatePos.y -= 50.f;
 		CGameObject* pGameObject = COrb::Create(m_pGraphicDev, CreatePos);
