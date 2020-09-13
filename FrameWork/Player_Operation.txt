@@ -1,0 +1,27 @@
+COMMON_STATE
+	w a s d - 이동
+	LB / RB - 주 무기 공격(상태 변경 - 주 무기)
+	LShift	- Dash
+
+TS_STATE
+	LB(COMMON_STATE->TS_STATE 최초 변경 시) BASICCOMBO1 공격
+		ㄴLB - BASICCOMBO2 공격
+			ㄴLB(MOUSEUP)		- BASICCOMBO3 공격(TS_STATE 종료)
+			ㄴLB(MOUSEPRESSING)	- 회전 공격(최소 0.2~0.5초간 유지해야 함)
+											ㄴ BASICCOMBOEX02_START~>LOOP 상태 변경 시간
+				ㄴLB(MOUSEUP)	- 최소 동작 시간 2초, 최대 5초간 행동 유지
+								(최소 동작 시간이 지난 후 LB UP시 패턴 종료)
+
+			ㄴRB					- BASICCOMBOEX01 올려치기 공격
+								(에어본 - 공중 콤보 가능(0717미구현 상태))
+
+	RB(COMMON_STATE->TS_STATE 최초 변경 시)
+		ㄴMOUSEUP				- ROCKBREAK
+			ㄴRB					- ROCKBREAK2(1번 더 함 그 다음은 없음)
+		
+		ㄴMOUSEPRESSING			- CHARGING
+
+		더 해야할 거
+		1. 쿼터뷰 캠
+		2. 횡스크롤 캠
+

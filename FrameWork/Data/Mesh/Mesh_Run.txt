@@ -1,0 +1,15 @@
+Static|StaticMesh|Mesh_Ruins_Place_Set_002_1x1|..\..\Resource\Mesh\StaticMesh\Run\Ruins_Place_Set_002_1x1\|Ruins_Place_Set_002_1x1.X
+Static|StaticMesh|Mesh_Ruins_Place_Set_002_1x2|..\..\Resource\Mesh\StaticMesh\Run\Ruins_Place_Set_002_1x2\|Ruins_Place_Set_002_1x2.X
+Static|StaticMesh|Mesh_Ruins_Place_Set_002_1x3|..\..\Resource\Mesh\StaticMesh\Run\Ruins_Place_Set_002_1x3\|Ruins_Place_Set_002_1x3.X
+Static|StaticMesh|Mesh_RunGame_Base_Rock01|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Base_Rock01\|RunGame_Base_Rock01.X
+Static|StaticMesh|Mesh_RunGame_Cliff_00|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Cliff_00\|RunGame_Cliff_00.X
+Static|StaticMesh|Mesh_RunGame_Obj_b|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Obj_b\|RunGame_Obj_b.X
+Static|StaticMesh|Mesh_RunGame_Rock|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Rock\|RunGame_Rock.X
+Static|StaticMesh|Mesh_RunGame_Rocks_Wall_Set_002|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Rocks_Wall_Set_002\|RunGame_Rocks_Wall_Set_002.X
+Static|StaticMesh|Mesh_RunGame_Rock_A|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Rock_A\|RunGame_Rock_A.X
+Static|StaticMesh|Mesh_RunGame_Ruins_WallSet_001|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Ruins_WallSet_001\|RunGame_Ruins_WallSet_001.X
+Static|StaticMesh|Mesh_RunGame_Ruins_WallSet_004|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Ruins_WallSet_004\|RunGame_Ruins_WallSet_004.X
+Static|StaticMesh|Mesh_RunGame_Ruins_WallSet_053|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Ruins_WallSet_053\|RunGame_Ruins_WallSet_053.X
+Static|StaticMesh|Mesh_RunGame_Ruins_WallSet_054|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Ruins_WallSet_054\|RunGame_Ruins_WallSet_054.X
+Static|StaticMesh|Mesh_RunGame_Sky|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Sky\|RunGame_Sky.X
+Static|StaticMesh|Mesh_RunGame_Terrain|..\..\Resource\Mesh\StaticMesh\Run\RunGame_Terrain\|RunGame_Terrain.X

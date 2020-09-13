@@ -1,0 +1,32 @@
+[오브]
+기본3스킬 + 궁극기
+지상기본5타 콤보      		(Basic Attack)
+우클릭 - 차지어택 			(Charge Attack)
+공중으로 올리는 콤보 		Launch Attack (Chase)
+3타후 대쉬			Moving Attack
+점프대쉬				Aerial Dash
+점프 -> 3타 -> 대쉬		Dash AFter Aerial Attack
+
+[활]
+기본3스킬 + 궁극기
+지상 기본3타			Basic Attack
+지상 2타 + 좌클릭꾹		Multi-Shot
+지상 2타 + 우클릭(공중으로 올리기)	Lift & Shoot (Chase)
+에임후 발사(우클릭)		Aimed Shot
+공중 3타				Air Shooting
+
+[대검]
+기본3스킬 + 궁극기[칼 커지는거]
+지상기본 3타			Basic Attack
+지상 2타 + 좌클릭꾹		Spin Attack
+우클릭				Charged Blow
+공중으로 띄우기			Rising Swing
+공중 4타				Air Attack
+
+[듀얼소드]
+기본3스킬 + 궁극기
+ㅇ지상 기본5타			Basic Attack
+ㅇ우클릭				Flash Cut
+ㅇ지상 4타 + 좌클릭꾹		Multi-Stab Attack
+ㅇ공중으로 띄우기			Upper Slash(Chase)
+ㅇ공중 기본4타			Jump Attack

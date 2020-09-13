@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00.MainApp">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01.MainFrm">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="03.Doc">
+      <UniqueIdentifier>{4a1c9995-a882-4605-847e-4b60d5a746fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="99.Default">
+      <UniqueIdentifier>{a0e15b14-08a6-4011-9a10-8a941df1b798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm">
+      <UniqueIdentifier>{1b0858f4-3c9f-4277-bff1-a5ce8a14e355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject">
+      <UniqueIdentifier>{ecea08d3-bfb7-4e10-b7d3-7b7f7b63be45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene">
+      <UniqueIdentifier>{ceb69ec2-21ea-4f08-be4b-5d276cd11898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\00.MapTool">
+      <UniqueIdentifier>{ea319c30-ad75-4a20-b6e6-a9034ed8c0fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene\00.MapScene">
+      <UniqueIdentifier>{e7b5d17f-644a-4229-8a94-c8403472d299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\01.MeshTool">
+      <UniqueIdentifier>{b3536f55-04d6-4e8d-b212-f5bb28facab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\02.NaviMeshTool">
+      <UniqueIdentifier>{0dcc7688-610d-4962-8a57-73296f5518b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\03.EffectTool">
+      <UniqueIdentifier>{2f99fb77-c24c-4aa9-9b69-69f03c33cb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.FileInfo">
+      <UniqueIdentifier>{3d4b882f-2eec-4b38-981b-e4ab1e688e5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject">
+      <UniqueIdentifier>{e220813d-99d7-4591-b53c-a62d9fd016d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\01.NoMeshObject">
+      <UniqueIdentifier>{e90199bd-97c0-42c2-8777-966ca4e5cb28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\01.NoMeshObject\00.Terrain">
+      <UniqueIdentifier>{910cd4f6-4110-4f87-971b-30ce324ee34f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\01.NoMeshObject\01.Camera">
+      <UniqueIdentifier>{915c5984-c904-4da0-bef7-f954180f9b27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\01.NoMeshObject\01.Camera\00.DynamicCamera">
+      <UniqueIdentifier>{fb10c32d-679b-414b-89ad-47c188a33713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Header">
+      <UniqueIdentifier>{c21f8f15-56d0-4ded-8123-eead73485f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject\00.StaticMeshObject">
+      <UniqueIdentifier>{d820d00a-fd83-48ce-aa61-ec25b7822a89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject\01.DynamicMeshObject">
+      <UniqueIdentifier>{1320a3b3-39f5-4f0f-a982-7452e8f6fdd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject\02.NaviMeshObject">
+      <UniqueIdentifier>{f8441518-6d4d-45fe-bd85-7c8589a1ae95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\04.ColliderTool">
+      <UniqueIdentifier>{0b0cf31b-bdc0-49d6-be34-98bd94f6c124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\05.PathFindTool">
+      <UniqueIdentifier>{8a50e2a0-7688-4481-a717-2e49d8861405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject\03.EffectToolObj">
+      <UniqueIdentifier>{75e8a595-a3be-480d-a6cb-79b38ae570b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\06.CamTool">
+      <UniqueIdentifier>{236f436c-eaa0-4072-b6e1-76b4b7d881f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject\00.StaticMeshObject\02.SkySphere">
+      <UniqueIdentifier>{9d6cdd7a-6e59-4145-84d8-6ab95bf2ec90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MyForm\07.RunTool">
+      <UniqueIdentifier>{e2a09d63-50e4-4b48-a706-b62d934eb4b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\00.MeshObject\04.RunObj">
+      <UniqueIdentifier>{e491cab7-93b3-4d30-bda8-677805a504f7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ToolView.h">
+      <Filter>02.View</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolDoc.h">
+      <Filter>03.Doc</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>00.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>01.MainFrm</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="MyForm.h">
+      <Filter>02.View\00.MyForm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Tool_Defines.h">
+      <Filter>98.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Tool_Enum.h">
+      <Filter>98.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Tool_Macro.h">
+      <Filter>98.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Tool_Typedef.h">
+      <Filter>98.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MapScene.h">
+      <Filter>05.Scene\00.MapScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>04.GameObject\01.NoMeshObject\00.Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectTool.h">
+      <Filter>02.View\00.MyForm\03.EffectTool</Filter>
+    </ClInclude>
+    <ClInclude Include="FileInfo.h">
+      <Filter>97.FileInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicCamera.h">
+      <Filter>04.GameObject\01.NoMeshObject\01.Camera\00.DynamicCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolGameObject.h">
+      <Filter>04.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolGameStaticMeshObject.h">
+      <Filter>04.GameObject\00.MeshObject\00.StaticMeshObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolNaviMeshObject.h">
+      <Filter>04.GameObject\00.MeshObject\02.NaviMeshObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolNaviMeshObjectVertex.h">
+      <Filter>04.GameObject\00.MeshObject\02.NaviMeshObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolDynamicMeshObject.h">
+      <Filter>04.GameObject\00.MeshObject\01.DynamicMeshObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTool.h">
+      <Filter>02.View\00.MyForm\00.MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderTool.h">
+      <Filter>02.View\00.MyForm\04.ColliderTool</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshTool.h">
+      <Filter>02.View\00.MyForm\01.MeshTool</Filter>
+    </ClInclude>
+    <ClInclude Include="NavigationTool.h">
+      <Filter>02.View\00.MyForm\02.NaviMeshTool</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFindTool.h">
+      <Filter>02.View\00.MyForm\05.PathFindTool</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolGameEffectStaticMeshObject.h">
+      <Filter>04.GameObject\00.MeshObject\03.EffectToolObj</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolEffectDynamicMeshObject.h">
+      <Filter>04.GameObject\00.MeshObject\03.EffectToolObj</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolEffectTextureObject.h">
+      <Filter>04.GameObject\00.MeshObject\03.EffectToolObj</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraTool.h">
+      <Filter>02.View\00.MyForm\06.CamTool</Filter>
+    </ClInclude>
+    <ClInclude Include="SkySphere.h">
+      <Filter>04.GameObject\00.MeshObject\00.StaticMeshObject\02.SkySphere</Filter>
+    </ClInclude>
+    <ClInclude Include="RunTool.h">
+      <Filter>02.View\00.MyForm\07.RunTool</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolRunGameLine.h">
+      <Filter>04.GameObject\00.MeshObject\04.RunObj</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>01.MainFrm</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolDoc.cpp">
+      <Filter>03.Doc</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool.cpp">
+      <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolView.cpp">
+      <Filter>02.View</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm.cpp">
+      <Filter>02.View\00.MyForm</Filter>
+    </ClCompile>
+    <ClCompile Include="MapScene.cpp">
+      <Filter>05.Scene\00.MapScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>04.GameObject\01.NoMeshObject\00.Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectTool.cpp">
+      <Filter>02.View\00.MyForm\03.EffectTool</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInfo.cpp">
+      <Filter>97.FileInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicCamera.cpp">
+      <Filter>04.GameObject\01.NoMeshObject\01.Camera\00.DynamicCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolGameObject.cpp">
+      <Filter>04.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolGameStaticMeshObject.cpp">
+      <Filter>04.GameObject\00.MeshObject\00.StaticMeshObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolNaviMeshObject.cpp">
+      <Filter>04.GameObject\00.MeshObject\02.NaviMeshObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolNaviMeshObjectVertex.cpp">
+      <Filter>04.GameObject\00.MeshObject\02.NaviMeshObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolDynamicMeshObject.cpp">
+      <Filter>04.GameObject\00.MeshObject\01.DynamicMeshObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTool.cpp">
+      <Filter>02.View\00.MyForm\00.MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderTool.cpp">
+      <Filter>02.View\00.MyForm\04.ColliderTool</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshTool.cpp">
+      <Filter>02.View\00.MyForm\01.MeshTool</Filter>
+    </ClCompile>
+    <ClCompile Include="NavigationTool.cpp">
+      <Filter>02.View\00.MyForm\02.NaviMeshTool</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFindTool.cpp">
+      <Filter>02.View\00.MyForm\05.PathFindTool</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolGameEffectStaticMeshObject.cpp">
+      <Filter>04.GameObject\00.MeshObject\03.EffectToolObj</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolEffectDynamicMeshObject.cpp">
+      <Filter>04.GameObject\00.MeshObject\03.EffectToolObj</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolEffectTextureObject.cpp">
+      <Filter>04.GameObject\00.MeshObject\03.EffectToolObj</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraTool.cpp">
+      <Filter>02.View\00.MyForm\06.CamTool</Filter>
+    </ClCompile>
+    <ClCompile Include="SkySphere.cpp">
+      <Filter>04.GameObject\00.MeshObject\00.StaticMeshObject\02.SkySphere</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTool.cpp">
+      <Filter>02.View\00.MyForm\07.RunTool</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolRunGameLine.cpp">
+      <Filter>04.GameObject\00.MeshObject\04.RunObj</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ToolDoc.ico">
+      <Filter>99.Default</Filter>
+    </Image>
+    <Image Include="res\Tool.ico">
+      <Filter>99.Default</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>99.Default</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>99.Default</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tool.rc">
+      <Filter>99.Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Tool.rc2">
+      <Filter>99.Default</Filter>
+    </None>
+  </ItemGroup>
+</Project>

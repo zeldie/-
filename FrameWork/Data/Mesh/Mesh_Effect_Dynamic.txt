@@ -1,0 +1,8 @@
+Static|DynamicMesh|Mesh_EffectTest|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\EffectTest\|EffectTest.X
+Static|DynamicMesh|Mesh_TS_F|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_F\|TS_F.X
+Static|DynamicMesh|Mesh_TS_R1|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_R1\|TS_R1.X
+Static|DynamicMesh|Mesh_TS_R2|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_R2\|TS_R2.X
+Static|DynamicMesh|Mesh_TS_R3|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_R3\|TS_R3.X
+Static|DynamicMesh|Mesh_TS_R4|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_R4\|TS_R4.X
+Static|DynamicMesh|Mesh_TS_Right_Mid|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_Right_Mid\|TS_Right_Mid.X
+Static|DynamicMesh|Mesh_TS_Right_Min|..\..\Resource\Mesh\DynamicMesh\DynamicEffect\TS_Right_Min\|TS_Right_Min.X
