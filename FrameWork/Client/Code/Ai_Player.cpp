@@ -1250,7 +1250,12 @@ void CAi_Player::Dead_Player(const _double & dTimeDelta)
 		m_pDynamicMeshCom->Set_AnimationSet(COMMON_DYING);
 
 		if (m_pDynamicMeshCom->Is_AnimationSetFinish(0.2))
+		{
+			if (m_eMainWeapon == CBasePlayer::LONGBOW)
+				static_cast<CLongBow*>(Get_MainWeaponPointer())->Reset_LBDissolve();
 			m_eDeadStep = DEAD2;
+		}
+			
 	}
 	break;
 	case CAi_Player::DEAD2:
