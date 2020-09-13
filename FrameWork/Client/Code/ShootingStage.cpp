@@ -29,6 +29,8 @@ CShootingStage::CShootingStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_dCreateShootingResultUITime(2.f),
 	m_pPlayer(nullptr),
 	m_pApostle(nullptr),
+	m_bIsTrans(false),
+	m_dTransDelay(0.0),
 	m_bOneClearUI(true),
 	m_dChangeScene(3.f)
 {
@@ -287,26 +289,9 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 				//
 				//// Player Cutscene et
 
-				// 변신
-				dynamic_cast<CPlayer*>(m_pPlayer)->Set_TransApostle(true);
-				dynamic_cast<CApostle*>(m_pApostle)->Set_Render(true);
 
-				_vec3	vAngle = { 90.f,0.f,0.f };
-				_vec3 vPos = dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS];
-				BASE_INFO	tBaseInfo;
-				memcpy(&tBaseInfo, dynamic_cast<CPlayer*>(m_pPlayer)->Get_BaseInfo(), sizeof(BASE_INFO));
-				CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_SPHERE_GOLD2, &vPos, &vAngle, &tBaseInfo);
-
-				_vec3 vDir = Engine::GetDirNoY(vPos, CCameraMgr::GetInstance()->Get_Pos());
-				vAngle.x = 0.f;
-				vPos += +_vec3(0.f, 125.f, 0.f) - vDir*80.f;
-				CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_TRANS_APOSTLE, &vPos, &vAngle, &tBaseInfo);
-
-				Engine::CGameObject* pRunPlayer = CRunPlayer::Create(m_pGraphicDev, &dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS], &_vec3(0.f, 0.f, 0.f), &_vec3(0.5f, 0.5f, 0.5f));
-				Engine::Add_GameObject(Engine::GAMEOBJECT, L"RunPlayer", pRunPlayer);
-				dynamic_cast<CRunPlayer*>(pRunPlayer)->Set_Shooting(true);
-
-				m_bOneClearUI = false;
+				m_bIsTrans = true;
+				m_dTransDelay = g_dAccumulatedTime +2.0;
 			}
 		}
 	}
@@ -316,6 +301,31 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 	{
 		CLoadingMgr::GetInstance()->Set_EndFade(true);
 		m_bEnterScene = true;
+	}
+
+	if (m_bIsTrans && (m_dTransDelay < g_dAccumulatedTime))
+	{
+		m_bIsTrans = false;
+		// 변신
+		dynamic_cast<CPlayer*>(m_pPlayer)->Set_TransApostle(true);
+		dynamic_cast<CApostle*>(m_pApostle)->Set_Render(true);
+
+		_vec3	vAngle = { 90.f,0.f,0.f };
+		_vec3 vPos = dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS];
+		BASE_INFO	tBaseInfo;
+		memcpy(&tBaseInfo, dynamic_cast<CPlayer*>(m_pPlayer)->Get_BaseInfo(), sizeof(BASE_INFO));
+		CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_SPHERE_GOLD2, &vPos, &vAngle, &tBaseInfo);
+
+		_vec3 vDir = Engine::GetDirNoY(vPos, CCameraMgr::GetInstance()->Get_Pos());
+		vAngle.x = 0.f;
+		vPos += +_vec3(0.f, 125.f, 0.f) - vDir*80.f;
+		CEffectMgr::GetInstance()->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_TRANS_APOSTLE, &vPos, &vAngle, &tBaseInfo);
+
+		Engine::CGameObject* pRunPlayer = CRunPlayer::Create(m_pGraphicDev, &dynamic_cast<CPlayer*>(m_pPlayer)->Get_TransformCom()->m_vInfo[Engine::INFO_POS], &_vec3(0.f, 0.f, 0.f), &_vec3(0.5f, 0.5f, 0.5f));
+		Engine::Add_GameObject(Engine::GAMEOBJECT, L"RunPlayer", pRunPlayer);
+		dynamic_cast<CRunPlayer*>(pRunPlayer)->Set_Shooting(true);
+
+		m_bOneClearUI = false;
 	}
 	return iExit;
 }

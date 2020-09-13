@@ -108,9 +108,9 @@ _int CRunPlayer::Update_GameObject(const _double & dTimeDelta)
 	if (m_dCollSlowTime < g_dAccumulatedTime)
 		m_dCollSlow = 1.0;
 
-	ObserverNotify();	//옵저버 업데이트
 	if (!m_bShooting)
 	{
+		ObserverNotify();	//옵저버 업데이트
 		RunningFinish();	// 도착했는지 확인
 		Running(dTimeDelta);	// 달리기, 좌우 조작
 		Power_Big(dTimeDelta);	// 거대화 아이템 먹었을때 크기 변하게 하는 함수
@@ -808,7 +808,7 @@ void CRunPlayer::SavePoint_Set()
 
 void CRunPlayer::RunningFinish()
 {
-	if (m_dProgress >= 1.0)
+	if (m_dProgress >= 1.0 && m_eMoveState != MOVESTATE_FINISH)
 	{
 		Change_State(STATE_IDLE_1);
 		m_eMoveState = MOVESTATE_FINISH;
