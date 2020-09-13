@@ -555,6 +555,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 	{
 		if (pPlayer->Get_CaptureFlag() == true)
 		{
+			pPlayer->Set_AnimationSpeed(1);
 			pPlayer->Set_State(CAi_Player::COMMON_CAPTUREFLAG_END);
 			m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_CAPTUREFLAG_END);
 		}

@@ -260,13 +260,7 @@ CAi_Player::STATE_ID CAi_PlayerSkill::LateUpadte_State(const _double dTimeDelta)
 		//F스킬
 		if (m_bEffect)
 		{
-			_ulong iTargetNaviIndex;
-			m_pPlayer->Get_TargetPlayer()->Get_NaviMesh()->Find_Index(iTargetNaviIndex, &m_pPlayer->Get_TargetPos());
-			_vec3 vTargetPos = m_pPlayer->Get_TargetPos();
-			vTargetPos.y += 500.f;
-			m_pPlayer->Get_TargetPlayer()->Get_NaviMesh()->Find_PosY(&vTargetPos, iTargetNaviIndex, vTargetPos);
-
-			m_pPlayer->Set_DecalPos(&vTargetPos);
+			m_pPlayer->Set_DecalPos(&m_pPlayer->GetPlayerPos());
 			m_pPlayer->Create_Decal(CDecal::DECAL_ORB_F, 3.5, *m_pPlayer->Get_TransformCom()->Get_Angle());
 			m_bEffect = false;
 		}
@@ -312,10 +306,12 @@ CAi_Player::STATE_ID CAi_PlayerSkill::LateUpadte_State(const _double dTimeDelta)
 		//R스킬
 		if (m_pMeshCom->Is_AnimationSetFinish(0.2) && !m_bEffect)
 		{
-			_vec3 vUltPos = vPos + vLook * 200.f + _vec3(0.f, 100.f, 0.f);
-			m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE, &vUltPos, &_vec3(0.f, 0.f, 0.f), nullptr, m_pPlayer->Get_ControlType());
-			m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE2, &vUltPos, &_vec3(0.f, 0.f, 0.f), nullptr, m_pPlayer->Get_ControlType());
-			m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE3, &vUltPos, &_vec3(0.f, 0.f, 0.f), nullptr, m_pPlayer->Get_ControlType());
+			//_vec3 vUltPos = vPos + vLook * 200.f + _vec3(0.f, 100.f, 0.f);
+			//_vec3 vUltPos = m_pPlayer->Get_TargetPos();
+			//vUltPos.y += 100.f;
+			m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE, &m_vOrbUltPos, &_vec3(0.f, 0.f, 0.f), nullptr, m_pPlayer->Get_ControlType());
+			m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE2, &m_vOrbUltPos, &_vec3(0.f, 0.f, 0.f), nullptr, m_pPlayer->Get_ControlType());
+			m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE3, &m_vOrbUltPos, &_vec3(0.f, 0.f, 0.f), nullptr, m_pPlayer->Get_ControlType());
 			m_bEffect = true;
 		}
 	}
@@ -1360,10 +1356,12 @@ void CAi_PlayerSkill::Update_PlayerPattern(const _double dTimeDelta)
 
 			if (m_bEffect)
 			{
-				_vec3 vUltPos = vPos + vLook * 20.f + _vec3(0.f, 50.f, 0.f);
-				m_pEffectMgr->Create_TextureEffect(TEXTURE_ORBULT1, &vUltPos);
-				m_pEffectMgr->Create_TextureEffect(TEXTURE_ORBULT2, &vUltPos);
-				m_pEffectMgr->Create_TextureEffect(TEXTURE_ORBULT3, &vUltPos);
+				//_vec3 vUltPos = vPos + vLook * 20.f + _vec3(0.f, 50.f, 0.f);
+				m_vOrbUltPos = m_pPlayer->Get_TargetPos();
+				m_vOrbUltPos.y += 100.f;
+				m_pEffectMgr->Create_TextureEffect(TEXTURE_ORBULT1, &m_vOrbUltPos);
+				m_pEffectMgr->Create_TextureEffect(TEXTURE_ORBULT2, &m_vOrbUltPos);
+				m_pEffectMgr->Create_TextureEffect(TEXTURE_ORBULT3, &m_vOrbUltPos);
 				m_bEffect = false;
 			}
 			if (m_pMeshCom->Get_TrackTime() > m_pMeshCom->Get_Period()*0.09 && m_pMeshCom->Get_TrackTime() < m_pMeshCom->Get_Period()*0.25)
