@@ -24,7 +24,7 @@ HRESULT CBackGround_Ending::Ready_GameObject()
 	m_pTransformCom->Set_Info(&vPos, Engine::INFO_POS);
 
 	m_pSoundMgr->AllStop();
-	m_pSoundMgr->BGMSTART(97);
+	m_pSoundMgr->Get_Instance()->AiSoundOn(62);
 
 	return S_OK;
 }

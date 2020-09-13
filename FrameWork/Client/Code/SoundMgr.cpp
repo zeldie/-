@@ -1537,6 +1537,11 @@ void CSoundMgr::Load_AiSoundFile()
 	eRes = m_pSystem->createSound("../../Sound/AI_Enemy2_Sound/Ai_Man2_Attack_Short_4.ogg", FMOD_DEFAULT, 0, &pSound);
 	m_vecAiSound.push_back(pSound);
 	ERRCHECK(eRes);
+
+	// 62 / Ending_BGM
+	eRes = m_pSystem->createSound("../../Sound/BGM/CartelBGM2.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecAiSound.push_back(pSound);
+	ERRCHECK(eRes);
 }
 
 
