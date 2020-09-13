@@ -237,6 +237,12 @@ void CBody::Change_Eye(_uint iEyeNum)
 	m_iEyeNum = iEyeNum;
 }
 
+void CBody::Release_Pants()
+{
+	Engine::Safe_Release(m_pPants);
+	m_pPants = nullptr;
+}
+
 void CBody::Update_Parts(const _double & dTimeDelta, _vec3* pPos, _vec3* pAngle, _vec3* pScale, _uint iAnimationNum)
 {
 	if (m_pTop != nullptr)
@@ -312,7 +318,7 @@ _int CBody::Update_GameObject(const _double & dTimeDelta)
 			Change_Brow(2);
 		if (Engine::KeyDown(DIK_F9))
 		{
-			Change_Brow(3);
+			Release_Pants();
 		}
 			
 		if (Engine::KeyDown(DIK_F10))
