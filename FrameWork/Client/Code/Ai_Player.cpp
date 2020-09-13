@@ -821,7 +821,7 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 		m_bIsAttacked = true;
 
 		_int iHitSound = Engine::RandomNumber(3);
-		_int iHitPer = Engine::RandomNumber(1);
+		_int iHitPer = Engine::RandomNumber(3);
 		
 		_vec3 vPlayer = *m_pPlayerTransform->Get_Info(Engine::INFO_POS);
 		_vec3 vPos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
@@ -934,8 +934,14 @@ void CAi_Player::Change_State()
 	if (m_eIdCurrent != m_eIdNext)
 	{
 		if (m_eIdNext == CBasePlayer::ID_HEART)
+		{
 			if (m_pTargetPlayer == nullptr)
+			{
+				m_bIsAttacked = false;
+				m_eIdNext = ID_COMMON;
 				return;
+			}
+		}
 
 		if (m_pAiState)
 			delete m_pAiState;

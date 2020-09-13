@@ -312,19 +312,19 @@ void CAiMgr::Ai_ControlCenter(const _double & dTimeDelta)
 					switch (rObj->Get_StateState())
 					{
 					case STATETYPE::STATE_COMMON:
-						//cout << "ALLIANCE is Common" << endl;
+						cout << "ALLIANCE is Common" << endl;
 						break;
 					case STATETYPE::STATE_AVOID:
-						//cout << "ALLIANCE is Avoid" << endl;
+						cout << "ALLIANCE is Avoid" << endl;
 						break;
 					case STATETYPE::STATE_ATTACK:
-						//cout << "ALLIANCE is Attack" << endl;
+						cout << "ALLIANCE is Attack" << endl;
 						break;
 					case STATETYPE::STATE_AIR_DASH:
-						//cout << "ALLIANCE is Dash" << endl;
+						cout << "ALLIANCE is Dash" << endl;
 						break;
 					default:
-						//cout << "ALLIANCE is ???" << endl;
+						cout << "ALLIANCE is ???" << endl;
 						break;
 					}
 				}
@@ -333,19 +333,19 @@ void CAiMgr::Ai_ControlCenter(const _double & dTimeDelta)
 					switch (rObj->Get_StateState())
 					{
 					case STATETYPE::STATE_COMMON:
-						//cout << "ENERMY_1 is Common" << endl;
+						cout << "ENERMY_1 is Common" << endl;
 						break;
 					case STATETYPE::STATE_AVOID:
-						//cout << "ENERMY_1 is Avoid" << endl;
+						cout << "ENERMY_1 is Avoid" << endl;
 						break;
 					case STATETYPE::STATE_ATTACK:
-						//cout << "ENERMY_1 is Attack" << endl;
+						cout << "ENERMY_1 is Attack" << endl;
 						break;
 					case STATETYPE::STATE_AIR_DASH:
-						//cout << "ENERMY_1 is Dash" << endl;
+						cout << "ENERMY_1 is Dash" << endl;
 						break;
 					default:
-						//cout << "ENERMY_1 is ???" << endl;
+						cout << "ENERMY_1 is ???" << endl;
 						break;
 					}
 				}
@@ -354,19 +354,19 @@ void CAiMgr::Ai_ControlCenter(const _double & dTimeDelta)
 					switch (rObj->Get_StateState())
 					{
 					case STATETYPE::STATE_COMMON:
-						//cout << "ENERMY_2 is Common" << endl;
+						cout << "ENERMY_2 is Common" << endl;
 						break;
 					case STATETYPE::STATE_AVOID:
-						//cout << "ENERMY_2 is Avoid" << endl;
+						cout << "ENERMY_2 is Avoid" << endl;
 						break;
 					case STATETYPE::STATE_ATTACK:
-						//cout << "ENERMY_2 is Attack" << endl;
+						cout << "ENERMY_2 is Attack" << endl;
 						break;
 					case STATETYPE::STATE_AIR_DASH:
-						//cout << "ENERMY_2 is Dash" << endl;
+						cout << "ENERMY_2 is Dash" << endl;
 						break;
 					default:
-						//cout << "ENERMY_2 is ???" << endl;
+						cout << "ENERMY_2 is ???" << endl;
 						break;
 					}
 				}
@@ -390,13 +390,6 @@ void CAiMgr::Ai_Common_ShortRange(CBasePlayer * pAi, const _double & dTimeDelta)
 
 		Check_FlagArea_RedTeam(pAi);
 		Check_FlagArea_BlueTeam(pAi);
-
-		// 달려가는중에 타겟생기면 다시 타겟달려가는상태를 false로 바꿈
-		if (pAi->Get_isRunToFlag() == true)
-		{
-			if (pAi->Get_TargetPlayer() != nullptr)
-				pAi->Set_isRunToFlag(false);
-		}
 	}
 	else
 	{
@@ -462,12 +455,6 @@ void CAiMgr::Ai_Common_LongRange(CBasePlayer * pAi, const _double & dTimeDelta)
 		Check_FlagArea_RedTeam(pAi);
 		Check_FlagArea_BlueTeam(pAi);
 
-		// 달려가는중에 타겟생기면 다시 타겟달려가는상태를 false로 바꿈
-		if (pAi->Get_isRunToFlag() == true)
-		{
-			if (pAi->Get_TargetPlayer() != nullptr)
-				pAi->Set_isRunToFlag(false);
-		}
 	}
 	else
 	{

@@ -2031,27 +2031,6 @@ HRESULT CRunGameMgr::Create_Obstacle(_uint iSect)
 		return E_FAIL;
 	m_listItem.push_back(pGameObject);
 
-	dProgress = 0.98;
-	Follow_Line(LINE_BOTTOM_MID, &eMoveState, &vPos, &_vec3(0.f, 0.f, 0.f), &dProgress, &dTempAccel, 0.0);
-	pGameObject = CRunObj_Item::Create(m_pGraphicDev, L"Texture_RunGame_Item_Jewelry_Blue", &vPos, &_vec3(0.f, 0.f, 0.f), &_vec3(20.f, 20.f, 1.f), &_vec3(0.f, 0.f, 0.f),
-		SECT_1, LINE_BOTTOM_MID, OBJ_COLL_JUMP, dProgress, (30.f / m_fLineLenth[SECT_1][LINE_BOTTOM_MID]) *0.5f, 70.f, RUNITEM_JEWELRY_BLUE);
-	if (pGameObject == nullptr)
-		return E_FAIL;
-	if (FAILED(pLayer->Add_GameObject(L"RunGame_Item_Jewelry_Blue", pGameObject)))
-		return E_FAIL;
-	m_listItem.push_back(pGameObject);
-
-	dProgress = 0.99;
-	Follow_Line(LINE_BOTTOM_MID, &eMoveState, &vPos, &_vec3(0.f, 0.f, 0.f), &dProgress, &dTempAccel, 0.0);
-	pGameObject = CRunObj_Item::Create(m_pGraphicDev, L"Texture_RunGame_Item_Jewelry_Blue", &vPos, &_vec3(0.f, 0.f, 0.f), &_vec3(20.f, 20.f, 1.f), &_vec3(0.f, 0.f, 0.f),
-		SECT_1, LINE_BOTTOM_MID, OBJ_COLL_JUMP, dProgress, (30.f / m_fLineLenth[SECT_1][LINE_BOTTOM_MID]) *0.5f, 70.f, RUNITEM_JEWELRY_BLUE);
-	if (pGameObject == nullptr)
-		return E_FAIL;
-	if (FAILED(pLayer->Add_GameObject(L"RunGame_Item_Jewelry_Blue", pGameObject)))
-		return E_FAIL;
-	m_listItem.push_back(pGameObject);
-
-
 
 
 
