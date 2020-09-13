@@ -304,11 +304,12 @@ void CRunGameCamera::Item_Get(const _double & dTimeDelta)
 	case CRunGameCamera::STEP5:
 	{
 		m_fRatio += (_float)dTimeDelta;
-
 		if (1.f <= m_fRatio)
 		{
+			CCameraMgr::GetInstance()->Set_ItemGetComplete(true);
 			m_fRatio = 0.f;
 			m_eStep = STEP1;
+			m_bGetItem = false;
 		}
 	}
 		break;
