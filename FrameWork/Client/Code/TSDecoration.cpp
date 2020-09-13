@@ -139,32 +139,6 @@ void CTSDecoration::Render_Geometry(const _double & dTimeDelta)
 	}
 }
 
-void CTSDecoration::Render_Shadow(const _double & dTimeDelta)
-{
-	if (m_bUltimateRender)
-	{
-		LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
-		if (pEffect == nullptr)
-			return;
-		Engine::Safe_AddRef(pEffect);
-		if (FAILED(Setup_ShaderProps(pEffect)))
-			return;
-		_ulong dwSubset = m_pStaticMeshCom->Get_SubsetNum();
-
-		_uint iPassMax = 0;
-		pEffect->Begin(&iPassMax, 0);
-
-		for (_ulong i = 0; i < dwSubset; ++i)
-		{
-			pEffect->BeginPass(0);
-			pEffect->CommitChanges();
-			m_pStaticMeshCom->Render_Meshes(i);
-			pEffect->EndPass();
-		}
-		pEffect->End();
-		Engine::Safe_Release(pEffect);
-	}
-}
 
 void CTSDecoration::Change_WeaponState(COMBAT_STATE eState)
 {

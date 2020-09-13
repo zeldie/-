@@ -486,8 +486,6 @@ CCartel * CCartel::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CCartel::Free()
 {
-	if (m_pLightCamera != nullptr)
-		m_pLightCamera->Release_TransformCom();
 	//m_pUIMgr->EraseMouse();
 	Engine::Safe_Single_Destory(m_pAiMgr);
 	Engine::CScene::Free();

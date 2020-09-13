@@ -51,6 +51,8 @@ CApostle::CApostle(LPDIRECT3DDEVICE9 pGraphicDev)
 	, m_dHitTime(0)
 	, m_bCreateUI(false)
 	, m_bIsRender(false)
+	, m_dDissolveCountDown(0)
+	, m_bDissolveStart(false)
 {
 
 }
@@ -74,9 +76,9 @@ HRESULT CApostle::Ready_GameObject(_vec3 * pPos, _vec3 * pAngle, _vec3 * pScale)
 	Engine::Subscribe(Engine::PLAYER, m_pPlayerObserver);
 
 	m_tBaseInfo.eObjectID = OBJECT_MONSTER;
-	m_tBaseInfo.iMaxHp = 40000;
-	m_tBaseInfo.iHp = 40000;
-	m_tBaseInfo.iPrevHp = 40000;
+	m_tBaseInfo.iMaxHp = 400;
+	m_tBaseInfo.iHp = 400;
+	m_tBaseInfo.iPrevHp = 400;
 	m_tBaseInfo.iSuperAmmor = 1000;
 	m_tBaseInfo.iMaxSuperAmmor = 1000;
 	m_tBaseInfo.iCheatATK = 0;
@@ -207,7 +209,7 @@ _int CApostle::LateUpdate_GameObject(const _double & dTimeDelta)
 
 void CApostle::Render_Geometry(const _double & dTimeDelta)
 {
-	if(!m_bDying)
+	if(!m_bDissolveStart)
 		m_pDynamicMeshCom->Play_AnimationSet(dTimeDelta, m_dbAnimationSpeed);
 
 	LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
@@ -216,6 +218,16 @@ void CApostle::Render_Geometry(const _double & dTimeDelta)
 	Engine::Safe_AddRef(pEffect);
 	if (FAILED(Setup_ShaderProps(pEffect, dTimeDelta)))
 		return;
+	if (m_bDissolveStart)
+	{
+		Engine::SetTexture(pEffect, "g_DissolveTexture", 6);
+		Engine::SetTexture(pEffect, "g_DissolveEdgeTexture", 2);
+		m_dDissolveCountDown += dTimeDelta * 0.5;
+		pEffect->SetFloat("fTime", m_dDissolveCountDown);
+		m_iPass = 14;
+		if (m_dDissolveCountDown > 1)
+			m_bDying = true;
+	}
 	_uint iPassMax = 0;
 
 	pEffect->Begin(&iPassMax, 0);
@@ -245,66 +257,71 @@ void CApostle::Render_Geometry(const _double & dTimeDelta)
 
 void CApostle::Render_PostEffect(const _double & dTimeDelta)
 {
-	//Shader
-	LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
-	if (pEffect == nullptr)
-		return;
-	Engine::Safe_AddRef(pEffect);
-	if (FAILED(Setup_ShaderProps(pEffect, dTimeDelta)))
-		return;
-	_uint iPassMax = 0;
-
-	pEffect->Begin(&iPassMax, 0);
-
-	list<Engine::D3DXMESHCONTAINER_DERIVED*>* plistMeshContainer = m_pDynamicMeshCom->Get_MeshContainerlist();
-	for (auto& iter : *plistMeshContainer)
+	if (!m_bDissolveStart)
 	{
-		_ulong dwSubsetNum = m_pDynamicMeshCom->Get_SubsetNum(iter);
-		m_pDynamicMeshCom->Render_Meshes_Begin(iter);
-		for (_ulong i = 0; i < dwSubsetNum; ++i)
+		//Shader
+		LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
+		if (pEffect == nullptr)
+			return;
+		Engine::Safe_AddRef(pEffect);
+		if (FAILED(Setup_ShaderProps(pEffect, dTimeDelta)))
+			return;
+		_uint iPassMax = 0;
+
+		pEffect->Begin(&iPassMax, 0);
+
+		list<Engine::D3DXMESHCONTAINER_DERIVED*>* plistMeshContainer = m_pDynamicMeshCom->Get_MeshContainerlist();
+		for (auto& iter : *plistMeshContainer)
 		{
-			pEffect->SetTexture("g_DiffuseTexture", nullptr);
-			pEffect->SetTexture("g_NormalTexture", iter->ppNormalTexture[i]);
-			pEffect->BeginPass(1);
-			pEffect->CommitChanges();
-			m_pDynamicMeshCom->Render_Meshes(iter, i);
-			pEffect->EndPass();
+			_ulong dwSubsetNum = m_pDynamicMeshCom->Get_SubsetNum(iter);
+			m_pDynamicMeshCom->Render_Meshes_Begin(iter);
+			for (_ulong i = 0; i < dwSubsetNum; ++i)
+			{
+				pEffect->SetTexture("g_DiffuseTexture", nullptr);
+				pEffect->SetTexture("g_NormalTexture", iter->ppNormalTexture[i]);
+				pEffect->BeginPass(1);
+				pEffect->CommitChanges();
+				m_pDynamicMeshCom->Render_Meshes(iter, i);
+				pEffect->EndPass();
+			}
+			m_pDynamicMeshCom->Render_Meshes_End(iter);
 		}
-		m_pDynamicMeshCom->Render_Meshes_End(iter);
+		pEffect->End();
+		Engine::Safe_Release(pEffect);
 	}
-	pEffect->End();
-	Engine::Safe_Release(pEffect);
-	
 }
 
 void CApostle::Render_Shadow(const _double & dTimeDelta)
 {
-	////Shader
-	//LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
-	//if (pEffect == nullptr)
-	//	return;
-	//Engine::Safe_AddRef(pEffect);
-	//if (FAILED(Setup_ShaderProps(pEffect)))
-	//	return;
-	//_uint iPassMax = 0;
-	//pEffect->Begin(&iPassMax, 0);
-	//list<Engine::D3DXMESHCONTAINER_DERIVED*>* plistMeshContainer = m_pDynamicMeshCom->Get_MeshContainerlist();
-	//for (auto& iter : *plistMeshContainer)
-	//{
-	//	_ulong dwSubsetNum = m_pDynamicMeshCom->Get_SubsetNum(iter);
-	//	m_pDynamicMeshCom->Render_Meshes_Begin(iter);
-	//	for (_ulong i = 0; i < dwSubsetNum; ++i)
-	//	{
-	//		pEffect->BeginPass(6);
-	//		pEffect->CommitChanges();
-	//		m_pDynamicMeshCom->Render_Meshes(iter, i);
-	//		pEffect->EndPass();
-	//	}
-	//	m_pDynamicMeshCom->Render_Meshes_End(iter);
-	//}
-	//pEffect->End();
+	if (!m_bDissolveStart)
+	{
+		//Shader
+		LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
+		if (pEffect == nullptr)
+			return;
+		Engine::Safe_AddRef(pEffect);
+		if (FAILED(Setup_ShaderProps(pEffect, dTimeDelta)))
+			return;
+		_uint iPassMax = 0;
+		pEffect->Begin(&iPassMax, 0);
+		list<Engine::D3DXMESHCONTAINER_DERIVED*>* plistMeshContainer = m_pDynamicMeshCom->Get_MeshContainerlist();
+		for (auto& iter : *plistMeshContainer)
+		{
+			_ulong dwSubsetNum = m_pDynamicMeshCom->Get_SubsetNum(iter);
+			m_pDynamicMeshCom->Render_Meshes_Begin(iter);
+			for (_ulong i = 0; i < dwSubsetNum; ++i)
+			{
+				pEffect->BeginPass(6);
+				pEffect->CommitChanges();
+				m_pDynamicMeshCom->Render_Meshes(iter, i);
+				pEffect->EndPass();
+			}
+			m_pDynamicMeshCom->Render_Meshes_End(iter);
+		}
+		pEffect->End();
 
-	//Engine::Safe_Release(pEffect);
+		Engine::Safe_Release(pEffect);
+	}
 }
 
 HRESULT CApostle::Clone_Component()
@@ -360,7 +377,7 @@ void CApostle::Update_State()
 		{
 		case CApostle::STATE_DYING:
 		{
-			m_bDying = true;
+			m_bDissolveStart = true;
 			break;
 		}
 		case CApostle::STATE_IDLE_1:

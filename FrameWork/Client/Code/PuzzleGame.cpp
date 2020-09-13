@@ -9,7 +9,7 @@
 #include "RunGame.h"
 
 #include "MiniGameCamera.h"
-
+#include "LightCamera.h"
 
 CPuzzleGame::CPuzzleGame(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CScene(pGraphicDev),

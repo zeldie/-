@@ -20,7 +20,7 @@ public:
 										const _float& fNear,
 										const _float& fFar);
 	virtual _int		Update_GameObject(const _double& dTimeDelta) override;
-	void	Set_PlayerTransformCom(Engine::CTransform* pTransformCom) { m_pPlayerTransformCom = pTransformCom; }
+	void	Set_PlayerTransformCom(Engine::CTransform* pTransformCom);
 	void	Release_TransformCom() { m_pPlayerTransformCom = nullptr; }
 private:
 	Engine::CTransform*			m_pPlayerTransformCom;

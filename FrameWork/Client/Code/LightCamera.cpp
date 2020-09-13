@@ -29,14 +29,17 @@ HRESULT CLightCamera::Ready_GameObject(const _vec3 * pEye, const _vec3 * pAt, co
 
 _int CLightCamera::Update_GameObject(const _double & dTimeDelta)
 {
-	if (m_pPlayerTransformCom != nullptr)
-	{
-		m_vAt = m_pPlayerTransformCom->Get_Info_byWorld(Engine::INFO_POS);
-		m_vEye = m_pPlayerTransformCom->Get_Info_byWorld(Engine::INFO_POS) + _vec3(0.f, 5000.f, 3000.f);
-	}
+	m_vAt = *m_pPlayerTransformCom->Get_Info(Engine::INFO_POS);
+	m_vEye = m_vAt + _vec3(0.f, 2500.f, 1000.f);
 	D3DXMatrixLookAtLH(&m_matView, &m_vEye, &m_vAt, &m_vUp);
 	D3DXMatrixPerspectiveFovLH(&m_matProj, m_fFovY, m_fAspect, m_fNear, m_fFar);
 	return Engine::NO_EVENT;
+}
+
+void CLightCamera::Set_PlayerTransformCom(Engine::CTransform * pTransformCom)
+{
+	m_pPlayerTransformCom = pTransformCom;
+
 }
 
 CLightCamera * CLightCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3 * pEye, const _vec3 * pAt, const _vec3 * pUp, const _float & fFovY, const _float & fAspect, const _float & fNear, const _float & fFar)

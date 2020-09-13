@@ -32,6 +32,9 @@ public:
 	void Set_ShakingCamera();
 	void Set_FlagCutscene();
 	void LateInit();
+
+	void Set_ItemGetComplete(_bool bComplete) { m_bItemGetComplete = bComplete; }
+	_bool Get_ItemGetCheck() { return m_bItemGetComplete; }
 	//¿Œ±’
 public:
 	void	Set_RendererCom();
@@ -54,6 +57,7 @@ private:
 	_bool						 m_bBelatosComplete;
 	_bool						 m_bApostleComplete;
 	_bool						 m_bFlagComplete;
+	_bool						 m_bItemGetComplete;
 	CPlayer::PLAYER_WEAPONTYPE	 m_eWeapon;
 	Engine::CRenderer*			 m_pRendererCom;
 public:
