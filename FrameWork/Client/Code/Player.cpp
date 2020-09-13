@@ -206,6 +206,7 @@ _int CPlayer::Update_GameObject(const _double & dTimeDelta)
 	if (m_bIsDead)
 	{
 		Dead_Player(dTimeDelta);
+		
 	}
 
 	if (m_bTargetLock)
@@ -1403,6 +1404,8 @@ void CPlayer::Dead_Player(const _double & dTimeDelta)
 			m_eCurState = COMMON_RTDOWN_AIR_LANDING_F_F;
 			m_bIsJump = false;
 			m_bIsFall = false;
+			if(m_eMainWeapon == CBasePlayer::LONGBOW)
+				static_cast<CLongBow*>(Get_MainWeaponPointer())->Reset_LBDissolve();
 			//m_eDeadStep = DEAD1;
 		}
 	}
@@ -1422,6 +1425,8 @@ void CPlayer::Dead_Player(const _double & dTimeDelta)
 				_uint i = rand() % 12 + 6;
 				CSoundMgr::Get_Instance()->SoundOn(i);
 				m_bDeadSound = true;
+				if (m_eMainWeapon == CBasePlayer::LONGBOW)
+					static_cast<CLongBow*>(Get_MainWeaponPointer())->Reset_LBDissolve();
 			}
 			if (m_pDynamicMeshCom->Is_AnimationSetFinish(0.2))
 				m_eDeadStep = DEAD2;

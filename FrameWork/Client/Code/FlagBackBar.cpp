@@ -38,7 +38,7 @@ _int CFlagBackBar::Update_GameObject(const _double & dTimeDelta)
 
 	CUIObject::Update_GameObject(dTimeDelta);
 
-	m_dTime += dTimeDelta;
+	m_dTime += dTimeDelta * 1.05;
 
 	return Engine::NO_EVENT;
 }

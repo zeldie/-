@@ -29,8 +29,10 @@ private:
 	// test용 변수
 	_vec3				m_vTestPosW[2];
 	_vec3				m_vTestPosA[2];
+	_vec3				m_vTestPosS[2];
 	_int				m_iTestW = 0;
 	_int				m_iTestA = 0;
+	_int				m_iTestS = 0;
 	// test용 변수
 
 	_float				m_fAccelerate;
