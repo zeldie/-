@@ -52,6 +52,9 @@ void CAi_CsState::Enter_State(CBasePlayer * pPlayer)
 	m_fMaxSpeed = m_pPlayer->Get_MaxSpeed();
 
 	m_dDustTime = g_dAccumulatedTime;
+
+	m_pPlayer->Set_CurState(CBasePlayer::PLAYER_STATE::COMMON_COMBATWAIT);
+
 	if (m_pPlayer->Get_Fall())
 	{
 		m_dbFall = 1000;
@@ -69,6 +72,7 @@ void CAi_CsState::Enter_State(CBasePlayer * pPlayer)
 
 		m_pPlayer->ReSet_DashReserve();
 	}
+
 
 	else if (m_ePress_Key == KEY_W || m_ePress_Key == KEY_A || m_ePress_Key == KEY_S || m_ePress_Key == KEY_D)
 	{
@@ -310,7 +314,10 @@ void CAi_CsState::JumpAction(const _double dTimeDelta)
 			}
 		}
 		if (!m_pMeshCom->Is_AnimationSetFinish(m_pMeshCom->Get_Period()*0.5))
+		{
 			m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(vLook * 1500.f * (_float)(m_dbDash*dTimeDelta)), m_dwNaviIndex, true)));
+			
+		}
 	}
 
 	if (m_bIsRun)
@@ -368,6 +375,7 @@ void CAi_CsState::JumpAction(const _double dTimeDelta)
 		m_pPlayer->Set_Index(m_dwNaviIndex);
 		m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(vDir * m_fJumpMoveSpeed * (_float)dTimeDelta), m_dwNaviIndex, true)));
 
+
 		if (0.f <= m_fJumpMoveSpeed)
 			m_fJumpMoveSpeed -= m_fAccelerate*(_float)dTimeDelta*2.f;
 
@@ -387,7 +395,7 @@ void CAi_CsState::JumpAction(const _double dTimeDelta)
 			m_pNaviCom->Find_Index(m_dwNaviIndex, &m_pPlayer->GetPlayerPos());
 			m_pPlayer->Set_Index(m_dwNaviIndex);
 			m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(*vUp * m_fSpeed*(_float)dTimeDelta*1.5), m_dwNaviIndex, true)));
-			
+
 			//m_pNaviCom->Find_Index(m_dwNaviIndex, &m_pPlayer->GetPlayerPos());
 		}
 		else
@@ -479,7 +487,6 @@ void CAi_CsState::JumpAction(const _double dTimeDelta)
 			_vec3 vPlayerPos = *m_pTransform->Get_Info(Engine::INFO_POS);
 			m_pNaviCom->Find_PosY(&m_pPlayer->GetPlayerPos(), m_dwNaviIndex, vPos);
 			m_pTransform->Set_Pos(&vPos);
-
 			m_eReserveState = CAi_Player::COMMON_AIR_JUMPLANDING;
 			m_fSpeed = m_pPlayer->Get_Speed();
 			m_dbJumpTime = 0;
@@ -567,6 +574,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 	INPUT_KEY C = m_eUp_Key;
 
 
+
 	if (m_eDown_Key == KEY_SHIFT && !m_bDash)
 	{
 		m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_DASH);
@@ -587,27 +595,22 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 		if (m_pMeshCom->Is_AnimationSetFinish(m_pMeshCom->Get_Period()*0.5))
 		{
 			m_bDash = false;
-			
-			if (pPlayer->Get_Tired())
-			{
-				//m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_TIRED);
-				m_bIsReserve = false;
-				m_bIsRun = false;
-			}
 
-			if (m_ePress_Key == KEY_W || m_ePress_Key == KEY_A || m_ePress_Key == KEY_S || m_ePress_Key == KEY_D)
-			{     
-				m_bIsRun = true;
-			}
-
-			else
-			{
+			//if (m_ePress_Key == KEY_W || m_ePress_Key == KEY_A || m_ePress_Key == KEY_S || m_ePress_Key == KEY_D)
+			//{     
+			//	m_bIsRun = true;
+			//}
+			//else
+			//{
 				m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_COMBATWAIT);
-				pPlayer->Set_State(CAi_Player::COMMON_COMBATWAIT);				
-			}
+				pPlayer->Set_State(CAi_Player::COMMON_COMBATWAIT);		
+			
+			//}
 		}
 		if (!m_pMeshCom->Is_AnimationSetFinish(m_pMeshCom->Get_Period()*0.5))
+		{
 			m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(vLook * 1000.f * (_float)(m_dbDash*dTimeDelta)), m_dwNaviIndex)));
+		}
 	}
 
 	if (m_eDown_Key == KEY_SPACE)
@@ -635,7 +638,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 		m_bIsRun = true;
 		m_pPlayer->Set_MoveKey(true);
 	}
-	
+
 	if (m_bIsRun && !m_bDash)
 	{
 		 //====== 달릴때 먼지 ======
@@ -677,7 +680,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 
 		m_bIsReserve = true;
 		_float fCrossy = 0.f, fDegree = 0.f;
-
+	
 		if (m_ePress_Key == KEY_W)
 		{
 			if (pPlayer->Get_TargetPlayer() == nullptr)
@@ -696,22 +699,22 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 
 			if (m_vTestPosW[0] == m_vTestPosW[1])
 			{
-				CONTROLTYPE eType = pPlayer->Get_ControlType();
-				CBasePlayer* pTarget = pPlayer->Get_TargetPlayer();
-				STATETYPE eStateType = pPlayer->Get_StateState();
-				CBasePlayer::STATE_ID eID = pPlayer->Get_CurStateID();
-				CBasePlayer::PLAYER_STATE ePlayerState = pPlayer->Get_CurState();
-				
-				_vec3 vTempDir = Engine::GetDirNoY(pPlayer->Get_TargetPos(), pPlayer->GetPlayerPos());
-				pPlayer->Get_TransformCom()->Move_Pos(&vTempDir, m_fSpeed, dTimeDelta);
-				
-				cout << "%%% W MovePos발동 %%%" << endl;
-				int i = 0;
+				_vec3 TempPos = m_pPlayer->GetPlayerPos();
+				TempPos.y += 1000.f;
+
+				m_pPlayer->Get_NaviMesh()->Find_Index(m_dwNaviIndex, &TempPos);
+				cout << "%%% W Find_Index발동 %%%" << endl;
 			}
 
 			_vec3 vTargetDir = Engine::GetDirNoY(pPlayer->Get_TargetPos(), pPlayer->GetPlayerPos());
 			_vec3 vMove = { vTargetDir.x, 0.f, vTargetDir.z };
 			vPurpose += vMove;
+
+			
+			/*if (m_pPlayer->Get_ControlType() == CONTROLTYPE::CTRL_AI_ENERMY_1)
+			{
+				cout << "W 키 누르는중" << endl;
+			}*/
 
 			CAi_PlayerState::Rotation_Direction(matView, vLook, vPurpose, &fCrossy, &vDir, &fDegree);
 		}
@@ -730,17 +733,11 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 
 			if (m_vTestPosA[0] == m_vTestPosA[1])
 			{
-				CONTROLTYPE eType = pPlayer->Get_ControlType();
-				CBasePlayer* pTarget = pPlayer->Get_TargetPlayer();
-				STATETYPE eStateType = pPlayer->Get_StateState();
-				CBasePlayer::STATE_ID eID = pPlayer->Get_CurStateID();
-				CBasePlayer::PLAYER_STATE ePlayerState = pPlayer->Get_CurState();
+				_vec3 TempPos = m_pPlayer->GetPlayerPos();
+				TempPos.y += 1000.f;
 
-				_vec3 vTempDir = Engine::GetDirNoY(pPlayer->Get_FlagPos(), pPlayer->GetPlayerPos());
-				pPlayer->Get_TransformCom()->Move_Pos(&vTempDir, m_fSpeed, dTimeDelta);
-
-				cout << "%%% A MovePos발동 %%%" << endl;
-				int i = 0;
+				m_pPlayer->Get_NaviMesh()->Find_Index(m_dwNaviIndex, &TempPos);
+				//cout << "%%% A Find_Index발동 %%%" << endl;
 			}
 
 			_vec3 vFlagDir = Engine::GetDirNoY(pPlayer->Get_FlagPos(), pPlayer->GetPlayerPos());
@@ -748,6 +745,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 
 			_vec3 vMove = { vFlagDir.x, 0.f, vFlagDir.z };
 			vPurpose += vMove;
+		
 
 			CAi_PlayerState::Rotation_Direction(matView, vLook, vPurpose, &fCrossy, &vDir, &fDegree);
 		}
@@ -756,11 +754,32 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 			if (pPlayer->Get_TargetPlayer() == nullptr)
 				return false;
 
+			if (m_iTestS == 0)
+			{
+				m_vTestPosS[m_iTestS] = pPlayer->GetPlayerPos();
+				m_iTestS++;
+			}
+			else if (m_iTestS == 1)
+			{
+				m_vTestPosS[m_iTestS] = pPlayer->GetPlayerPos();
+				m_iTestS--;
+			}
+
+			if (m_vTestPosS[0] == m_vTestPosS[1])
+			{
+				_vec3 TempPos = m_pPlayer->GetPlayerPos();
+				TempPos.y += 1000.f;
+
+				m_pPlayer->Get_NaviMesh()->Find_Index(m_dwNaviIndex, &TempPos);
+				//cout << "%%% S Find_Index발동 %%%" << endl;
+			}
+
 			CBasePlayer* pObj = pPlayer->Get_TargetPlayer();
 			_vec3 vTargetDir = Engine::GetDirNoY(pPlayer->Get_TargetPos(), pPlayer->GetPlayerPos());
 
 			_vec3 vMove = { -vTargetDir.x, 0.f, -vTargetDir.z };
 			vPurpose += vMove;
+
 			CAi_PlayerState::Rotation_Direction(matView, vLook, vPurpose, &fCrossy, &vDir, &fDegree);
 		}
 		if (m_ePress_Key == KEY_D)
@@ -809,6 +828,7 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 		}
 
 		m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(vDir * m_fSpeed * (_float)dTimeDelta), m_dwNaviIndex)));
+		
 		//m_pTransform->Move_Pos(&vDir, m_fSpeed, dTimeDelta);
 	}
 	if (pPlayer->Get_CurState() == CAi_Player::COMMON_RUNEND_FAST)
@@ -824,7 +844,6 @@ _bool CAi_CsState::GraoundAction(CAi_Player * pPlayer, const _double dTimeDelta)
 		pPlayer->Set_Index(m_dwNaviIndex);
 		m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(vDir * m_fSpeed * (_float)dTimeDelta), m_dwNaviIndex)));
 		//m_pTransform->Move_Pos(&vDir, m_fSpeed, dTimeDelta);
-
 
 		if (m_pMeshCom->Is_AnimationSetFinish(0.3))
 			m_fSpeed = pPlayer->Get_Speed();

@@ -204,6 +204,7 @@ _int CAi_Player::Update_GameObject(const _double & dTimeDelta)
 		if (CAiMgr::GetInstance()->Get_CartelStart() == true)
 			m_pAiState->Update_State(dTimeDelta);
 	}
+
 	else if (CUIMgr::GetInstance()->Get_UI_Working()) 	//UI가 켜져있을 땐 일반 상태
 	{
 		m_eCurState = COMMON_COMBATWAIT;
@@ -257,6 +258,8 @@ _int CAi_Player::Update_GameObject(const _double & dTimeDelta)
 	_vec3 vLook = *(m_pTransformCom->Get_Info(Engine::INFO_LOOK));
 	//vLightAt = *pPos;
 
+
+
 	CBasePlayer::Update_GameObject(dTimeDelta);
 
 	ObserverPass();
@@ -276,6 +279,7 @@ _int CAi_Player::LateUpdate_GameObject(const _double & dTimeDelta)
 	// yh test code
 	m_tBaseInfo.vObjectPos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
 	// yh test end
+
 
 	if (m_eCtrlType == CTRL_AI_ALLIANCE)
 	{
@@ -357,6 +361,7 @@ void CAi_Player::Render_Geometry(const _double & dTimeDelta)
 	Engine::Safe_AddRef(pEffect);
 	if (FAILED(Setup_ShaderProps(pEffect)))
 		return;
+
 	_uint iPassMax = 0;
 	pEffect->Begin(&iPassMax, 0);
 	
@@ -939,6 +944,7 @@ void CAi_Player::Change_State()
 			{
 				m_bIsAttacked = false;
 				m_eIdNext = ID_COMMON;
+				m_eCurState = CBasePlayer::PLAYER_STATE::COMMON_COMBATWAIT;
 				return;
 			}
 		}
@@ -954,6 +960,7 @@ void CAi_Player::Change_State()
 		{
 			m_pAiState = new CAi_CsState;
 			m_pAiState->Enter_State(this);
+
 			// Weapon Swap
 			// Weapon의 1번 애니메이션은 Wait
 			if (m_eMainWeapon == PLAYER_WEAPONTYPE::DUALSWORD)
