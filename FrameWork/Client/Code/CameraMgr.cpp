@@ -40,7 +40,7 @@ void CCameraMgr::Ready_Camera(LPDIRECT3DDEVICE9 pGraphicDev, MODE eMode)
 			D3DXToRadian(45.f),
 			_float(WINCX) / WINCY,
 			0.7f,
-			7000.f);
+			4000.f);
 
 		//m_vecCam->push_back(pGameObject);
 		m_vecCam[STATIC].push_back(pGameObject);
@@ -115,7 +115,7 @@ void CCameraMgr::Ready_Camera(LPDIRECT3DDEVICE9 pGraphicDev, MODE eMode)
 				D3DXToRadian(45.f),
 				_float(WINCX) / WINCY,
 				0.7f,
-				7000.f);
+				4000.f);
 			break;
 		case CCameraMgr::DYNAMIC:
 			(dynamic_cast<CDynamicCam*>(m_pCam))->Ready_Object(&_vec3(800.f, 100.f, -800.f),

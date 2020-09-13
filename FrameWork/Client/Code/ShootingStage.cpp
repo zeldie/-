@@ -431,7 +431,7 @@ CShootingStage * CShootingStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CShootingStage::Free()
 {
-	//m_pUIMgr->EraseMouse();
+	if (m_pLightCamera != nullptr)
+		m_pLightCamera->Release_TransformCom();
 	Engine::CScene::Free();
-	m_pLightCamera->Release_TransformCom();
 }
