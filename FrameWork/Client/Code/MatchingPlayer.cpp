@@ -56,7 +56,8 @@ HRESULT CMatchingPlayer::Ready_GameObject(_float fX, _float fY)
 _int CMatchingPlayer::Update_GameObject(const _double & dTimeDelta)
 {
 	CDynamicMeshObject::Update_GameObject(dTimeDelta);
-	D3DXMatrixOrthoLH(&m_matProj, WINCX, WINCY, 0.1f,4000.f); //->직교투영
+
+	D3DXMatrixOrthoLH(&m_matProj, WINCX, WINCY, 0.1f, 4000.f); //->직교투영
 
 	return Engine::NO_EVENT;
 }
@@ -259,8 +260,7 @@ HRESULT CMatchingPlayer::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 	CBaseObject::Set_ShaderMatrix(pEffect);
 	_matrix		matWorld, matView;
 
-	m_pTransformCom->Get_WorldMatrix(
-	);
+	m_pTransformCom->Get_WorldMatrix(&matWorld);
 	D3DXMatrixIdentity(&matView); //직교투영
 
 	pEffect->SetMatrix("g_matWorld", &matWorld);
