@@ -1045,6 +1045,7 @@ void CAiMgr::Capture(CBasePlayer * pAi, const _double & dTimeDelta)
 				}
 			}
 
+			dynamic_cast<CAi_Player*>(pAi)->Set_AnimationSpeed(1);
 			pAi->Set_DownKey(KEY_Capture_Flag);
 		}
 		else // 깃발에서 좀 떨어져있을때

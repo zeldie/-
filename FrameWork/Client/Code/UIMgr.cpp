@@ -1358,7 +1358,9 @@ HRESULT CUIMgr::CreateResultUI_ShootingStage(LPDIRECT3DDEVICE9 pGraphicDev)
 
 HRESULT CUIMgr::CreateResultUI_Run(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	EraseRunButton();
+	if(!CCameraMgr::GetInstance()->Get_ItemGetCheck())
+		EraseRunButton();
+
 	m_eUIType = UITYPE_RESULT_Run;
 
 	Engine::CGameObject*		pGameObject = nullptr;
@@ -2126,12 +2128,12 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 
 	if (CKarma::MAIN == eKarma)
 	{
-		//KarmaSlot
-		for (_uint i = 0; i < 3; ++i)
+		//KarmaSlot -->2개만 생성
+		for (_uint i = 0; i < 2; ++i)
 		{
 			//KarmaSlot
 			pGameObject = CKarmaSlot::Create(pGraphicDev, SELECTKARMATYPE_FORSWAP,
-				CKarmaSlot::INREADYUI, 418.1f + (66.9f*i), 490.f, 67.3f, 66.2f);
+				CKarmaSlot::INREADYUI, 485.0f + (66.9f*i), 490.f, 67.3f, 66.2f); //418.1f
 			if (pGameObject == nullptr)
 				return E_FAIL;
 			Engine::Add_GameObject(Engine::UI, L"KarmaSlot", pGameObject);
@@ -2139,17 +2141,17 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 			m_listKarmaSlot.emplace_back(dynamic_cast<CKarmaSlot*>(pGameObject));
 
 		}
-		//Karma
+		//Karma  -->2개만 생성
 		_uint iCnt = 0;
 		for (_uint i = 0; i < PLAYERWEAPON_END; ++i)
 		{
-			if (i == 0 || i == m_ePlayerMainWeapon)
+			if (i == 0 || i == m_ePlayerMainWeapon || i==3 ) //오브인경우도 제외(오브는 벨라토스 후에 얻는 무기니까.)
 				continue;
 			else
 			{
 				//Karma
 				pGameObject = CKarma::Create(pGraphicDev, SELECTKARMATYPE_FORSWAP,
-					eKarma, CKarma::KARMATYPE(i), 418.1f + (66.9f*iCnt), 490.f, 67.3f, 66.2f);
+					eKarma, CKarma::KARMATYPE(i), 485.0f + (66.9f*iCnt), 490.f, 67.3f, 66.2f);
 
 				if (pGameObject == nullptr)
 					return E_FAIL;
@@ -2163,7 +2165,7 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 	else if (CKarma::SUB == eKarma)
 	{
 		//KarmaSlot
-		for (_uint i = 0; i < 3; ++i)
+		for (_uint i = 0; i < 2; ++i)
 		{
 			//KarmaSlot
 			pGameObject = CKarmaSlot::Create(pGraphicDev, SELECTKARMATYPE_FORSWAP,
@@ -2178,7 +2180,7 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 		_uint iCnt = 0;
 		for (_uint i = 0; i < PLAYERWEAPON_END; ++i)
 		{
-			if (i == 0 || i == m_ePlayerSubWeapon)
+			if (i == 0 || i == m_ePlayerSubWeapon || i == 3) //오브인경우도 제외(오브는 벨라토스 후에 얻는 무기니까.)
 				continue;
 			else
 			{
@@ -2287,7 +2289,7 @@ void CUIMgr::UpdateSwapKarmaUI(CKarma::KARMAPOSITION eKarmaPosition, CKarma::KAR
 		{
 			for (; iCnt < PLAYERWEAPON_END; )
 			{
-				if (iCnt == 0 || iCnt == PLAYERWEAPON(eKarmaType))
+				if (iCnt == 0 || iCnt == PLAYERWEAPON(eKarmaType) || iCnt ==3 ) //오브인경우도 제외(오브는 벨라토스 후에 얻는 무기니까.)
 				{
 					++iCnt;
 					continue;
@@ -2314,7 +2316,7 @@ void CUIMgr::CheckEraseSwapPossible()
 			++iTrueCnt;
 	}
 
-	if (3 == iTrueCnt)
+	if (2 == iTrueCnt)
 	{
 		EraseSwapKarmaUI();
 		m_bEraseSwapKarmaUIPossible = true;
