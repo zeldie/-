@@ -35,6 +35,7 @@ public:
 
 	void Set_ItemGetComplete(_bool bComplete) { m_bBelatosComplete = bComplete; }
 	_bool Get_ItemGetCheck() { return m_bItemGetComplete; }
+
 	//¿Œ±’
 public:
 	void	Set_RendererCom();

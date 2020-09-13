@@ -312,7 +312,7 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 	}
 	////////////////////////////////
 	m_dEnterSceneTime += dTimeDelta;
-	if (!m_bEnterScene && m_dEnterSceneTime > 5)
+	if (!m_bEnterScene && m_dEnterSceneTime > 2)
 	{
 		CLoadingMgr::GetInstance()->Set_EndFade(true);
 		m_bEnterScene = true;
