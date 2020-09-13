@@ -362,7 +362,11 @@
     <ClInclude Include="..\Code\RunObj_Obstacle.h" />
     <ClInclude Include="..\Code\RunPlayer.h" />
     <ClInclude Include="..\Code\RunPlayerDown_End.h" />
+    <ClInclude Include="..\Code\RunPlayerHP.h" />
     <ClInclude Include="..\Code\RunPlayerIdle1.h" />
+    <ClInclude Include="..\Code\RunPlayerItem.h" />
+    <ClInclude Include="..\Code\RunPlayerItemSlot.h" />
+    <ClInclude Include="..\Code\RunPlayerObserver.h" />
     <ClInclude Include="..\Code\RunPlayerRun.h" />
     <ClInclude Include="..\Code\RunPlayerState.h" />
     <ClInclude Include="..\Code\RunPlayerWait.h" />
@@ -617,7 +621,11 @@
     <ClCompile Include="..\Code\RunObj_Obstacle.cpp" />
     <ClCompile Include="..\Code\RunPlayer.cpp" />
     <ClCompile Include="..\Code\RunPlayerDown_End.cpp" />
+    <ClCompile Include="..\Code\RunPlayerHP.cpp" />
     <ClCompile Include="..\Code\RunPlayerIdle1.cpp" />
+    <ClCompile Include="..\Code\RunPlayerItem.cpp" />
+    <ClCompile Include="..\Code\RunPlayerItemSlot.cpp" />
+    <ClCompile Include="..\Code\RunPlayerObserver.cpp" />
     <ClCompile Include="..\Code\RunPlayerRun.cpp" />
     <ClCompile Include="..\Code\RunPlayerState.cpp" />
     <ClCompile Include="..\Code\RunPlayerWait.cpp" />

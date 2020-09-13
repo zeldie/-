@@ -799,6 +799,18 @@
     <Filter Include="02.GameObject\04.UI\25.Customizing\07.CustomizingButton">
       <UniqueIdentifier>{72475da3-cafe-4119-a06c-c6423e7fd8b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\04.UI\24.Run\02.RunPlayerHP">
+      <UniqueIdentifier>{0fd959f1-3310-4570-9d4e-43fb96bce4ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Observer\04.RunPlayerObserver">
+      <UniqueIdentifier>{2a3c228d-6364-4f3f-bc59-3ebc6dd14e9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\04.UI\24.Run\03.RunPlayerItem">
+      <UniqueIdentifier>{daec60e1-a804-434c-84aa-4c568816d633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot">
+      <UniqueIdentifier>{ab0b6e7b-7c71-4991-ae57-13006d212376}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1547,6 +1559,18 @@
     </ClInclude>
     <ClInclude Include="..\Code\RunWeapon_LongBow.h">
       <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerHP.h">
+      <Filter>02.GameObject\04.UI\24.Run\02.RunPlayerHP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerObserver.h">
+      <Filter>96.Observer\04.RunPlayerObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerItem.h">
+      <Filter>02.GameObject\04.UI\24.Run\03.RunPlayerItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerItemSlot.h">
+      <Filter>02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2305,6 +2329,18 @@
     </ClCompile>
     <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
       <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerHP.cpp">
+      <Filter>02.GameObject\04.UI\24.Run\02.RunPlayerHP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerObserver.cpp">
+      <Filter>96.Observer\04.RunPlayerObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerItem.cpp">
+      <Filter>02.GameObject\04.UI\24.Run\03.RunPlayerItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerItemSlot.cpp">
+      <Filter>02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

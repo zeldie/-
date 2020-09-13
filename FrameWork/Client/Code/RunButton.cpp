@@ -22,14 +22,17 @@ HRESULT CRunButton::Ready_GameObject(BUTTONTYPE eType, _float fX, _float fY, _fl
 	if (FAILED(Clone_Component(fX, fY, fSizeX, fSizeY, fViewZ)))
 		return E_FAIL;
 
-	m_eButtonType = eType;
+	m_eButtonType = eType;	
+
 	return S_OK;
 }
 
 _int CRunButton::Update_GameObject(const _double & dTimeDelta)
 {
-	if(m_bIsDead)
+	if (m_bIsDead)
+	{
 		return Engine::OBJ_DEAD;
+	}
 	
 	CUIObject::Update_GameObject(dTimeDelta);
 

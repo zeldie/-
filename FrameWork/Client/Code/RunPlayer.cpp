@@ -90,16 +90,16 @@ _int CRunPlayer::Update_GameObject(const _double & dTimeDelta)
 
 
 	// ============== 디버그용 COUT ======================
-	cout << m_dProgress << endl;
-	cout << m_tBaseInfo.iHp << endl;
+	//cout << m_dProgress << endl;
+	//cout << m_tBaseInfo.iHp << endl;
 
 	if (m_ePower == RUN_POWER_BIG)
 	{
-		cout << "지속시간: " << m_dItem_durationTime_Big - g_dAccumulatedTime << endl;
+		//cout << "지속시간: " << m_dItem_durationTime_Big - g_dAccumulatedTime << endl;
 	}
 	if (m_ePower == RUN_POWER_SPEEDUP)
 	{
-		cout << "지속시간: " << m_dItem_durationTime_SpeedUp - g_dAccumulatedTime << endl;
+		//cout << "지속시간: " << m_dItem_durationTime_SpeedUp - g_dAccumulatedTime << endl;
 	}
 	// ============== 디버그용 COUT ======================
 
@@ -744,11 +744,13 @@ void CRunPlayer::Item_Looting(RUNGAME_ITEMTYPE eItemType)
 	case RUNITEM_MONEY:	// 점수 획득
 	{
 		// 점수 1,000점
+		CUIMgr::GetInstance()->SetAccumulatedRunGamePoints(1000);
 		break;
 	}
 	case RUNITEM_JEWELRY_BLUE:	// 점수 획득
 	{
 		// 점수 10,000점
+		CUIMgr::GetInstance()->SetAccumulatedRunGamePoints(10000);
 		break;
 	}
 	case RUNITEM_POTION:	// 플레이어 체력 회복
@@ -756,6 +758,7 @@ void CRunPlayer::Item_Looting(RUNGAME_ITEMTYPE eItemType)
 		// 점수 5,000점
 		m_tBaseInfo.iHp = m_tBaseInfo.iMaxHp;
 
+		CUIMgr::GetInstance()->SetAccumulatedRunGamePoints(5000);
 		break;
 	}
 	case RUNITEM_POWER:	// 플레이어 크기 커지는 아이템
@@ -765,7 +768,7 @@ void CRunPlayer::Item_Looting(RUNGAME_ITEMTYPE eItemType)
 		m_dItem_durationTime_Big = g_dAccumulatedTime + 5.0;
 
 		CSoundMgr::Get_Instance()->SiwonSoundOn(12);
-
+		CUIMgr::GetInstance()->SetAccumulatedRunGamePoints(5000);
 		break;
 	}
 	case RUNITEM_SPEED:	// 플레이어 속도 빨라지는 아이템
@@ -774,6 +777,7 @@ void CRunPlayer::Item_Looting(RUNGAME_ITEMTYPE eItemType)
 		m_ePower = RUN_POWER_SPEEDUP;
 		m_dItem_durationTime_SpeedUp = g_dAccumulatedTime + 3.0;
 
+		CUIMgr::GetInstance()->SetAccumulatedRunGamePoints(5000);
 		break;
 	}
 	case RUNITEM_END:

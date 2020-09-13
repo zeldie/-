@@ -214,6 +214,7 @@ public:
 	void		SetIsWearing_Clothes();
 	void		ChangeColor(wstring wstrParts, _vec4 vColor);
 	void		SetAnimationForParts(); //커마끝나고 마지막에 애니메이션번호 셋해줄때 쓰는 함수
+	void		TakeOffParts(wstring wstrParts);
 
 public:
 	//////깃발전 함수
@@ -268,6 +269,8 @@ public:
 	void		EraseRunButton(); //런버튼 지우기 함수
 	void		EraseRunCountDown();
 	void		SetTimeOver_RunCountDown();
+	void		SetAccumulatedRunGamePoints(_uint iPoints); //점수 누적
+	_uint		GetAccumulatedRunGamePoints() { return m_iAccumulatedRunGamePoints; }
 
 public:
 	////상시 체크 함수
@@ -376,6 +379,9 @@ private:
 	//깃발전
 	_bool					m_bGetFlag; //-> 깃발 점령체크 불변수 / 점령되었으면 true.
 	_bool					m_bReCreateFlag; //-> 깃발 재생성 불변수
+
+	//런게임
+	_uint					m_iAccumulatedRunGamePoints;
 
 	//UI 내부에서 저장해야할 정보
 	// 누적 데미지
