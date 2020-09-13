@@ -348,7 +348,6 @@ _int CBody::LateUpdate_GameObject(const _double & dTimeDelta)
 
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
-	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 	m_pDynamicMeshCom->Play_AnimationSet(dTimeDelta);
 	return	Engine::NO_EVENT;
 }
@@ -357,17 +356,7 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 {
 	
 	LPD3DXEFFECT	pEffect = nullptr;
-    if (m_bRenderNon)
-	{
-		pEffect = m_pShaderCom->Get_EffectHandle();
-
-	}
-	else
-	{
-		pEffect = m_pNormalShaderCom->Get_EffectHandle();
-		
-	}
-		
+	pEffect = m_pShaderCom->Get_EffectHandle();
 	if (pEffect == nullptr)
 		return;
 	Engine::Safe_AddRef(pEffect);
@@ -385,7 +374,7 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 		{
 			if (m_bIsHead)
 			{
-				if (i == 0 && m_bRenderNon) // 倔奔
+				if (i == 0) // 倔奔
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
 					pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
@@ -399,7 +388,7 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 					pEffect->EndPass();
 					m_pDynamicMeshCom->Render_Meshes_End(iter);
 				}
-				else if (i == 1 && !m_bRenderNon) // 传界
+				else if (i == 1) // 传界
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
 					pEffect->SetValue("ChangeUV", (void*)&m_vBrowUV, sizeof(_vec2));
@@ -407,13 +396,13 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 					pEffect->SetTexture("g_NormalTexture", nullptr);
 					pEffect->SetTexture("g_SpecularTexture", nullptr);
 					pEffect->SetTexture("g_EmmisiveTexture", nullptr);
-					pEffect->BeginPass(28);
+					pEffect->BeginPass(22);
 					pEffect->CommitChanges();
 					m_pDynamicMeshCom->Render_Meshes(iter, i);
 					pEffect->EndPass();
 					m_pDynamicMeshCom->Render_Meshes_End(iter);
 				}
-				else if (i == 2 && m_bRenderNon) // 传 哭率
+				else if (i == 2) // 传 哭率
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
 					pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
@@ -427,7 +416,7 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 					pEffect->EndPass();
 					m_pDynamicMeshCom->Render_Meshes_End(iter);
 				}
-				else if (i == 3 && m_bRenderNon) // 传 坷弗率
+				else if (i == 3 ) // 传 坷弗率
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
 					pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
@@ -444,7 +433,7 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 			}
 			else
 			{
-				if (i == 0 && m_bRenderNon) // 个
+				if (i == 0 ) // 个
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
 					pEffect->SetVector("vDyeColor", &_vec4(m_vBodyColor));
@@ -458,15 +447,15 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 					pEffect->EndPass();
 					m_pDynamicMeshCom->Render_Meshes_End(iter);
 				}
-				else if (i == 1 && m_bRenderNon) // 加渴
+				else if (i == 1) // 加渴
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
-					pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
-					pEffect->SetTexture("g_DiffuseTexture", iter->ppDiffuseTexture[i]);
+					pEffect->SetVector("vDyeColor", &_vec4(m_vBodyColor));
+					//pEffect->SetTexture("g_DiffuseTexture", iter->ppDiffuseTexture[i]);
 					pEffect->SetTexture("g_NormalTexture", iter->ppNormalTexture[i]);
 					pEffect->SetTexture("g_SpecularTexture", iter->ppSpecularTexture[i]);
 					pEffect->SetTexture("g_EmmisiveTexture", iter->ppEmmisiveTexture[i]);
-					pEffect->BeginPass(0);
+					pEffect->BeginPass(18);
 					pEffect->CommitChanges();
 					m_pDynamicMeshCom->Render_Meshes(iter, i);
 					pEffect->EndPass();
@@ -478,10 +467,6 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 
 	}
 	pEffect->End();
-	if (m_bRenderNon == true)
-		m_bRenderNon = false;
-	else
-		m_bRenderNon = true;
 	Engine::Safe_Release(pEffect);
 }
 
