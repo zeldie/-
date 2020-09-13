@@ -18,18 +18,7 @@ HRESULT CTop::Change_Top(_uint iTop, _uint iCurrentTrack, _double dTrackTime, _u
 {
 	m_pDynamicMeshCom = m_vecTop[iTop];
 	m_mapComponent[Engine::ID_STATIC][Engine::MESH] = m_vecTop[iTop];
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-	m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-	
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_AnimationSet_Change(iAnimationNum, dTrackTime, dAccTime);
-	//m_pDynamicMeshCom->Set_AnimationSet(0);
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_AnimationSet_Change(iAnimationNum, dTrackTime, dAccTime);
-	//m_pDynamicMeshCom->Play_AnimationSet(0.000016);
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_AccTime(dAccTime);
-	//m_iAnimationNum = iAnimationNum;
-	//m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dAccTime);
-	
+	m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dTrackTime);
 	m_iTopIndex = iTop;
 	return S_OK;
 }

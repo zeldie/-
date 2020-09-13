@@ -115,8 +115,7 @@ void CKarma::PickingKarma()
 
 		if (m_bChoose && Engine::MouseUp(Engine::DIM_LB))
 		{
-			CUIMgr::GetInstance()->CreateSwapKarmaUI(m_pGraphicDev, m_eKarmaPositionType);
-			
+			CUIMgr::GetInstance()->CreateSwapKarmaUI(m_pGraphicDev, m_eKarmaPositionType);			
 		}
 	}
 	else if (SELECTKARMATYPE_FORSWAP == m_eSelectKarmaType)

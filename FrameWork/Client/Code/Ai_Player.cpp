@@ -789,6 +789,16 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 			{
 				// ÈñÁ¤ Ãß°¡(±ê¹ßÀü¿¡¼­ ´©°¡´©±¸Á×¿´´ÂÁö ¶ß´Â UI)
 				CUIMgr::GetInstance()->CheckFlagScore(m_pGraphicDev, pObj->Get_BaseInfo()->eObjectID, m_tBaseInfo.eObjectID);
+
+				if (OBJECT_PLAYER == pObj->Get_BaseInfo()->eObjectID || OBJECT_ALLIANCE == pObj->Get_BaseInfo()->eObjectID)
+				{
+					//kill voice
+					CSoundMgr::Get_Instance()->HoSoundOn(rand() % 6 + 48, 1.f);
+				}
+				else if (OBJECT_ENEMY_1 == pObj->Get_BaseInfo()->eObjectID || OBJECT_ENEMY_2 == pObj->Get_BaseInfo()->eObjectID)
+				{
+					CSoundMgr::Get_Instance()->HoSoundOn(rand() % 2 + 54, 1.f);
+				}
 			}
 
 			// Dead

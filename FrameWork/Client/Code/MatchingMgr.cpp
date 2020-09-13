@@ -66,7 +66,7 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 
 		//플레이어 턴 띄움
 		CUIMgr::GetInstance()->TurnCheck(m_eTurn);
-		//CSoundMgr::Get_Instance()->HoSoundOn(45, 1.f);
+		CSoundMgr::Get_Instance()->HoSoundOn(45, 1.f);
 		m_iCombo = 0;
 		m_bCreateButton = true;
 
@@ -204,7 +204,7 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 			m_dTime = 10.;
 
 			CUIMgr::GetInstance()->TurnCheck(m_eTurn);
-			//CSoundMgr::Get_Instance()->HoSoundOn(45, 1.f);
+			CSoundMgr::Get_Instance()->HoSoundOn(45, 1.f);
 			m_iCombo = 0;
 			m_bWaitAnim = true;
 			return;
