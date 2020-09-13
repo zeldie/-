@@ -47,8 +47,8 @@ _int COrb::Update_GameObject(const _double & dTimeDelta)
 		
 		if (fDist < 50)
 		{
-			CUIMgr::GetInstance()->Set_CreateBossResultUI(true);
 			CUIMgr::GetInstance()->Set_StageTimeStop();
+			CUIMgr::GetInstance()->Set_CreateBossResultUI(true);
 			m_bIsDead = true;
 		}
 

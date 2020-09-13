@@ -2180,7 +2180,7 @@ HRESULT CUIMgr::CreateSwapKarmaUI(LPDIRECT3DDEVICE9 pGraphicDev, CKarma::KARMAPO
 		_uint iCnt = 0;
 		for (_uint i = 0; i < PLAYERWEAPON_END; ++i)
 		{
-			if (i == 0 || i == m_ePlayerSubWeapon || i == 3)
+			if (i == 0 || i == m_ePlayerSubWeapon || i == 3) //오브인경우도 제외(오브는 벨라토스 후에 얻는 무기니까.)
 				continue;
 			else
 			{
@@ -2289,7 +2289,7 @@ void CUIMgr::UpdateSwapKarmaUI(CKarma::KARMAPOSITION eKarmaPosition, CKarma::KAR
 		{
 			for (; iCnt < PLAYERWEAPON_END; )
 			{
-				if (iCnt == 0 || iCnt == PLAYERWEAPON(eKarmaType))
+				if (iCnt == 0 || iCnt == PLAYERWEAPON(eKarmaType) || iCnt ==3 ) //오브인경우도 제외(오브는 벨라토스 후에 얻는 무기니까.)
 				{
 					++iCnt;
 					continue;
