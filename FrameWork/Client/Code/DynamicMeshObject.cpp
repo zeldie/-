@@ -6,6 +6,7 @@ CDynamicMeshObject::CDynamicMeshObject(LPDIRECT3DDEVICE9 pGraphicDev)
 	:CBaseObject(pGraphicDev),
 	m_pDynamicMeshCom(nullptr),
 	m_pNaviMeshCom(nullptr),
+	m_bNoRender(true),
 	m_dwNaviIndex(0)
 {
 }

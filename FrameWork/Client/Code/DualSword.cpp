@@ -130,7 +130,9 @@ _int CDualSword::LateUpdate_GameObject(const _double & dTimeDelta)
 		return Engine::OBJ_DEAD;
 
 	CDynamicMeshObject::LateUpdate_GameObject(dTimeDelta);
-	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
+
+	if (m_bNoRender)
+		m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
 	return Engine::NO_EVENT;
 }
 

@@ -348,6 +348,29 @@ _int CPlayer::LateUpdate_GameObject(const _double & dTimeDelta)
 	CBasePlayer::LateUpdate_GameObject(dTimeDelta);
 	if (!m_bTransApostle)	// 돼지천사 변신
 		m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
+	else
+	{
+		switch (m_eMainWeapon)
+		{
+		case CBasePlayer::COMMON:
+			break;
+		case CBasePlayer::DUALSWORD:
+			m_pDualSword_R->Set_NoRender(false);
+			m_pDualSword_L->Set_NoRender(false);
+			break;
+		case CBasePlayer::TWOHANDSWORD:
+			m_pTwoHandSword->Set_NoRender(false);
+			break;
+		case CBasePlayer::ORB:
+			m_pOrb->Set_NoRender(false);
+			break;
+		case CBasePlayer::LONGBOW:
+			m_pLongBow->Set_NoRender(false);
+			break;
+		default:
+			break;
+		}
+	}
 
 	if (!m_pUIMgr->Get_UI_Working())
 	{
@@ -841,6 +864,9 @@ void CPlayer::Set_Collision_Effect(CBaseObject * pObj)
 				m_pUIMgr->CheckFlagScore(m_pGraphicDev, pObj->Get_BaseInfo()->eObjectID, m_tBaseInfo.eObjectID);
 				//// 희정 추가(부활 몇초전 이라고 뜨는 UI)
 				//m_pUIMgr->CreateRevivalPopUp(m_pGraphicDev);
+
+				CSoundMgr::Get_Instance()->HoSoundOn(rand() % 2 + 46, 1.f);
+
 				m_bCreateRevivalUI = true;
 			}
 

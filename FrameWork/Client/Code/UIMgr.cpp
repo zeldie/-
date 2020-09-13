@@ -1279,7 +1279,7 @@ HRESULT CUIMgr::CreateResultUI_Cartel(LPDIRECT3DDEVICE9 pGraphicDev)
 	// 2vs2
 	CSoundMgr::Get_Instance()->SetVolumeDown(0.3f);
 	CSoundMgr::Get_Instance()->HoSoundOn(16, 1.f);
-
+	CSoundMgr::Get_Instance()->HoSoundOn(56, 1.f);
 	return S_OK;
 }
 
