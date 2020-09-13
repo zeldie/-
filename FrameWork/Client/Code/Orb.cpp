@@ -28,10 +28,8 @@ HRESULT COrb::Ready_GameObject()
 	m_pTransformCom->Rotation(Engine::ROT_Y, 180.f);
 	if (m_bItem)
 	{
-		m_pTransformCom->Set_Scale(0.1f, 0.1f, 0.1f);
+		//m_pTransformCom->Set_Scale(0.01f, 0.01f, 0.01f);
 	}
-
-	cout << "X : " << m_vItemPos.x << " Y : " << m_vItemPos.y << " Z : " << m_vItemPos.z << endl;
 
 	return S_OK;
 }
@@ -42,7 +40,19 @@ _int COrb::Update_GameObject(const _double & dTimeDelta)
 		return Engine::OBJ_DEAD;
 	
 	if (m_bItem)
+	{
+		CGameObject* pPlayer = Engine::Get_GameObject(Engine::GAMEOBJECT, L"RealPlayer");
+		_vec3 vPlayerPos = dynamic_cast<CPlayer*>(pPlayer)->GetPlayerPos();
+		float fDist = Engine::GetDistNoY(vPlayerPos, *m_pTransformCom->Get_Info(Engine::INFO_POS));
+		
+		if (fDist < 50)
+		{
+			m_bIsDead = true;
+		}
+
 		m_pTransformCom->Set_Info(&m_vItemPos, Engine::INFO_POS);
+	}
+
 	else if (!m_bItem)
 	{
 		if (nullptr == m_pParentBoneMatrix)

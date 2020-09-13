@@ -260,7 +260,13 @@ CAi_Player::STATE_ID CAi_PlayerSkill::LateUpadte_State(const _double dTimeDelta)
 		//F½ºÅ³
 		if (m_bEffect)
 		{
-			m_pPlayer->Set_DecalPos(&m_pPlayer->GetPlayerPos());
+			_ulong iTargetNaviIndex;
+			m_pPlayer->Get_TargetPlayer()->Get_NaviMesh()->Find_Index(iTargetNaviIndex, &m_pPlayer->Get_TargetPos());
+			_vec3 vTargetPos = m_pPlayer->Get_TargetPos();
+			vTargetPos.y += 500.f;
+			m_pPlayer->Get_TargetPlayer()->Get_NaviMesh()->Find_PosY(&vTargetPos, iTargetNaviIndex, vTargetPos);
+
+			m_pPlayer->Set_DecalPos(&vTargetPos);
 			m_pPlayer->Create_Decal(CDecal::DECAL_ORB_F, 3.5, *m_pPlayer->Get_TransformCom()->Get_Angle());
 			m_bEffect = false;
 		}
