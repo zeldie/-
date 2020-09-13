@@ -101,6 +101,10 @@ private:
 
 	//UI 한번만 돌게
 	_bool							m_bCreateUI;
+
+	//디졸브
+	_double							m_dDissolveCountDown;
+	_bool							m_bDissolveStart;
 public:
 	static CApostle* Create(LPDIRECT3DDEVICE9 pGraphicDev, _vec3* pPos, _vec3* pAngle, _vec3* pScale);
 	virtual void	Free();

@@ -321,9 +321,9 @@ HRESULT CMatchingGame::Ready_Environment_Layer()
 	if (FAILED(pLayer->Add_GameObject(L"MiniGameCamera", pGameObject)))
 		return E_FAIL;
 
-	pGameObject = CSkySphere::Create(m_pGraphicDev, CSkySphere::SKY_SHOOTINGSTAGE);
-	if (FAILED(pLayer->Add_GameObject(L"ZSky", pGameObject)))
-		return E_FAIL;
+	//pGameObject = CSkySphere::Create(m_pGraphicDev, CSkySphere::SKY_SHOOTINGSTAGE);
+	//if (FAILED(pLayer->Add_GameObject(L"ZSky", pGameObject)))
+	//	return E_FAIL;
 
 	m_mapLayer.emplace(Engine::ENVIRONMENT, pLayer);
 
