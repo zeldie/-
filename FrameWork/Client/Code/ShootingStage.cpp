@@ -291,7 +291,7 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 
 
 				m_bIsTrans = true;
-				m_dTransDelay = g_dAccumulatedTime +2.0;
+				m_dTransDelay = g_dAccumulatedTime +1.0;
 			}
 		}
 	}
