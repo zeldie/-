@@ -100,7 +100,7 @@ float g_fTerrainMipMap; //»Ò¡§
 
 vector vOcclusionColor; // GODRAY
 float fInvCamFar; // DEPTH
-float fShadowBias = -0.0000008f;
+float fShadowBias = -0.00000125f;
 float3 g_vCamPos;
 float3 g_vPosition;
 struct VS_IN_FIRST
