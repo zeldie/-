@@ -89,7 +89,7 @@ HRESULT CMainApp::Ready_MainApp()
 	//m_pEffectMgr->Ready_ObjPool();
 
 	//라이트 카메라, 추후 카메라 매니저로 이동
-	m_pLightCamera = CLightCamera::Create(m_pGraphicDev, &_vec3(0.f, 5000.f, 3000.f), &_vec3(0.f, 0.f, 0.f), &_vec3(0.f, 1.f, 0.f), D3DXToRadian(45.f), _float(WINCX) / WINCY, 0.7f, 7000.f);
+	m_pLightCamera = CLightCamera::Create(m_pGraphicDev, &_vec3(0.f, 5000.f, 3000.f), &_vec3(0.f, 0.f, 0.f), &_vec3(0.f, 1.f, 0.f), D3DXToRadian(45.f), _float(WINCX) / WINCY, 0.7f, 5000.f);
 	return S_OK;
 }
 
