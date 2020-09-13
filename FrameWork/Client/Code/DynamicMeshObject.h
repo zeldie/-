@@ -27,7 +27,7 @@ public:
 	_ulong&				Get_NaviIndex() { return m_dwNaviIndex; }
 	// Setter
 	void				Set_Dead(_bool bDead) { m_bIsDead = bDead; }
-
+	void				Set_NoRender(_bool bRender) { m_bNoRender = bRender; }
 public:
 	virtual HRESULT		Ready_GameObject();
 	virtual _int		Update_GameObject(const _double& dTimeDelta) override;
@@ -41,7 +41,7 @@ protected:
 	//네비매쉬 인덱스
 	_ulong								m_dwNaviIndex;
 	//_bool								m_bIsDead;
-
+	_bool								m_bNoRender;
 	//충돌처리용 콜라이더 모음
 public:
 	virtual void	Free() override;
