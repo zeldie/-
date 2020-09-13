@@ -9,6 +9,7 @@
 #include "PuzzleGame.h"
 #include "RunGame.h"
 #include "Customize.h"
+#include "Ending.h"
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CScene(pGraphicDev),
 	m_pLoading(nullptr)
@@ -178,6 +179,20 @@ _int CLogo::Update_Scene(const _double & dTimeDelta)
 				Engine::CScene*		pScene = nullptr;
 
 				pScene = CRunGame::Create(m_pGraphicDev);
+				if (pScene == nullptr)
+					return E_FAIL;
+
+				iExit = Engine::SetUp_Scene(pScene);
+
+				return iExit;
+			}
+			if (Engine::KeyDown(DIK_F12))
+			{
+				Engine::ClearSubject();
+
+				Engine::CScene*		pScene = nullptr;
+
+				pScene = CEnding::Create(m_pGraphicDev);
 				if (pScene == nullptr)
 					return E_FAIL;
 
