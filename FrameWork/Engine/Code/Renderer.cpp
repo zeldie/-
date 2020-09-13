@@ -192,7 +192,7 @@ HRESULT CRenderer::Ready_Renderer(LPDIRECT3DDEVICE9& pGraphicDev)
 	m_pIB->Unlock();
 
 
-	if (FAILED(m_pGraphicDev->CreateDepthStencilSurface(7680.f, 4320.f, D3DFMT_D24S8, D3DMULTISAMPLE_NONE, 0, TRUE, &m_pShadow_DS_Surface, nullptr)))
+	if (FAILED(m_pGraphicDev->CreateDepthStencilSurface(10240.f, 5760.f, D3DFMT_D24S8, D3DMULTISAMPLE_NONE, 0, TRUE, &m_pShadow_DS_Surface, nullptr)))
 		return E_FAIL;
 
 	return S_OK;

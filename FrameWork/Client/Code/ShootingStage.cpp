@@ -369,8 +369,8 @@ HRESULT CShootingStage::Ready_GameObject_Layer()
 		return E_FAIL;
 	if (FAILED(pLayer->Add_GameObject(L"RealPlayer", pGameObject)))
 		return E_FAIL;
-
 	m_pLightCamera->Set_PlayerTransformCom(static_cast<CBaseObject*>(pGameObject)->Get_TransformCom());
+
 	pGameObject = CTerrain::Create(m_pGraphicDev, CTerrain::TERRAIN_SHOOTINGSTAGE);
 	if (pGameObject == nullptr)
 		return E_FAIL;

@@ -339,11 +339,11 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 		return E_FAIL;
 
 	//Shadow
-	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADOW_PLAYER, 7680.f, 4320.f, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
+	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADOW_PLAYER, 10240.f, 5760.f, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::SHADOW_PLAYER, 180.f, 360.f, 180.f, 180.f)))
 		return E_FAIL;
-
+	//7680.f, 4320.f
 	//지오메트리 MRT list + SUB
 	if (Engine::Ready_MRT(Engine::GEOMETRY, Engine::ALBEDO))
 		return E_FAIL;
