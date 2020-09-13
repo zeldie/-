@@ -15,7 +15,8 @@ CCameraMgr::CCameraMgr()
 	m_eMode(MODE_END),
 	m_eWeapon(CPlayer::TWOHANDSWORD),
 	m_pRendererCom(nullptr),
-	m_pCam(nullptr)
+	m_pCam(nullptr),
+	m_bItemGetComplete(false)
 {
 }
 

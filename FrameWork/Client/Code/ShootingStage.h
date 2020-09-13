@@ -30,6 +30,9 @@ private:
 	Engine::CGameObject*	m_pPlayer;	// 변신처리용
 	Engine::CGameObject*	m_pApostle;	// 변신처리용
 
+	_bool					m_bOneClearUI;
+	_double					m_dChangeScene;
+
 public:
 	static CShootingStage*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual void	Free() override;
