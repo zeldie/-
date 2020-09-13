@@ -26,10 +26,6 @@ HRESULT COrb::Ready_GameObject()
 	m_vEditPos = { 25.5f,-100.f,-0.5f };
 	m_pDynamicMeshCom->Set_AnimationSet(1);
 	m_pTransformCom->Rotation(Engine::ROT_Y, 180.f);
-	if (m_bItem)
-	{
-		//m_pTransformCom->Set_Scale(0.01f, 0.01f, 0.01f);
-	}
 
 	return S_OK;
 }
@@ -103,7 +99,9 @@ _int COrb::LateUpdate_GameObject(const _double & dTimeDelta)
 		return Engine::OBJ_DEAD;
 
 	CDynamicMeshObject::LateUpdate_GameObject(dTimeDelta);
-	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
+
+	if (m_bNoRender)
+		m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
 	return Engine::NO_EVENT;
 }
 

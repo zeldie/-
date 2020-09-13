@@ -150,7 +150,7 @@ _int CBelatos::LateUpdate_GameObject(const _double & dTimeDelta)
 		// m_bisReady는 Start가 시작되면 true가 된다. 한번 Start되면 다시 거리체크해서 Ready로 못돌아가게 막음
 		if (!m_bisReady)
 		{
-			if (fDist < 10)
+			if (fDist < 750.f)
 				m_eState = STATE_START;
 			else
 				m_eState = STATE_READY;

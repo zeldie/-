@@ -18,9 +18,7 @@ HRESULT CHands::Change_Hands(_uint iHands, _uint iCurrentTrack, _double dTrackTi
 {
 	m_pDynamicMeshCom = m_vecHands[iHands];
 	m_mapComponent[Engine::ID_STATIC][Engine::MESH] = m_vecHands[iHands];
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-	m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-
+	m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dTrackTime);
 	m_iHandsIndex = iHands;
 	return S_OK;
 }

@@ -90,7 +90,8 @@ void Engine::CAniCtrl::Set_AnimationSet(const _uint& iIndex)
 void CAniCtrl::Set_AnimationSet_Change(const _uint& iIndex, _double dTrackTime, _double dAccTime)
 {
 	m_dAccTime = dAccTime;
-	if (m_iOldAniIdx == iIndex)
+	_uint iTempIndex = iIndex + 1;
+	if (m_iOldAniIdx == iTempIndex)
 		return;
 
 	m_iNewTrack = (m_iCurrentTrack == 0 ? 1 : 0);
@@ -128,7 +129,7 @@ void CAniCtrl::Set_AnimationSet_Change(const _uint& iIndex, _double dTrackTime, 
 	//m_pAniCtrl->ResetTime(); // advancedTime 함수 호출 시 누적되던 시간 값을 초기화 하는 함수
 	//m_dAccTime = 0.f;
 
-	m_pAniCtrl->SetTrackPosition(m_iNewTrack, 5);
+	m_pAniCtrl->SetTrackPosition(m_iNewTrack, dAccTime);
 
 	m_iOldAniIdx = iIndex;
 

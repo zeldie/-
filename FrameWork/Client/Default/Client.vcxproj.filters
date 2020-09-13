@@ -1419,9 +1419,6 @@
     <ClInclude Include="..\Code\Customize.h">
       <Filter>01.Scene\08.Customize</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\Ai_HeartState.h">
-      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\05.Ai_HeartState</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\Architecture_Run.h">
       <Filter>02.GameObject\01.Stage\100.Architecture_Run</Filter>
     </ClInclude>
@@ -1545,6 +1542,12 @@
     <ClInclude Include="..\Code\CustomizingButton.h">
       <Filter>02.GameObject\04.UI\25.Customizing\07.CustomizingButton</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerIdle1.h">
+      <Filter>98.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunWeapon_LongBow.h">
+      <Filter>98.Header</Filter>
+    </ClInclude>
     <ClInclude Include="..\Code\Orb.h">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
     </ClInclude>
@@ -1554,11 +1557,8 @@
     <ClInclude Include="..\Code\Ai_Player.h">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RunPlayerIdle1.h">
-      <Filter>02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\RunWeapon_LongBow.h">
-      <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
+    <ClInclude Include="..\Code\Ai_HeartState.h">
+      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\05.Ai_HeartState</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\RunPlayerHP.h">
       <Filter>02.GameObject\04.UI\24.Run\02.RunPlayerHP</Filter>
@@ -1976,6 +1976,9 @@
     <ClCompile Include="..\Code\Ai_BasicCombo.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\01.Ai_BasicCombo</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\Orb.cpp">
+      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Ob</Filter>
+    </ClCompile>
     <ClCompile Include="..\Code\DualSword.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\01.Ds</Filter>
     </ClCompile>
@@ -2186,9 +2189,6 @@
     <ClCompile Include="..\Code\Customize.cpp">
       <Filter>01.Scene\08.Customize</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Ai_HeartState.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\05.Ai_HeartState</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Architecture_Run.cpp">
       <Filter>02.GameObject\01.Stage\100.Architecture_Run</Filter>
     </ClCompile>
@@ -2312,6 +2312,12 @@
     <ClCompile Include="..\Code\CustomizingButton.cpp">
       <Filter>02.GameObject\04.UI\25.Customizing\07.CustomizingButton</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerIdle1.cpp">
+      <Filter>98.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
+      <Filter>98.Header</Filter>
+    </ClCompile>
     <ClCompile Include="..\Code\Orb.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
     </ClCompile>
@@ -2321,14 +2327,8 @@
     <ClCompile Include="..\Code\Ai_Player.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Orb.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\RunPlayerIdle1.cpp">
-      <Filter>02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
-      <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
+    <ClCompile Include="..\Code\Ai_HeartState.cpp">
+      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\05.Ai_HeartState</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\RunPlayerHP.cpp">
       <Filter>02.GameObject\04.UI\24.Run\02.RunPlayerHP</Filter>

@@ -1343,7 +1343,7 @@ void CAiMgr::Check_CapturePlayer()
 
 			////cout << rAi->Get_DyanmicMesh()->Get_TrackTime() << endl;
 
-			if (rAi->Get_DyanmicMesh()->Get_TrackTime() > fPeriod * 0.9)
+			if (rAi->Get_DyanmicMesh()->Get_TrackTime() > fPeriod * 0.90)
 			{
 				rAi->Set_CaptureFlag(true);
 				rAi->Delete_Timer(L"Captureing");
@@ -1459,6 +1459,8 @@ void CAiMgr::Debug()
 						break;
 					}
 				}
+
+				
 
 				switch (rObj->Get_StateState())
 				{
@@ -1609,11 +1611,14 @@ void CAiMgr::Debug()
 
 void CAiMgr::Cheat()
 {
-	if (Engine::KeyDown(DIK_NUMPAD4))
+	if (Engine::KeyDown(DIK_NUMPAD7))
 	{
 		m_pAi_Enermy_1->Set_Dead(true);
 		m_pAi_Enermy_1->Set_Hp(0);
 		m_pAi_Enermy_1->Set_PrevHp(0);
+	}
+	if (Engine::KeyDown(DIK_NUMPAD8))
+	{
 		m_pAi_Enermy_2->Set_Dead(true);
 		m_pAi_Enermy_2->Set_Hp(0);
 		m_pAi_Enermy_2->Set_PrevHp(0);
@@ -1624,6 +1629,13 @@ void CAiMgr::Cheat()
 		m_pAi_Alliance->Set_Dead(true);
 		m_pAi_Alliance->Set_Hp(0);
 		m_pAi_Alliance->Set_PrevHp(0);
+	}
+
+	if (Engine::KeyDown(DIK_NUMPAD4))
+	{
+		m_pPlayer->Set_Dead(true);
+		m_pPlayer->Set_Hp(0);
+		m_pPlayer->Set_PrevHp(0);
 	}
 }
 

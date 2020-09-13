@@ -130,7 +130,7 @@ public:
 	void								Set_CtrlType(CONTROLTYPE eCtrlType) { m_eCtrlType = eCtrlType; }
 	void								Set_WeaponType();
 	void								Set_WeaponName();
-
+	void								Set_isAttacked(_bool bValue) { m_bIsAttacked = bValue; }
 
 
 

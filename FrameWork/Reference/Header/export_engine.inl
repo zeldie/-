@@ -338,6 +338,11 @@ void Render_Light(LPD3DXEFFECT & pEffect)
 	CLightMgr::GetInstance()->Render_Light(pEffect);
 }
 
+void Delete_Light(_uint iIndex)
+{
+	CLightMgr::GetInstance()->Delete_Light(iIndex);
+}
+
 inline void SetTexture(LPD3DXEFFECT & pEffect, const char * pContantName, const _uint & iIndex)
 {
 	CTextureMgr::GetInstance()->SetTexture(pEffect, pContantName, iIndex);

@@ -206,6 +206,7 @@ _int CPlayer::Update_GameObject(const _double & dTimeDelta)
 	if (m_bIsDead)
 	{
 		Dead_Player(dTimeDelta);
+		
 	}
 
 	if (m_bTargetLock)
@@ -347,6 +348,29 @@ _int CPlayer::LateUpdate_GameObject(const _double & dTimeDelta)
 	CBasePlayer::LateUpdate_GameObject(dTimeDelta);
 	if (!m_bTransApostle)	// 돼지천사 변신
 		m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
+	else
+	{
+		switch (m_eMainWeapon)
+		{
+		case CBasePlayer::COMMON:
+			break;
+		case CBasePlayer::DUALSWORD:
+			m_pDualSword_R->Set_NoRender(false);
+			m_pDualSword_L->Set_NoRender(false);
+			break;
+		case CBasePlayer::TWOHANDSWORD:
+			m_pTwoHandSword->Set_NoRender(false);
+			break;
+		case CBasePlayer::ORB:
+			m_pOrb->Set_NoRender(false);
+			break;
+		case CBasePlayer::LONGBOW:
+			m_pLongBow->Set_NoRender(false);
+			break;
+		default:
+			break;
+		}
+	}
 
 	if (!m_pUIMgr->Get_UI_Working())
 	{
@@ -840,6 +864,9 @@ void CPlayer::Set_Collision_Effect(CBaseObject * pObj)
 				m_pUIMgr->CheckFlagScore(m_pGraphicDev, pObj->Get_BaseInfo()->eObjectID, m_tBaseInfo.eObjectID);
 				//// 희정 추가(부활 몇초전 이라고 뜨는 UI)
 				//m_pUIMgr->CreateRevivalPopUp(m_pGraphicDev);
+
+				CSoundMgr::Get_Instance()->HoSoundOn(rand() % 2 + 46, 1.f);
+
 				m_bCreateRevivalUI = true;
 			}
 
@@ -1377,6 +1404,8 @@ void CPlayer::Dead_Player(const _double & dTimeDelta)
 			m_eCurState = COMMON_RTDOWN_AIR_LANDING_F_F;
 			m_bIsJump = false;
 			m_bIsFall = false;
+			if(m_eMainWeapon == CBasePlayer::LONGBOW)
+				static_cast<CLongBow*>(Get_MainWeaponPointer())->Reset_LBDissolve();
 			//m_eDeadStep = DEAD1;
 		}
 	}
@@ -1396,6 +1425,8 @@ void CPlayer::Dead_Player(const _double & dTimeDelta)
 				_uint i = rand() % 12 + 6;
 				CSoundMgr::Get_Instance()->SoundOn(i);
 				m_bDeadSound = true;
+				if (m_eMainWeapon == CBasePlayer::LONGBOW)
+					static_cast<CLongBow*>(Get_MainWeaponPointer())->Reset_LBDissolve();
 			}
 			if (m_pDynamicMeshCom->Is_AnimationSetFinish(0.2))
 				m_eDeadStep = DEAD2;
