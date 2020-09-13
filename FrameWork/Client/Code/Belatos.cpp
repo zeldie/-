@@ -49,10 +49,8 @@ HRESULT CBelatos::Ready_GameObject(_vec3* pPos, _vec3* pAngle, _vec3* pScale)
 
 	//
 	m_tBaseInfo.eObjectID = OBJECT_MONSTER;
-	//m_tBaseInfo.iMaxHp = 120000;
-	//m_tBaseInfo.iHp = 120000;
-	m_tBaseInfo.iMaxHp = 20000;
-	m_tBaseInfo.iHp = 20000;
+	m_tBaseInfo.iMaxHp = 120000;
+	m_tBaseInfo.iHp = 120000;
 	m_tBaseInfo.iPrevHp = 20000;
 	m_tBaseInfo.iSuperAmmor = 5000;
 	m_tBaseInfo.iMaxSuperAmmor = 5000;
@@ -82,8 +80,9 @@ _int CBelatos::Update_GameObject(const _double & dTimeDelta)
 		m_pUIMgr->Set_CreateBossResultUI(true);
 		m_pUIMgr->Set_StageTimeStop();
 		_vec3 CreatePos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
-		CreatePos.y += 50.f;
-		COrb::Create(m_pGraphicDev, CreatePos);
+		CreatePos.y -= 50.f;
+		CGameObject* pGameObject = COrb::Create(m_pGraphicDev, CreatePos);
+		Engine::Add_GameObject(Engine::GAMEOBJECT, L"Orb_Item", pGameObject);
 		return Engine::OBJ_DEAD;
 	}
 
@@ -127,8 +126,10 @@ _int CBelatos::LateUpdate_GameObject(const _double & dTimeDelta)
 		m_pUIMgr->Set_CreateBossResultUI(true);
 		m_pUIMgr->Set_StageTimeStop();
 		_vec3 CreatePos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
-		CreatePos.y += 50.f;
+		CreatePos.y -= 50.f;
 		COrb::Create(m_pGraphicDev, CreatePos);
+		CGameObject* pGameObject = COrb::Create(m_pGraphicDev, CreatePos);
+		Engine::Add_GameObject(Engine::GAMEOBJECT, L"Orb_Item", pGameObject);
 		return Engine::OBJ_DEAD;
 	}
 
@@ -815,8 +816,8 @@ void CBelatos::Idle(const _double & dTimeDelta)
 		m_bIsHit = false;
 		m_iPlayingAniNum = 7;
 
-		//Set_Timer(L"Idle");
-		//Start_Timer(L"Idle");
+		Set_Timer(L"Idle");
+		Start_Timer(L"Idle");
 
 		m_pTransformCom->Look_Target(m_pPlayerObserver->Get_Pos());
 		////cout << Get_Timer(L"Idle") << endl;

@@ -1549,7 +1549,7 @@ void CSoundMgr::AiSoundOn(_int iNum, _float fVolume)
 
 	m_pSystem->playSound(m_vecAiSound[iNum], 0, false, &m_pChannelBGM[AI]);
 	m_pSystem->update();
-	cout << "volume setting : " << fVolume - m_fDefalultVolume << endl;
+	//cout << "volume setting : " << fVolume - m_fDefalultVolume << endl;
 	_float Volume = fVolume - m_fDefalultVolume;
 	if (0.f > Volume)
 		Volume = 0.f;

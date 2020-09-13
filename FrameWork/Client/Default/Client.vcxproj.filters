@@ -1197,9 +1197,6 @@
     <ClInclude Include="..\Code\AiMgr.h">
       <Filter>97.Mgr\03.AiMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\Orb.h">
-      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\DualSword.h">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\01.Ds</Filter>
     </ClInclude>
@@ -1211,9 +1208,6 @@
     </ClInclude>
     <ClInclude Include="..\Code\Player.h">
       <Filter>02.GameObject\01.Stage\00.Player\00.Real_Player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Ai_Player.h">
-      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\AI_Karma.h">
       <Filter>02.GameObject\04.UI\15.Flag\05.AI_Karma</Filter>
@@ -1310,9 +1304,6 @@
     </ClInclude>
     <ClInclude Include="..\Code\MatchingScore.h">
       <Filter>02.GameObject\04.UI\17.Matching\00.MatchingScore</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Ai_Cs_State.h">
-      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\00.Ai_Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\Ai_BasicCombo.h">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\01.Ai_BasicCombo</Filter>
@@ -1541,6 +1532,15 @@
     </ClInclude>
     <ClInclude Include="..\Code\RunWeapon_LongBow.h">
       <Filter>98.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Orb.h">
+      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Ai_Cs_State.h">
+      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\00.Ai_Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Ai_Player.h">
+      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1814,9 +1814,6 @@
     <ClCompile Include="..\Code\PlayerSkill.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\01.PlayerState\03.PlayerSkill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Orb.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\LongBow.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\03.Lb</Filter>
     </ClCompile>
@@ -1892,9 +1889,6 @@
     <ClCompile Include="..\Code\FlagScorePopUp.cpp">
       <Filter>02.GameObject\04.UI\15.Flag\00.FlagScore\01.FlagScorePopUp</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Ai_Player.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\LightCamera.cpp">
       <Filter>02.GameObject\02.Public\00.BaseObject\00.NoMeshObject\03.LightCamera</Filter>
     </ClCompile>
@@ -1951,9 +1945,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\Ai_BasicCombo.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\01.Ai_BasicCombo</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Ai_Cs_State.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\00.Ai_Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Orb.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Ob</Filter>
@@ -2299,6 +2290,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
       <Filter>98.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Orb.cpp">
+      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Ai_Cs_State.cpp">
+      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\00.Ai_Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Ai_Player.cpp">
+      <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
