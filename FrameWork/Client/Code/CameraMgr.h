@@ -33,7 +33,7 @@ public:
 	void Set_FlagCutscene();
 	void LateInit();
 
-	void Set_ItemGetComplete(_bool bComplete) { m_bBelatosComplete = bComplete; }
+	void Set_ItemGetComplete(_bool bComplete) { m_bItemGetComplete = bComplete; }
 	_bool Get_ItemGetCheck() { return m_bItemGetComplete; }
 
 	//¿Œ±’

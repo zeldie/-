@@ -511,8 +511,6 @@ CRunGame * CRunGame::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CRunGame::Free()
 {
-	if (m_pLightCamera != nullptr)
-		m_pLightCamera->Release_TransformCom();
 	//m_pUIMgr->EraseMouse();
 	Engine::CScene::Free();
 }

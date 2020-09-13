@@ -434,8 +434,6 @@ CBossStage * CBossStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CBossStage::Free()
 {
-	if (m_pLightCamera != nullptr)
-		m_pLightCamera->Release_TransformCom();
 	Engine::CScene::Free();
 	//m_pUIMgr->EraseMouse();
 
