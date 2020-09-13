@@ -117,6 +117,9 @@ _int CRunPlayer::Update_GameObject(const _double & dTimeDelta)
 		Power_SpeedUp(dTimeDelta);	// 스피드업 아이템 먹었을때 속도 빨라지는 함수
 		CollisionCheck();	// 충돌체크함수, 움직이고나서 하면된다.
 		CollisionItem();	// 아이템이랑 충돌했는지 확인하는 함수
+		if (CCameraMgr::GetInstance()->Get_ItemGetCheck())
+			Change_State(STATE_WAIT);
+
 	}
 
 
