@@ -24,7 +24,6 @@ public:
 	virtual _int	Update_GameObject(const _double& dTimeDelta) override;
 	virtual	_int	LateUpdate_GameObject(const _double& dTimeDelta) override;
 	virtual void	Render_Geometry(const _double& dTimeDelta) override;
-	virtual void	Render_Shadow(const _double& dTimeDelta) override;
 private:
 	void			Change_WeaponState(COMBAT_STATE eState);
 

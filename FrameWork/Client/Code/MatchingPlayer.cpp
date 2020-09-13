@@ -262,7 +262,7 @@ HRESULT CMatchingPlayer::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 
 	m_pTransformCom->Get_WorldMatrix(&matWorld);
 	D3DXMatrixIdentity(&matView); //직교투영
-
+	D3DXMatrixOrthoLH(&m_matProj, WINCX, WINCY, 0.7f, 7000.f); //->직교투영
 	pEffect->SetMatrix("g_matWorld", &matWorld);
 	pEffect->SetMatrix("g_matView", &matView);
 	pEffect->SetMatrix("g_matProj", &m_matProj);
