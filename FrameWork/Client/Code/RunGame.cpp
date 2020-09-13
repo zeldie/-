@@ -261,7 +261,7 @@ _int CRunGame::Update_Scene(const _double & dTimeDelta)
 			m_pUIMgr->Set_RunGameTimeStop(false);
 
 			//°á°úÃ¢
-			//m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
+			m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
 			m_bOneCreateUI = false;
 		}
 	}
