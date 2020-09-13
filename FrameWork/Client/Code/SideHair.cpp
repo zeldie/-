@@ -17,21 +17,9 @@ CSideHair::~CSideHair()
 
 HRESULT CSideHair::Change_SideHair(_uint iSideHair, _uint iCurrentTrack, _double dTrackTime, _uint iAnimationNum, _double dAccTime)
 {
-	//m_pDynamicMeshCom = nullptr;
-	//m_mapComponent[Engine::ID_STATIC][Engine::MESH] = nullptr;
 	m_pDynamicMeshCom = m_vecSideHair[iSideHair];
 	m_mapComponent[Engine::ID_STATIC][Engine::MESH] = m_vecSideHair[iSideHair];
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-	m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-
-
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_AccTime(dAccTime);
-	//m_iAnimationNum = iAnimationNum;
-	//m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dAccTime);
-
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-
+	m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dTrackTime);
 	m_iSideHairIndex = iSideHair;
 	return S_OK;
 }

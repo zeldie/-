@@ -308,24 +308,6 @@ HRESULT CBody::Ready_GameObject(SEX eSexType, _vec3 * pPos, _vec3 * pAngle, _vec
 _int CBody::Update_GameObject(const _double & dTimeDelta)
 {
 	CDynamicMeshObject::Update_GameObject(dTimeDelta);
-	if (Engine::KeyPressing(DIK_LMENU))
-	{
-		if (Engine::KeyDown(DIK_F6))
-			Change_Brow(0);
-		if (Engine::KeyDown(DIK_F7))
-			Change_Brow(1);
-		if (Engine::KeyDown(DIK_F8))
-			Change_Brow(2);
-		if (Engine::KeyDown(DIK_F9))
-		{
-			Release_Pants();
-		}
-			
-		if (Engine::KeyDown(DIK_F10))
-		{
-			Change_Brow(2);
-		}
-	}
 	m_pDynamicMeshCom->Set_AnimationSet(m_iAnimationNum);
 
 	if (2 == m_iAnimationNum)
@@ -336,7 +318,6 @@ _int CBody::Update_GameObject(const _double & dTimeDelta)
 			CUIMgr::GetInstance()->Set_FinishCustomize();
 		}
 	}
-
 	Update_Parts(dTimeDelta, m_pTransformCom->Get_Info(Engine::INFO_POS), m_pTransformCom->Get_Angle(), m_pTransformCom->Get_Scale(), m_iAnimationNum );
 	return	Engine::NO_EVENT;
 }

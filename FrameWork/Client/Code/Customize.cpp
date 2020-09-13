@@ -183,5 +183,6 @@ CCustomize * CCustomize::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 void CCustomize::Free()
 {	
 	//m_pUIMgr->EraseMouse();
-	Engine::CScene::Free(); 
+	Engine::CScene::Free();
+	Engine::Delete_Light(1);
 }

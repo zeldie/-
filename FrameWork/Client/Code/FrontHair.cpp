@@ -17,20 +17,9 @@ CFrontHair::~CFrontHair()
 
 HRESULT CFrontHair::Change_FrontHair(_uint iFrontHair, _uint iCurrentTrack, _double dTrackTime, _uint iAnimationNum, _double dAccTime)
 {
-	//m_pDynamicMeshCom = nullptr;
-	//m_mapComponent[Engine::ID_STATIC][Engine::MESH] = nullptr;
 	m_pDynamicMeshCom = m_vecFrontHair[iFrontHair];
 	m_mapComponent[Engine::ID_STATIC][Engine::MESH] = m_vecFrontHair[iFrontHair];
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-	m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_AccTime(dAccTime);
-	//m_iAnimationNum = iAnimationNum;
-	//m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-	//m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dAccTime);
-
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-
+	m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dTrackTime);
 	m_iFrontHairIndex = iFrontHair;
 	return S_OK;
 }

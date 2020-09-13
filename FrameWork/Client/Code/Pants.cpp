@@ -18,9 +18,7 @@ HRESULT CPants::Change_Pants(_uint iPants, _uint iCurrentTrack, _double dTrackTi
 {
 	m_pDynamicMeshCom = m_vecPants[iPants];
 	m_mapComponent[Engine::ID_STATIC][Engine::MESH] = m_vecPants[iPants];
-	//m_pDynamicMeshCom->GetAniCtrl()->Reset_Animation();
-	m_pDynamicMeshCom->Set_AnimationSet(iAnimationNum);
-
+	m_pDynamicMeshCom->GetAniCtrl()->Set_TrackTime(iCurrentTrack, dTrackTime);
 	m_iPantsIndex = iPants;
 	return S_OK;
 }
