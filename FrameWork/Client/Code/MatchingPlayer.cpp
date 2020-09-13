@@ -56,7 +56,8 @@ HRESULT CMatchingPlayer::Ready_GameObject(_float fX, _float fY)
 _int CMatchingPlayer::Update_GameObject(const _double & dTimeDelta)
 {
 	CDynamicMeshObject::Update_GameObject(dTimeDelta);
-	
+
+	D3DXMatrixOrthoLH(&m_matProj, WINCX, WINCY, 0.1f, 4000.f); //->직교투영
 
 	return Engine::NO_EVENT;
 }
