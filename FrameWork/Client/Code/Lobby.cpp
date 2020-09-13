@@ -352,7 +352,7 @@ _int CLobby::Update_Scene(const _double & dTimeDelta)
 			}
 		}
 	}
-	z
+	
 	// 로비 -> 짝맞추기
 	if (CUIMgr::UITYPE_NPC == m_pUIMgr->Get_UIType())
 	{
