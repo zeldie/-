@@ -1365,6 +1365,10 @@ HRESULT CUIMgr::CreateResultUI_Run(LPDIRECT3DDEVICE9 pGraphicDev)
 	if(!CCameraMgr::GetInstance()->Get_ItemGetCheck())
 		EraseRunButton();
 
+	for (auto& plist : m_listRunGameUI)
+		plist->Set_Dead();
+	m_listRunGameUI.clear();
+
 	m_eUIType = UITYPE_RESULT_Run;
 
 	Engine::CGameObject*		pGameObject = nullptr;
@@ -1530,6 +1534,7 @@ HRESULT CUIMgr::CreateRunUI(LPDIRECT3DDEVICE9 pGraphicDev)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"RunCountDown", pGameObject);
 	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	
 	///////////////////
 	//runplayerhp
 	pGameObject = CRunPlayerHP::Create(pGraphicDev,CRunPlayerHP::HP, 400.f, 50.f, 480.f, 20.f);
@@ -1537,6 +1542,7 @@ HRESULT CUIMgr::CreateRunUI(LPDIRECT3DDEVICE9 pGraphicDev)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"RunPlayerHP", pGameObject);
 	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 	//runplayerhp
 	pGameObject = CRunPlayerHP::Create(pGraphicDev, CRunPlayerHP::BACKBAR, 397.4f, 47.3f, 485.5f, 24.3f,0.1f);
@@ -1544,6 +1550,7 @@ HRESULT CUIMgr::CreateRunUI(LPDIRECT3DDEVICE9 pGraphicDev)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"RunPlayerHP", pGameObject);
 	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 	///////////////////
 	
 	//runplayeritem
@@ -1551,14 +1558,17 @@ HRESULT CUIMgr::CreateRunUI(LPDIRECT3DDEVICE9 pGraphicDev)
 	if (pGameObject == nullptr)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"RunPlayerItem", pGameObject);
-	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 	//runplayeritem
 	pGameObject = CRunPlayerItem::Create(pGraphicDev, CRunPlayerItem::SPEEDUP, 1143.4f, 25.4f, 82.f, 82.f);
 	if (pGameObject == nullptr)
 		return E_FAIL;
 	Engine::Add_GameObject(Engine::UI, L"RunPlayerItem", pGameObject);
-	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+	m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
 	/////////////////
 
 	for(_uint i = 0; i < 2; ++i)
@@ -1567,23 +1577,25 @@ HRESULT CUIMgr::CreateRunUI(LPDIRECT3DDEVICE9 pGraphicDev)
 		if (pGameObject == nullptr)
 			return E_FAIL;
 		Engine::Add_GameObject(Engine::UI, L"RunPlayerItemSlot", pGameObject);
-		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 		pGameObject = CRunPlayerItemSlot::Create(pGraphicDev, CRunPlayerItemSlot::RECHARGE, CRunPlayerItemSlot::ITEMTYPE(i), false, 1060.f + (i*83.4f), 25.4f, 82.f, 82.f, 0.1f);
 		if (pGameObject == nullptr)
 			return E_FAIL;
 		Engine::Add_GameObject(Engine::UI, L"RunPlayerItemSlot", pGameObject);
-		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 
 		pGameObject = CRunPlayerItemSlot::Create(pGraphicDev, CRunPlayerItemSlot::OUTLINE, CRunPlayerItemSlot::ITEMTYPE(i), true, 1060.f + (i*83.4f), 25.4f, 82.f, 82.f);
 		if (pGameObject == nullptr)
 			return E_FAIL;
 		Engine::Add_GameObject(Engine::UI, L"RunPlayerItemSlot", pGameObject);
-		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		m_listRunGameUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
 	}
-
 
 
 	//노란머리NPC 의 미션을 클리어함
@@ -1703,9 +1715,8 @@ void CUIMgr::ClearUI()
 
 void CUIMgr::ClearPointerUI()
 {
-	m_pMouse = nullptr;
+	m_pMouse = nullptr;//
 
-	//if (m_vecCurUI.size() > 0)
 	m_vecCurUI.clear();
 	m_vecCurUI.shrink_to_fit();
 
@@ -1740,6 +1751,8 @@ void CUIMgr::ClearPointerUI()
 	m_listKarma.clear();//
 
 	m_listKarmaSlot.clear();//
+
+	m_listRunGameUI.clear();//
 }
 
 void CUIMgr::SkillCoolDownCheck(Engine::KEYGUIDE KeyType)
@@ -3334,6 +3347,7 @@ void CUIMgr::CheckFlagScore(LPDIRECT3DDEVICE9 pGraphicDev, OBJID eKiller, OBJID 
 	{
 	case OBJECT_PLAYER:
 		m_iBlueTotalScore += m_iScore;
+		m_tPlayer.iEarnedPoints += m_iScore;
 		m_tPlayer.iKill += 1;
 		CreateFlagScorePopUp(pGraphicDev, CFlagScorePopUp::BLUE);
 		//FLAG_DEATH Info
@@ -3342,6 +3356,7 @@ void CUIMgr::CheckFlagScore(LPDIRECT3DDEVICE9 pGraphicDev, OBJID eKiller, OBJID 
 		break;
 	case OBJECT_ALLIANCE:
 		m_iBlueTotalScore += m_iScore;
+		m_tAlliance.iEarnedPoints += m_iScore;
 		m_tAlliance.iKill += 1;
 		CreateFlagScorePopUp(pGraphicDev, CFlagScorePopUp::BLUE);
 		//FLAG_DEATH Info
@@ -3350,6 +3365,7 @@ void CUIMgr::CheckFlagScore(LPDIRECT3DDEVICE9 pGraphicDev, OBJID eKiller, OBJID 
 		break;
 	case OBJECT_ENEMY_1:
 		m_iRedTotalScore += m_iScore;
+		m_tEnemy_1.iEarnedPoints += m_iScore;
 		m_tEnemy_1.iKill += 1;
 		CreateFlagScorePopUp(pGraphicDev, CFlagScorePopUp::RED);
 		//FLAG_DEATH Info
@@ -3358,6 +3374,7 @@ void CUIMgr::CheckFlagScore(LPDIRECT3DDEVICE9 pGraphicDev, OBJID eKiller, OBJID 
 		break;
 	case OBJECT_ENEMY_2:
 		m_iRedTotalScore += m_iScore;
+		m_tEnemy_2.iEarnedPoints += m_iScore;
 		m_tEnemy_2.iKill += 1;
 		CreateFlagScorePopUp(pGraphicDev, CFlagScorePopUp::RED);
 		//FLAG_DEATH Info

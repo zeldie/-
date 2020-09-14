@@ -8,8 +8,10 @@ CRunPlayerItemSlot::CRunPlayerItemSlot(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_eItemSlot(ITEMSLOT_END),
 	m_pRunPlayerObserver(nullptr),
 	m_bLateInit(true),
-	m_dDuration(0.f)
-
+	m_dDuration(0.f),
+	m_eRunPlayerPower(RUN_POWER_END),
+	m_dMaxDuration(0.f),
+	m_bOne(true)
 {
 }
 
@@ -26,7 +28,7 @@ HRESULT CRunPlayerItemSlot::Ready_GameObject(ITEMSLOT eType, ITEMTYPE eItemType,
 	m_eItemSlot = eType;
 	m_eItemType = eItemType;
 	m_bRenderUI = bBool;
-
+	
 	if (RECHARGE == m_eItemSlot)
 	{
 		//옵저버 신청
@@ -46,7 +48,15 @@ _int CRunPlayerItemSlot::Update_GameObject(const _double & dTimeDelta)
 	
 	if (RECHARGE == m_eItemSlot)
 	{
-		m_eRunPlayerPower = m_pRunPlayerObserver->Get_Power();
+		if (m_bOne)
+		{
+			m_eRunPlayerPower = m_pRunPlayerObserver->Get_Power();
+			
+			if (RUN_POWER_BIG == m_eRunPlayerPower || RUN_POWER_SPEEDUP == m_eRunPlayerPower)
+			{
+				m_bOne = false;
+			}
+		}
 	}
 
 	CUIObject::Update_GameObject(dTimeDelta);
@@ -66,27 +76,24 @@ _int CRunPlayerItemSlot::LateUpdate_GameObject(const _double & dTimeDelta)
 				m_bRenderUI = true;
 				if (m_bLateInit)
 				{
-					m_dMaxDuration = m_pRunPlayerObserver->Get_Time_Big();
+					m_dMaxDuration = 5.f/*m_pRunPlayerObserver->Get_Time_Big()*/;
 
 					m_dDuration = m_dMaxDuration;
 					m_bLateInit = false;
 				}
 
 				m_dDuration -= dTimeDelta;
-				_float fResultValue = m_dDuration / m_dMaxDuration;
+				_float fResultValue = (_float)m_dDuration / (_float)m_dMaxDuration;
 				m_pScreenTexBufferCom->VertexYControl_UpDir(fResultValue);
 
 
-				if (0.f >= fResultValue)
+				if (0.f >= m_dDuration)
 				{
 					m_bRenderUI = false;
 					m_bLateInit = true;
 					m_dMaxDuration = 0.f;
 					m_dDuration = 0.f;
-				}
-				else
-				{
-					m_bRenderUI = false;
+					m_bOne = true;
 				}
 			}
 		}
@@ -97,28 +104,25 @@ _int CRunPlayerItemSlot::LateUpdate_GameObject(const _double & dTimeDelta)
 				m_bRenderUI = true;
 				if (m_bLateInit)
 				{
-					m_dMaxDuration = m_pRunPlayerObserver->Get_Time_Big();
+					m_dMaxDuration = 3.f/*m_pRunPlayerObserver->Get_Time_SpeedUp()*/;
 
 					m_dDuration = m_dMaxDuration;
 					m_bLateInit = false;
 				}
 
 				m_dDuration -= dTimeDelta;
-				_float fResultValue = m_dDuration / m_dMaxDuration;
+				_float fResultValue = (_float)m_dDuration / (_float)m_dMaxDuration;
 				m_pScreenTexBufferCom->VertexYControl_UpDir(fResultValue);
 
 
-				if (0.f >= fResultValue)
+				if (0.f >= m_dDuration)
 				{
 					m_bRenderUI = false;
 					m_bLateInit = true;
 					m_dMaxDuration = 0.f;
 					m_dDuration = 0.f;
+					m_bOne = true;
 				}
-			}
-			else
-			{
-				m_bRenderUI = false;
 			}
 		}
 	}

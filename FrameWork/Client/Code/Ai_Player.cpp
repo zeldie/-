@@ -741,7 +741,7 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 			m_iPreHp = (m_tBaseInfo.iHp - iBasicDmg*0.7*1.5);
 			CUIMgr::GetInstance()->CreateDamageBox(m_pGraphicDev, m_pTransformCom, CDamageBox::DAMAGEBOXTYPE::CRITICAL, iBasicDmg *1.5);
 
-			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(플레이어가 맞는 입장))
+			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(ai가 맞는 입장))
 			CUIMgr::GetInstance()->SetAccumulatedDamageForFlag(pObj->Get_BaseInfo()->eObjectID, iBasicDmg *1.5);
 
 			if (pObj->Get_BaseInfo()->eObjectID == OBJECT_PLAYER)
@@ -758,7 +758,7 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 			m_iPreHp = (_int)(m_tBaseInfo.iHp - iBasicDmg*0.7);
 			CUIMgr::GetInstance()->CreateDamageBox(m_pGraphicDev, m_pTransformCom, CDamageBox::DAMAGEBOXTYPE::BASIC, iBasicDmg);
 
-			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(플레이어가 맞는 입장))
+			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(ai가 맞는 입장))
 			CUIMgr::GetInstance()->SetAccumulatedDamageForFlag(pObj->Get_BaseInfo()->eObjectID, iBasicDmg);
 
 			if (pObj->Get_BaseInfo()->eObjectID == OBJECT_PLAYER)

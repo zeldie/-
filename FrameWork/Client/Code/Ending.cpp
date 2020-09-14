@@ -30,7 +30,12 @@ _int CEnding::Update_Scene(const _double & dTimeDelta)
 {
 	_int iExit = Engine::CScene::Update_Scene(dTimeDelta);
 
-
+	m_dEnterSceneTime += dTimeDelta;
+	if (!m_bEnterScene && m_dEnterSceneTime > 5)
+	{
+		CLoadingMgr::GetInstance()->Set_EndFade(true);
+		m_bEnterScene = true;
+	}
 	return iExit;
 }
 

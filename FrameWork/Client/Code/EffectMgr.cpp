@@ -807,7 +807,7 @@ void CEffectMgr::Create_Effect(Engine::EFFECTTYPE eType, const _matrix* matWorld
 	{
 		tTempInfo.eEffectID = EFFECT_TS_E_FIRST;
 		tTempInfo.eCollisionID = COLLISIONID::COLLISION_HIT;
-		tTempInfo.fEffectHitTime = 2.f;
+		tTempInfo.fEffectHitTime = 0.3f;
 		tTempInfo.iAtt = 1300;
 		tTempInfo.iCritical = 3;
 		break;
@@ -816,7 +816,7 @@ void CEffectMgr::Create_Effect(Engine::EFFECTTYPE eType, const _matrix* matWorld
 	{
 		tTempInfo.eEffectID = EFFECT_TS_E_SECOND;
 		tTempInfo.eCollisionID = COLLISIONID::COLLISION_HIT;
-		tTempInfo.fEffectHitTime = 2.f;
+		tTempInfo.fEffectHitTime = 0.3f;
 		tTempInfo.iAtt = 1300;
 		tTempInfo.iCritical = 3;
 		break;
@@ -825,7 +825,7 @@ void CEffectMgr::Create_Effect(Engine::EFFECTTYPE eType, const _matrix* matWorld
 	{
 		tTempInfo.eEffectID = EFFECT_TS_E_THIRD;
 		tTempInfo.eCollisionID = COLLISIONID::COLLISION_HIT;
-		tTempInfo.fEffectHitTime = 1.75f;
+		tTempInfo.fEffectHitTime = 0.1f;//1.75f;
 		tTempInfo.iAtt = 1300;
 		tTempInfo.iCritical = 3;
 		break;
@@ -834,7 +834,7 @@ void CEffectMgr::Create_Effect(Engine::EFFECTTYPE eType, const _matrix* matWorld
 	{
 		tTempInfo.eEffectID = EFFECT_TS_E_FOURTH;
 		tTempInfo.eCollisionID = COLLISIONID::COLLISION_HIT;
-		tTempInfo.fEffectHitTime = 1.75f;
+		tTempInfo.fEffectHitTime = 0.1f;//1.75f;
 		tTempInfo.iAtt = 1300;
 		tTempInfo.iCritical = 3;
 		break;

@@ -15,6 +15,8 @@ public:
 	virtual void		Render_Geometry(const _double& dTimeDelta) override;
 
 private:
+	_matrix				m_matProj;
+private:
 	HRESULT				Clone_Component();
 	HRESULT				Setup_ShaderProps(LPD3DXEFFECT& pEffect);
 	CSoundMgr*			m_pSoundMgr;
