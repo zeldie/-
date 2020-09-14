@@ -117,8 +117,8 @@ void CSoundMgr::StopSound(CHANNELID eID)
 
 void CSoundMgr::AllStop()
 {
-	for (int ix = 0; ix < MAX_CHANNEL; ++ix)
-		m_pChannelArr[ix]->stop();
+	/*for (int ix = 0; ix < MAX_CHANNEL; ++ix)
+		m_pChannelArr[ix]->stop();*/
 
 	m_pChannelBGM[BGM]->stop();
 }

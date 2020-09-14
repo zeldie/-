@@ -12,6 +12,8 @@ public:
 	CRITICAL_SECTION*	Get_Crt() { return &m_Crt; }
 	_bool				Get_Finish() const { return m_bFinish; }
 	const _tchar*		Get_String() const { return m_szLoading; }
+	_bool				Get_Loading() { return m_bLoading; }
+	_bool				Get_Complete() { return m_bComplete; }
 
 public:
 	static unsigned int CALLBACK	Thread_Main(void* pArg);
@@ -32,6 +34,10 @@ private:
 	_tchar					m_szLoading[256];
 	CEffectMgr*				m_pEffectMgr;
 	CLoadingMgr*			m_pLoadingMgr;
+
+	_bool					m_bLoading;
+	_bool					m_bComplete;
+
 public:
 	static CLoading*		Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eLoading);
 private:
