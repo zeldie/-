@@ -257,9 +257,6 @@ _int CRunGame::Update_Scene(const _double & dTimeDelta)
 	{
 		if (m_bOneCreateUI)
 		{
-			//시간멈추고
-			m_pUIMgr->Set_RunGameTimeStop(false);
-
 			//결과창
 			m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
 			m_bOneCreateUI = false;

@@ -811,6 +811,9 @@
     <Filter Include="02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot">
       <UniqueIdentifier>{ab0b6e7b-7c71-4991-ae57-13006d212376}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\04.UI\26.WeaponUI">
+      <UniqueIdentifier>{31e427a9-fb4e-4e3c-be62-338b5e277fe6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1581,6 +1584,9 @@
     <ClInclude Include="..\Code\RunPlayerItemSlot.h">
       <Filter>02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\WeaponUI.h">
+      <Filter>02.GameObject\04.UI\26.WeaponUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1985,9 +1991,6 @@
     <ClCompile Include="..\Code\Ai_BasicCombo.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\01.Ai_BasicCombo</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Orb.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Ob</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\DualSword.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\01.Ds</Filter>
     </ClCompile>
@@ -2359,6 +2362,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\RunPlayerItemSlot.cpp">
       <Filter>02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Orb.cpp">
+      <Filter>98.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WeaponUI.cpp">
+      <Filter>02.GameObject\04.UI\26.WeaponUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

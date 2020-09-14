@@ -33,6 +33,7 @@ private:
 	_double				m_dDuration;
 
 	_bool				m_bOne;
+	_bool				m_bOtherOne;
 
 private:
 	HRESULT				Clone_Component(_float fX, _float fY, _float fSizeX, _float fSizeY, _float fViewZ=0.f);

@@ -66,6 +66,7 @@
 #include "RunPlayerHP.h"
 #include "RunPlayerItem.h"
 #include "RunPlayerItemSlot.h"
+#include "WeaponUI.h"
 
 IMPLEMENT_SINGLETON(CUIMgr)
 
@@ -104,7 +105,8 @@ CUIMgr::CUIMgr()
 	m_pAITransfomCom2(nullptr),
 	m_bGetFlag(false),
 	m_bReCreateFlag(false),
-	m_iAccumulatedRunGamePoints(0)
+	m_iAccumulatedRunGamePoints(0),
+	m_bCreateRunResultUI_Once(true)
 {
 	////ÇÃ·¹ÀÌ¾î ¹«±â////////
 	m_ePlayerMainWeapon = TWOHANDSWORD;
@@ -1094,6 +1096,21 @@ HRESULT CUIMgr::CreateResultUI_Boss(LPDIRECT3DDEVICE9 pGraphicDev/*, Engine::CLa
 	Engine::Add_GameObject(Engine::UI, L"MatchingButton", pGameObject);
 	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
+	//¹«±â È¹µæ
+	pGameObject = CWeaponUI::Create(pGraphicDev, CWeaponUI::WEAPONUI_ORB, 991.6f, 251.7f, 102.4f, 102.4f, 0.05f);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	Engine::Add_GameObject(Engine::UI, L"WeaponUI", pGameObject);
+	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+	//¹«±â È¹µæ - ÀÌÆå
+	pGameObject = CWeaponUI::Create(pGraphicDev, CWeaponUI::WEAPONUI_FX, 980.f, 240.4f, 128.f, 128.f, 0.2f);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	Engine::Add_GameObject(Engine::UI, L"WeaponUI", pGameObject);
+	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+
+
 	// belatos
 	CSoundMgr::Get_Instance()->SetVolumeDown(0.3f);
 	CSoundMgr::Get_Instance()->HoSoundOn(16, 1.f);
@@ -1353,6 +1370,8 @@ HRESULT CUIMgr::CreateResultUI_ShootingStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	Engine::Add_GameObject(Engine::UI, L"MatchingButton", pGameObject);
 	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
+	m_bCreateRunResultUI_Once = true;
+
 	// shoot
 	CSoundMgr::Get_Instance()->SetVolumeDown(0.3f);
 	CSoundMgr::Get_Instance()->HoSoundOn(16, 1.f);
@@ -1362,48 +1381,64 @@ HRESULT CUIMgr::CreateResultUI_ShootingStage(LPDIRECT3DDEVICE9 pGraphicDev)
 
 HRESULT CUIMgr::CreateResultUI_Run(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	if(!CCameraMgr::GetInstance()->Get_ItemGetCheck())
-		EraseRunButton();
+	if (m_bCreateRunResultUI_Once)
+	{
+		if (!CCameraMgr::GetInstance()->Get_ItemGetCheck())
+			EraseRunButton();
 
-	for (auto& plist : m_listRunGameUI)
-		plist->Set_Dead();
-	m_listRunGameUI.clear();
+		for (auto& plist : m_listRunGameUI)
+			plist->Set_Dead();
+		m_listRunGameUI.clear();
 
-	m_eUIType = UITYPE_RESULT_Run;
+		m_eUIType = UITYPE_RESULT_Run;
 
-	Engine::CGameObject*		pGameObject = nullptr;
+		Engine::CGameObject*		pGameObject = nullptr;
 
-	//BackBar -> µÞ¹è°æ
-	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::RESULTBGTYPE, 0.f, 0.f, WINCX, WINCY, 0.2f);
-	if (pGameObject == nullptr)
-		return E_FAIL;
-	Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
-	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		//BackBar -> µÞ¹è°æ
+		pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::RESULTBGTYPE, 0.f, 0.f, WINCX, WINCY, 0.2f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
-	//BackBar -> ¸Þ´º ¶óÀÎ
-	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::WHITELINE, 657.9f, 300.2f, 580.f, 32.9f, 0.1f); // 107.9f, 300.2f,730.5f,32.9f
-	if (pGameObject == nullptr)
-		return E_FAIL;
-	Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
-	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		//BackBar -> ¸Þ´º ¶óÀÎ
+		pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::RECTTYPE, 657.9f, 300.2f, 580.f, 32.9f, 0.1f); // 107.9f, 300.2f,730.5f,32.9f
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
-	//BackBar -> ³²»ö ¶óÀÎ
-	pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::INDIGOCOLORTYPE, 665.f, 332.f, 565.5f, 55.f, 0.1f); //115.f, 332.f,716.f, 55.f
-	if (pGameObject == nullptr)
-		return E_FAIL;
-	Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
-	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		//BackBar -> ³²»ö ¶óÀÎ
+		pGameObject = CResultBackBar::Create(pGraphicDev, CResultBackBar::INDIGOCOLORTYPE, 665.f, 332.f, 565.5f, 55.f, 0.1f); //115.f, 332.f,716.f, 55.f
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"BackBar", pGameObject);
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
+		//³ª°¡±â ¹öÆ°
+		//Matching Button - EXIT
+		pGameObject = CMatchingButton::Create(pGraphicDev, CMatchingButton::EXIT1, 1081.4f, 651.f, 172.3f, 42.9f, 0.1f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"MatchingButton", pGameObject);
+		//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
+		//¹«±â È¹µæ
+		pGameObject = CWeaponUI::Create(pGraphicDev, CWeaponUI::WEAPONUI_LB, 289.3f, 240.4f, 128.f, 128.f, 0.1f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"WeaponUI", pGameObject);
+		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
+		//¹«±â È¹µæ - ÀÌÆå
+		pGameObject = CWeaponUI::Create(pGraphicDev, CWeaponUI::WEAPONUI_FX, 289.3f, 240.4f, 128.f, 128.f, 0.2f);
+		if (pGameObject == nullptr)
+			return E_FAIL;
+		Engine::Add_GameObject(Engine::UI, L"WeaponUI", pGameObject);
+		m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
 
-	//³ª°¡±â ¹öÆ°
-	//Matching Button - EXIT
-	pGameObject = CMatchingButton::Create(pGraphicDev, CMatchingButton::EXIT1, 1081.4f, 651.f, 172.3f, 42.9f, 0.1f);
-	if (pGameObject == nullptr)
-		return E_FAIL;
-	Engine::Add_GameObject(Engine::UI, L"MatchingButton", pGameObject);
-	m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject));
+		m_bCreateRunResultUI_Once = false;
+	}
 
 	return S_OK;
 }
