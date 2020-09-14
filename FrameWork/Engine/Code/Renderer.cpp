@@ -24,7 +24,8 @@ Engine::CRenderer::CRenderer(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_iRenderUI(0),
 	m_bUseRadialBlur(false),
 	m_pOriginal_DS_Surface(nullptr),
-	m_pShadow_DS_Surface(nullptr)
+	m_pShadow_DS_Surface(nullptr),
+	m_fGamma(2.2f)
 {
 	Safe_AddRef(m_pGraphicDev);
 }
@@ -191,7 +192,7 @@ HRESULT CRenderer::Ready_Renderer(LPDIRECT3DDEVICE9& pGraphicDev)
 
 	m_pIB->Unlock();
  
-	if (FAILED(m_pGraphicDev->CreateDepthStencilSurface(1280.f, 720.f, D3DFMT_D24S8, D3DMULTISAMPLE_NONE, 0, TRUE, &m_pShadow_DS_Surface, nullptr)))
+	if (FAILED(m_pGraphicDev->CreateDepthStencilSurface(7680.f, 4320.f, D3DFMT_D24S8, D3DMULTISAMPLE_NONE, 0, TRUE, &m_pShadow_DS_Surface, nullptr)))
 		return E_FAIL;
 
 	return S_OK;
@@ -543,7 +544,7 @@ void CRenderer::Render_HDRBase(LPDIRECT3DDEVICE9 & pGraphicDev)
 	if (pEffect == nullptr)
 		return;
 	Safe_AddRef(pEffect);
-
+	pEffect->SetFloat("Gamma", m_fGamma);
 	Engine::SetUp_OnShader(pEffect, Engine::ALBEDO, "g_AlbedoTexture");
 	Engine::SetUp_OnShader(pEffect, Engine::SHADE, "g_ShadeTexture");
 	Engine::SetUp_OnShader(pEffect, Engine::EMMISIVE, "g_EmmisiveTexture");
@@ -786,7 +787,7 @@ void CRenderer::Render_HDR(LPDIRECT3DDEVICE9 & pGraphicDev)
 	if (pEffect == nullptr)
 		return;
 	Safe_AddRef(pEffect);
-
+	pEffect->SetFloat("Gamma", m_fGamma);
 	_vec4 vOffsets[4];
 	_vec2 vTexUV = _vec2(1.f / ViewPort.Width, 1.f / ViewPort.Height);
 	vOffsets[0] = _vec4(-0.5f * vTexUV.x, 0.5f * vTexUV.y, 0.0f, 0.0f);

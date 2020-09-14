@@ -328,6 +328,8 @@ _int CShootingStage::Update_Scene(const _double & dTimeDelta)
 		Engine::Add_GameObject(Engine::GAMEOBJECT, L"RunPlayer", pRunPlayer);
 		dynamic_cast<CRunPlayer*>(pRunPlayer)->Set_Shooting(true);
 
+		CSoundMgr::Get_Instance()->SiwonSoundOn(12);
+
 		m_bOneClearUI = false;
 	}
 	return iExit;

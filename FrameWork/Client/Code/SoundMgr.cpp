@@ -1130,6 +1130,11 @@ void CSoundMgr::Load_HoSoundFile()
 	eRes = m_pSystem->createSound("../../Sound/Cartel/Voice_Win.mp3", FMOD_DEFAULT, 0, &pSound);
 	m_vecHoSound.push_back(pSound);
 	ERRCHECK(eRes);
+
+	// 57 /  BGM / EndingBGM
+	eRes = m_pSystem->createSound("../../Sound/BGM/EndingBGM.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
 }
 
 void CSoundMgr::Load_SiwonSoundFile()

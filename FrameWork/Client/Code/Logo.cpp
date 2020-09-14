@@ -10,7 +10,7 @@
 #include "RunGame.h"
 #include "Customize.h"
 
-#include "LogoIcon.h"
+//#include "LogoIcon.h"
 #include "LoadingIcon.h"
 #include "Text_Loading.h"
 #include "Text_Complete.h"
@@ -87,7 +87,7 @@ _int CLogo::Update_Scene(const _double & dTimeDelta)
 				Engine::ClearRenderer();
 				Engine::CScene*		pScene = nullptr;
 
-				pScene = CLobby::Create(m_pGraphicDev);
+				pScene = CCustomize::Create(m_pGraphicDev);
 				if (pScene == nullptr)
 					return E_FAIL;
 

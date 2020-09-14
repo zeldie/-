@@ -3,7 +3,8 @@
 #include "BackGround_Ending.h"
 #include "Ending_Credit.h"
 CEnding::CEnding(LPDIRECT3DDEVICE9 pGraphicDev)
-	:Engine::CScene(pGraphicDev)
+	:Engine::CScene(pGraphicDev),
+	m_bLateInit(true)
 {
 }
 
@@ -28,6 +29,13 @@ HRESULT CEnding::Ready_Scene()
 
 _int CEnding::Update_Scene(const _double & dTimeDelta)
 {
+	if (m_bLateInit)
+	{
+		m_bLateInit = false;
+		CSoundMgr::Get_Instance()->AllStop();
+		CSoundMgr::Get_Instance()->HoBGM(57);
+	}
+
 	_int iExit = Engine::CScene::Update_Scene(dTimeDelta);
 
 	m_dEnterSceneTime += dTimeDelta;

@@ -78,7 +78,7 @@ _uint CLoading::Loading_First()
 	m_bComplete = true;
 
 	// 로딩끝 확인용
-	CSoundMgr::Get_Instance()->SoundOn(0);
+	//CSoundMgr::Get_Instance()->SoundOn(0);
 
 	m_pEffectMgr->Ready_ObjPool();
 	m_bFinish = true;
