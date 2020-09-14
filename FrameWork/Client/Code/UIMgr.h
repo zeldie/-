@@ -315,7 +315,7 @@ private:
 	CUltimateRecharge*		m_pUltimateRecharge;
 	list <CKarma*>			m_listKarma; //로비-ReadyUI) 카르마스왑때문에 여기서 관리할거야.vecCurUI에 넣지 않았음.. 결과창꺼는 안넣을거야
 	list<CKarmaSlot*>		m_listKarmaSlot;//로비-ReadyUI) 카르마스왑때문에 여기서 관리할거야.vecCurUI에 넣지 않았음.. 결과창꺼는 안넣을거야
-
+	list<CUIObject*>		m_listRunGameUI;//Run) 결과창뜰때 다지워주야하니까 여기서 셋데드해줄라고.->vecCurUI에 안 넣음(카운트다운은안넣었음)
 	///////////////////////커스터마이징 변수////////////////////////////////
 	vector<CCustomizingMenu*>			m_vecMenuLine;				//기능없는 글자밑에 선
 	vector<CCustomizingEyeUI*>			m_vecCustomEyes;			//눈 텍스처

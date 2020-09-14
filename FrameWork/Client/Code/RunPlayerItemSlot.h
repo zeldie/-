@@ -32,6 +32,8 @@ private:
 	_double				m_dMaxDuration;
 	_double				m_dDuration;
 
+	_bool				m_bOne;
+
 private:
 	HRESULT				Clone_Component(_float fX, _float fY, _float fSizeX, _float fSizeY, _float fViewZ=0.f);
 	HRESULT				Setup_ShaderProps(LPD3DXEFFECT& pEffect);
