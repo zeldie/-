@@ -43,3 +43,5 @@ sampler				EmmisiveSampler = sampler_state
 	mipfilter = linear;
 
 };
+
+float Gamma;

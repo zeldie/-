@@ -311,14 +311,6 @@ _int CPlayer::Update_GameObject(const _double & dTimeDelta)
 
 	ObserverPass();
 
-
-	if (Engine::KeyDown(DIK_2))
-	{
-		m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_RUN_DUST, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 12.f, 0.f)));
-
-		//m_pEffectMgr->Create_TextureEffect(TEXTURE_DUSTRUNSTOP, &(*pPos + _vec3(0.f, 100.f, 0.f)), &_vec3(0.f, 0.f, 0.f), &_vec3(100.f, 100.f, 100.f), 50.f, &_vec2(4.f, 0.f), &_vec2(4.f, 0.f), true, 20.f, 4);
-	}
-
 	////////////////////////임시 코드 ///////////////////////////////////////
 
 
@@ -339,7 +331,6 @@ _int CPlayer::Update_GameObject(const _double & dTimeDelta)
 	}
 
 	m_tBaseInfo.vObjectPos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
-
 	return Engine::NO_EVENT;
 }
 
@@ -1498,164 +1489,19 @@ void CPlayer::Dead_Player(const _double & dTimeDelta)
 
 void CPlayer::InGyunCodeTest(const _double & dTimeDelta)
 {
-	_vec3 vPos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
-	vPos += _vec3(0.f, 100.f, 0.f);
-	_vec3 vLook = *m_pTransformCom->Get_Info(Engine::INFO_LOOK);
-	D3DXVec3Normalize(&vLook, &vLook);
-	_vec3 vAngle = *m_pTransformCom->Get_Angle();
-	//if (Engine::KeyDown(DIK_F6))
-	//{
-	//	//_vec3 vLook = *m_pTransformCom->Get_Info(Engine::INFO_LOOK);
-	//	//Engine::CGameObject* p = nullptr;
-	//	//p = CPhoenix::Create(m_pGraphicDev, m_pTransformCom->Get_Info(Engine::INFO_POS), &vLook);
-	//	//Engine::Add_GameObject(Engine::GAMEOBJECT, L"Phoenix", p);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_PHOENIX_WIND2, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_TRAIL, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_TRAIL2, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_FIREBALL_WIND, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE2, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE3, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_BLINK_SINGLE, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE4, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_HIT_GROUND, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_FLARE5, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_DUST, &_vec3(100.f, 150.f, 20.f), m_pTransformCom->Get_Angle());
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_R_BULLET, &_vec3(100.f, 500.f, 20.f));
-
-	//	//Engine::CGameObject* pGameObject = nullptr;
-	//	//pGameObject = COrbCore::Create(m_pGraphicDev, COrbCore::ORB_SPIN_FRONT_RIGHT, &vPos, m_pTransformCom->Get_Angle(), &vLook);
-	//	//Engine::Add_GameObject(Engine::GAMEOBJECT, L"OrbCore", pGameObject);
-
-	//}
-	//if (Engine::KeyDown(DIK_F7))
-	//{
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_PHOENIX_WIND1, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_PHOENIX_WIND2, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_PHOENIX_WIND3, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND2, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_ULT_GROUND2, &vPos);
-	//	/*	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB3, &_vec3(0.f, 150.f, 20.f));
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB1, &_vec3(0.f, 150.f, 20.f));
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB2, &_vec3(0.f, 150.f, 20.f));
-
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB3, &_vec3(100.f, 150.f, 20.f));
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB1, &_vec3(100.f, 150.f, 20.f));
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB2, &_vec3(100.f, 150.f, 20.f));*/
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_ULT_SWIRL, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_FLARE_BLINK, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_BLINK, &_vec3(100.f, 150.f, 20.f));
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_BEAM, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_R_PRE, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND3, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND2, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_WIND4, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_ORB_ULT_WIND, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_DUST, &vPos, m_pTransformCom->Get_Angle());
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_ULT_GROUND, m_pTransformCom->Get_Info(Engine::INFO_POS), m_pTransformCom->Get_Angle());
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_R_FLARE, &vPos);
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_DUST, &_vec3(100.f, 150.f, 20.f), m_pTransformCom->Get_Angle());
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_DUST_LARGE_YELLOW, &_vec3(100.f, 150.f, 20.f), m_pTransformCom->Get_Angle());
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_RING, &_vec3(100.f, 150.f, 20.f), m_pTransformCom->Get_Angle());
-	//	vAngle += _vec3(0.f, 50.f, 0.f);
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_CREATOR1, &vPos, &vAngle);
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_CREATOR2, &vPos, &vAngle);
-	//	/*vAngle += _vec3(0.f, -40.f, 0.f);
-	//	m_pEffectMgr->Create_TextureEffect(TEXTURE_ORB_CREATOR1, &vPos, &vAngle);*/
-	//}
+	if (Engine::KeyPressing(DIK_LCONTROL))
+	{
+		if (Engine::KeyDown(DIK_1))
+			m_pRendererCom->Change_Gamma(dTimeDelta * 5);
+		if(Engine::KeyDown(DIK_2))
+			m_pRendererCom->Change_Gamma(-dTimeDelta * 5);
+	}
+	
 }
 
 void CPlayer::SiWonCodeTest(const _double & dTimeDelta)
 {
-	////이펙트 테스트용 코드
-	//if (Engine::KeyDown(DIK_T))
-	//{
-	//	m_pEffectMgr->Create_Particle(PARTICLETYPE::PARTICLE_RADICAL, &(m_pTransformCom->m_vInfo[3]));AA
-	//}
-	//if (Engine::KeyDown(DIK_Y))
-	//{
-	//	m_pEffectMgr->Create_Particle(PARTICLETYPE::PARTICLE_LEAF, &(m_pTransformCom->m_vInfo[3]));
-	//}
-	//if (Engine::KeyDown(DIK_G))
-	//{
-	//	m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_99, m_pTransformCom->Get_WorldMatrix(), &(m_pTransformCom->m_vAngle), m_tBaseInfo);
-	//}
-	//if (Engine::KeyDown(DIK_H))
-	//{	
-	//	m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_BASICTRAIL5, m_pTransformCom->Get_WorldMatrix(), &(m_pTransformCom->m_vAngle), m_tBaseInfo);
-	//}
-
-	//if (Engine::KeyDown(DIK_J))
-	//{
-	//	m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_200, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_DUSTRUNSTOP, &(*pPos + _vec3(0.f, 100.f, 0.f)), &_vec3(0.f, 0.f, 0.f), &_vec3(100.f, 100.f, 100.f), 50.f, &_vec2(4.f, 0.f), &_vec2(4.f, 0.f), true, 20.f, 4);
-	//}
-	if (Engine::KeyDown(DIK_2)) // Cri
-	{
-		_vec3 vDir = Engine::GetDirNoY(m_pTransformCom->m_vInfo[Engine::INFO_POS], CCameraMgr::GetInstance()->Get_Pos());
-		m_pEffectMgr->Create_Effect_Critical(&(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 125.f, 0.f) - vDir*70.f));
-	}
-	if (Engine::KeyDown(DIK_3)) // Break
-	{
-		_vec3 vDir = Engine::GetDirNoY(m_pTransformCom->m_vInfo[Engine::INFO_POS], CCameraMgr::GetInstance()->Get_Pos());
-		m_pEffectMgr->Create_Effect_Break(&(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 125.f, 0.f) - vDir*70.f));
-	}
-
-	// =============================== 피격 이펙트 =======================================
-	//int inum = rand() % 3;
-	//if (inum == 0)
-	//{
-	//	_vec3 vDir = Engine::GetDirNoY(m_pTransformCom->m_vInfo[Engine::INFO_POS], CCameraMgr::GetInstance()->Get_Pos());
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_HIT_1, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 70.f, 0.f) - vDir*15.f));
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_HIT_3, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 70.f, 0.f) - vDir*15.f));
-	//}
-	//else if (inum == 1)
-	//{
-	//	_vec3 vDir = Engine::GetDirNoY(m_pTransformCom->m_vInfo[Engine::INFO_POS], CCameraMgr::GetInstance()->Get_Pos());
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_HIT_2, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 70.f, 0.f) - vDir*15.f));
-	//}
-	//else
-	//{
-	//	_vec3 vDir = Engine::GetDirNoY(m_pTransformCom->m_vInfo[Engine::INFO_POS], CCameraMgr::GetInstance()->Get_Pos());
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_HIT_1, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 70.f, 0.f) - vDir*15.f));
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_HIT_4, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 85.f, 0.f) - vDir*15.f));
-	//}
-	// ===================================================================================
-
-
-	// 적용 완료
-	// ==================== Q 스킬 사용가능 이펙트 =======================================
-	//if (rand() % 13< 2)
-	//{
-	//	_vec3 vRanPos;
-	//	vRanPos.x = (rand() % 40) - 20.f;
-	//	vRanPos.y = (rand() % 70) + 30.f;
-	//	vRanPos.z = (rand() % 40) - 20.f;
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_READY_ULT, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + vRanPos));
-	//}
-	//if (rand() % 20 < 2)
-	//{
-	//	_vec3 vRanPos;
-	//	vRanPos.x = (rand() % 40) - 20.f;
-	//	vRanPos.y = (rand() % 70) + 30.f;
-	//	vRanPos.z = (rand() % 40) - 20.f;
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_READY_ULT2, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + vRanPos));
-	//}
-	// ===================================================================================
-	//if (Engine::KeyDown(DIK_2))
-	//{
-	//	m_pEffectMgr->Create_TextureEffect(TEXTUREEFFECT::TEXTURE_RUN_DUST, &(m_pTransformCom->m_vInfo[Engine::INFO_POS] + _vec3(0.f, 12.f, 0.f)));
-
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_DUSTRUNSTOP, &(*pPos + _vec3(0.f, 100.f, 0.f)), &_vec3(0.f, 0.f, 0.f), &_vec3(100.f, 100.f, 100.f), 50.f, &_vec2(4.f, 0.f), &_vec2(4.f, 0.f), true, 20.f, 4);
-	//}
-	//if (Engine::KeyDown(DIK_J))
-	//{
-	//	m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_200, m_pTransformCom->Get_WorldMatrix(), m_pTransformCom->Get_Angle(), m_tBaseInfo);
-	//	//m_pEffectMgr->Create_TextureEffect(TEXTURE_DUSTRUNSTOP, &(*pPos + _vec3(0.f, 100.f, 0.f)), &_vec3(0.f, 0.f, 0.f), &_vec3(100.f, 100.f, 100.f), 50.f, &_vec2(4.f, 0.f), &_vec2(4.f, 0.f), true, 20.f, 4);
-	//}
+	
 }
 
 void CPlayer::YongHoCodeTest(const _double & dTimeDelta)

@@ -7,6 +7,8 @@ CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	, m_hThread(nullptr)
 	, m_pEffectMgr(CEffectMgr::GetInstance())
 	, m_pLoadingMgr(CLoadingMgr::GetInstance())
+	, m_bLoading(false)
+	, m_bComplete(false)
 {
 	Engine::Safe_AddRef(m_pGraphicDev);
 	ZeroMemory(m_szLoading, sizeof(_tchar) * 256);
@@ -61,22 +63,22 @@ HRESULT CLoading::Ready_Loading(LOADINGID eLoadingID)
 
 _uint CLoading::Loading_First()
 {
-	lstrcpy(m_szLoading, L"-------Texture Loading-------");
-
 	// 터짐방지
 	Load_Texture();
 
-	lstrcpy(m_szLoading, L"-------Mesh Loading-------");
+	//lstrcpy(m_szLoading, L"MESH LOADING");
 
 	Load_Mesh();
 
 	// Test Effect Load
 	Load_EffectMesh();
 
-	lstrcpy(m_szLoading, L"-------Loading Complete-------");
+	//lstrcpy(m_szLoading, L"COMPLETE");
 	
+	m_bComplete = true;
+
 	// 로딩끝 확인용
-	CSoundMgr::Get_Instance()->SoundOn(0);
+	//CSoundMgr::Get_Instance()->SoundOn(0);
 
 	m_pEffectMgr->Ready_ObjPool();
 	m_bFinish = true;
@@ -86,43 +88,57 @@ _uint CLoading::Loading_First()
 
 void CLoading::Load_Texture()
 {
+
 	if (FAILED(Engine::LoadTexture(m_pGraphicDev, L"../../Data/Texture/Texture.txt")))
 		return;
+
 	return;
 }
 
 void CLoading::Load_Mesh()
 {
+	// 출력
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Dynamic.txt")))
 		return;
 
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Lobby.txt")))
 		return;
+
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Cartel.txt")))
 		return;
+
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Boss.txt")))
 		return;
+
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Run.txt")))
 		return;
 
 	if (FAILED(Engine::Ready_Meshes(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Mesh_Navi_Lobby", Engine::TYPE_NAVI, L"", L"Mesh_Navi_Lobby")))
 		return;
+
 	if (FAILED(Engine::Ready_Meshes(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Mesh_Navi_Boss", Engine::TYPE_NAVI, L"", L"Mesh_Navi_Boss")))
 		return;
+
 	if (FAILED(Engine::Ready_Meshes(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Mesh_Navi_Cartel", Engine::TYPE_NAVI, L"", L"Mesh_Navi_Cartel")))
 		return;
+
 	if (FAILED(Engine::Ready_Meshes(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Mesh_Navi_Apostle", Engine::TYPE_NAVI, L"", L"Mesh_Navi_Apostle")))
 		return;
+
 	if (FAILED(Engine::Ready_Meshes(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Mesh_Navi_Apostle1", Engine::TYPE_NAVI_RUN, L"", L"Mesh_Navi_Apostle1")))
 		return;
+
+	// 제거
 
 	return;
 }
 
 void CLoading::Load_EffectMesh()
 {
+
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Effect_Dynamic.txt")))
 		return;
+
 	if (FAILED(Engine::LoadMesh(m_pGraphicDev, L"../../Data/Mesh/Mesh_Effect_Static.txt")))
 		return;
 

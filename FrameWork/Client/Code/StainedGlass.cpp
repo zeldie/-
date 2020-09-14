@@ -33,7 +33,8 @@ _int CStainedGlass::Update_GameObject(const _double & dTimeDelta)
 _int CStainedGlass::LateUpdate_GameObject(const _double & dTimeDelta)
 {
 	CStaticMeshObject::LateUpdate_GameObject(dTimeDelta);
-	//m_pRendererCom->Setting_Sun(m_pTransformCom->Get_Info_byWorld(Engine::INFO_POS), m_iLightShaftNum);
+	if(m_bUseLightShaft)
+		m_pRendererCom->Setting_Sun(m_pTransformCom->Get_Info_byWorld(Engine::INFO_POS));
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
 	return Engine::NO_EVENT;
 }

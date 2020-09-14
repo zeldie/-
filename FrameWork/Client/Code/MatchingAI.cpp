@@ -42,7 +42,6 @@ HRESULT CMatchingAI::Ready_GameObject(_float fX, _float fY)
 _int CMatchingAI::Update_GameObject(const _double & dTimeDelta)
 {
 	CDynamicMeshObject::Update_GameObject(dTimeDelta);
-	
 
 	return Engine::NO_EVENT;
 }
@@ -239,7 +238,7 @@ HRESULT CMatchingAI::Clone_Component()
 	m_mapComponent[Engine::ID_STATIC].emplace(Engine::MESH, pComponent);
 
 	//Shader
-	pComponent = m_pShaderCom = dynamic_cast<Engine::CShader*>(Engine::Clone(Engine::RESOURCE_STATIC, L"Shader_Normal"));
+	pComponent = m_pShaderCom = dynamic_cast<Engine::CShader*>(Engine::Clone(Engine::RESOURCE_STATIC, L"Shader_Mesh"));
 	if (pComponent == nullptr)
 		return E_FAIL;
 	m_mapComponent[Engine::ID_STATIC].emplace(Engine::SHADER, pComponent);
@@ -258,7 +257,7 @@ HRESULT CMatchingAI::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 	pEffect->SetMatrix("g_matWorld", &matWorld);
 	pEffect->SetMatrix("g_matView", &matView);
 	pEffect->SetMatrix("g_matProj", &m_matProj);
-	pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
+	//pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
 	return S_OK;
 }
 

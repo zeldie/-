@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "BaseObject.h"
 #include "LightCamera.h"
-
+float Gamma = 2.2f;
 CBaseObject::CBaseObject(LPDIRECT3DDEVICE9 pGraphicDev)
 	:CGameObject(pGraphicDev),
 	m_pTransformCom(nullptr),

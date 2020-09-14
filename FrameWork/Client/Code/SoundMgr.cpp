@@ -117,8 +117,8 @@ void CSoundMgr::StopSound(CHANNELID eID)
 
 void CSoundMgr::AllStop()
 {
-	for (int ix = 0; ix < MAX_CHANNEL; ++ix)
-		m_pChannelArr[ix]->stop();
+	/*for (int ix = 0; ix < MAX_CHANNEL; ++ix)
+		m_pChannelArr[ix]->stop();*/
 
 	m_pChannelBGM[BGM]->stop();
 }
@@ -1130,6 +1130,11 @@ void CSoundMgr::Load_HoSoundFile()
 	eRes = m_pSystem->createSound("../../Sound/Cartel/Voice_Win.mp3", FMOD_DEFAULT, 0, &pSound);
 	m_vecHoSound.push_back(pSound);
 	ERRCHECK(eRes);
+
+	// 57 /  BGM / EndingBGM
+	eRes = m_pSystem->createSound("../../Sound/BGM/EndingBGM.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
 }
 
 void CSoundMgr::Load_SiwonSoundFile()
@@ -1538,7 +1543,12 @@ void CSoundMgr::Load_AiSoundFile()
 	m_vecAiSound.push_back(pSound);
 	ERRCHECK(eRes);
 
-	// 62 / Ending_BGM
+	// 62 / LongBow Ultimate / Ultimate
+	eRes = m_pSystem->createSound("../../Sound/LongBow/LB_Ultimate.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecAiSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 63 / Ending_BGM
 	eRes = m_pSystem->createSound("../../Sound/BGM/CartelBGM2.ogg", FMOD_DEFAULT, 0, &pSound);
 	m_vecAiSound.push_back(pSound);
 	ERRCHECK(eRes);

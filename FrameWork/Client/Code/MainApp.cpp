@@ -14,7 +14,7 @@ CLightCamera*			m_pLightCamera = nullptr;
 //아래 이 코드는 클라에서 실시간으로 값을 확인할려고 씀, 값을 늘리는방법은 아래 Update에 KeyPressing 으로 만듬
 _vec3 vTest = _vec3(1.f, 1.f, 1.f);
 _double temp = 0;
-float temp2 = 300.f;
+
 CMainApp::CMainApp()
 	:m_pDeviceClass(nullptr),
 	m_pManagement(nullptr),
@@ -68,7 +68,8 @@ HRESULT CMainApp::Ready_MainApp()
 		return E_FAIL;
 	if (FAILED(Engine::Ready_Font(m_pGraphicDev, L"Font_GODICHEAVY2", L"맑은 고딕", 30, 50, FW_HEAVY)))
 		return E_FAIL;
-
+	if (FAILED(Engine::Ready_Font(m_pGraphicDev, L"Font_휴먼명조", L"HY신명조", 15, 25, FW_HEAVY)))
+		return E_FAIL;
 
 	srand((_uint)time(NULL));	
 
@@ -264,6 +265,12 @@ HRESULT CMainApp::Ready_BasicComponent()
 
 	//Background Texture
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_BackGround", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/BackGround/BackGround.tga", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_LogoIcon", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/LogoIcon/LogoIcon.tga", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_Loading", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/Loading/Loading.png", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_Complete", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/Complete/Complete.png", 1)))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_BackGround_Ending", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/BackGround/BackGround_Ending.tga", 1)))
 		return E_FAIL;

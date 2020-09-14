@@ -105,10 +105,11 @@ HRESULT CPortal::Clone_Component()
 HRESULT CPortal::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 {
 	CBaseObject::Set_ShaderMatrix(pEffect); 
-	Engine::SetTexture(pEffect, "g_DistortionTexture", 3);
-	pEffect->SetFloat("fDistortionWeight", 0.5f);
+	Engine::SetTexture(pEffect, "g_DistortionTexture", 6);
+	pEffect->SetFloat("fDistortionWeight", 0.2f);
 	pEffect->SetFloat("fDistortionUV", _float(m_dDistortionAcctime * 0.2));
-	pEffect->SetVector("vDistortionColor", &_vec4(0.58f, 0.97f, 0.99f, 1.f));
+	Engine::SetTexture(pEffect, "g_DistortionColorTexture", 15);
+	//pEffect->SetVector("vDistortionColor", &_vec4(0.58f, 0.97f, 0.99f, 1.f));
 	return S_OK;
 }
 

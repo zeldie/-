@@ -1,3 +1,4 @@
+
 texture			g_AlbedoTexture;
 
 sampler AlbedoSampler = sampler_state
@@ -56,7 +57,7 @@ magfilter = linear;
 mipfilter = linear;
 
 };
-
+float Gamma;
 float fLightAmount;
 struct PS_IN
 {
@@ -72,8 +73,8 @@ PS_OUT PS_MAIN(PS_IN In)
 {
 	PS_OUT		Out = (PS_OUT)0;
 
-	//vector		vAlbedo = tex2D(AlbedoSampler, In.vTexUV); // pow(abs(tex2D(AlbedoSampler, In.vTexUV)), 1 / 2.2);
-	vector		vAlbedo = pow(abs(tex2D(AlbedoSampler, In.vTexUV)),2.2);
+	//vector		vAlbedo = tex2D(AlbedoSampler, In.vTexUV); // pow(abs(tex2D(AlbedoSampler, In.vTexUV)), 1 / Gamma);
+	vector		vAlbedo = pow(abs(tex2D(AlbedoSampler, In.vTexUV)), Gamma);
 	vAlbedo *= float4(fLightAmount, fLightAmount, fLightAmount, fLightAmount);
 	vector vOutline = tex2D(OutlineSampler, In.vTexUV) * 0.5f;
 	vAlbedo = vAlbedo * vOutline;
@@ -83,8 +84,8 @@ PS_OUT PS_MAIN(PS_IN In)
 	vector		vEmmisive = tex2D(EmmisiveSampler, In.vTexUV);
 	vEmmisive.rgb *= 5.f;
 	//Out.vColor = vAlbedo * vShade + vEmmisive;
-	Out.vColor = pow(abs(vAlbedo * vShade + vEmmisive), 0.4545f);
-	//Out.vColor = pow(abs(Out.vColor), 1 / 2.2);
+	Out.vColor = pow(abs(vAlbedo * vShade + vEmmisive), 1 / Gamma);
+	//Out.vColor = pow(abs(Out.vColor), 1 / Gamma);
 	return Out;
 }
 
@@ -92,7 +93,7 @@ PS_OUT PS_MAIN_TOOL(PS_IN In)
 {
 	PS_OUT		Out = (PS_OUT)0;
 
-	vector		vAlbedo = tex2D(AlbedoSampler, In.vTexUV); // pow(abs(tex2D(AlbedoSampler, In.vTexUV)), 1 / 2.2);
+	vector		vAlbedo = tex2D(AlbedoSampler, In.vTexUV); // pow(abs(tex2D(AlbedoSampler, In.vTexUV)), 1 / Gamma);
 	vAlbedo *= 2.f;
 	vector		vShade = tex2D(ShadeSampler, In.vTexUV);
 	vector		vEmmisive = tex2D(EmmisiveSampler, In.vTexUV);
