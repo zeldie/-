@@ -59,6 +59,8 @@ void CWeaponUI::Render_Geometry(const _double & dTimeDelta)
 
 	if(WEAPONUI_FX == m_eWeaponUIType)
 		pEffect->BeginPass(5);
+	else if(WEAPONUI_LB == m_eWeaponUIType)
+		pEffect->BeginPass(2);
 	else
 		pEffect->BeginPass(1);
 

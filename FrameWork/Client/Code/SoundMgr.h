@@ -45,6 +45,7 @@ public:
 	void Load_HoSoundFile();
 	void Load_SiwonSoundFile();
 	void Load_AiSoundFile();
+	void Load_UISoundFile();
 private:
 	static CSoundMgr* m_pInstance;
 	//FMOD_SOUND 사운드 리소스 정보를 갖는 객체 
@@ -60,7 +61,9 @@ private:
 
 	vector<FMOD::Sound*> m_vecHoSound;
 	vector<FMOD::Sound*> m_vecSiwonSound;
-	vector<FMOD::Sound*> m_vecAiSound;
+	vector<FMOD::Sound*> m_vecAiSound; 
+	vector<FMOD::Sound*> m_vecUISound;
+
 public:
 	void BGMSTART(_int iNum);
 	int MaxChannel = 1000;
@@ -68,6 +71,7 @@ public:
 	void SoundOn(_int iNum, _float fVolume = 0.35f);
 	void HoSoundOn(_int iNum, _float fVolume = 0.35f);
 	void SiwonSoundOn(_int iNum, _float fVolume = 0.35f);
+	void UISoundOn(_int iNum, _float fVolume = 0.35f);
 
 	void Set_DefaultVolume(_float fVolume) { m_fDefalultVolume = fVolume; }
 	void HoBGM(_int iNum);

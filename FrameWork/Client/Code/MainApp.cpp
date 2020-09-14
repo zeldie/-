@@ -103,9 +103,9 @@ _int CMainApp::Update_MainApp(const _double& dTimeDelta)
 
 	Engine::Set_InputDev();
 
-	//희정 UI TEST ->위치 조절 
-	if(Engine::KeyPressing(DIK_RCONTROL))
-		m_pUIMgr->KeyInput(dTimeDelta);
+	////희정 UI TEST ->위치 조절 
+	//if(Engine::KeyPressing(DIK_RCONTROL))
+	//	m_pUIMgr->KeyInput(dTimeDelta);
 
 	//////////////////TestCode/////////////////////////////////
 	if (Engine::KeyDown(DIK_F2))
@@ -210,7 +210,7 @@ void CMainApp::Render_MainApp(const _double& dTimeDelta)
 
 HRESULT CMainApp::SetUp_DefaultSetting(LPDIRECT3DDEVICE9 * ppGraphicDev)
 {
-	if (FAILED(Engine::Ready_GraphicDev(g_hWnd, Engine::MODE_WIN, WINCX, WINCY, &m_pDeviceClass)))
+	if (FAILED(Engine::Ready_GraphicDev(g_hWnd, Engine::MODE_FULL, WINCX, WINCY, &m_pDeviceClass)))
 		return E_FAIL;
 
 	*ppGraphicDev = m_pDeviceClass->GetDevice();

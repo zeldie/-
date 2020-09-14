@@ -45,6 +45,7 @@ void CSoundMgr::Initialize()
 	Load_HoSoundFile();
 	Load_AiSoundFile();
 	Load_SiwonSoundFile();
+	Load_UISoundFile();
 }
 
 void CSoundMgr::Release()
@@ -1554,6 +1555,17 @@ void CSoundMgr::Load_AiSoundFile()
 	ERRCHECK(eRes);
 }
 
+void CSoundMgr::Load_UISoundFile()
+{
+	FMOD::Sound* pSound = nullptr;
+	FMOD_RESULT eRes;
+
+	// 0 / MOUSE CLICK / MOUSE CLICK
+	eRes = m_pSystem->createSound("../../Sound/UI/UI_MouseClick_01_A.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecUISound.push_back(pSound);
+	ERRCHECK(eRes);
+}
+
 
 void CSoundMgr::BGMSTART(int iNum)
 {
@@ -1592,6 +1604,17 @@ void CSoundMgr::SiwonSoundOn(_int iNum, _float fVolume)
 		i = 0;
 
 	m_pSystem->playSound(m_vecSiwonSound[iNum], 0, false, &m_pChannelArr[i]);
+	m_pSystem->update();
+	m_pChannelArr[i]->setVolume(fVolume - m_fDefalultVolume);
+	++i;
+}
+
+void CSoundMgr::UISoundOn(_int iNum, _float fVolume)
+{
+	if (i > 990)
+		i = 0;
+
+	m_pSystem->playSound(m_vecUISound[iNum], 0, false, &m_pChannelArr[i]);
 	m_pSystem->update();
 	m_pChannelArr[i]->setVolume(fVolume - m_fDefalultVolume);
 	++i;

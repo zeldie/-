@@ -53,7 +53,13 @@ _int CCustomizingColorBG::LateUpdate_GameObject(const _double & dTimeDelta)
 
 	if (m_bChoose && Engine::MousePressing(Engine::DIM_LB))
 	{
-		COLORREF rgb = GetPixel(m_hDC, vMousePos.x, vMousePos.y);
+		POINT	ptMouse{};
+
+		GetCursorPos(&ptMouse);
+		ScreenToClient(g_hWnd, &ptMouse);
+
+
+		COLORREF rgb = GetPixel(m_hDC, ptMouse.x, ptMouse.y);
 
 		m_vChangeColor.x = (_float)GetRValue(rgb) / 255.f;
 		m_vChangeColor.y = (_float)GetGValue(rgb) / 255.f;

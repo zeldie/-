@@ -35,6 +35,8 @@ private:
 
 	CQuestMgr::NPCTYPE	m_eNPCType;
 
+	_bool				m_bSound;
+
 private:
 	HRESULT				Clone_Component(_float fX, _float fY, _float fSizeX, _float fSizeY, _float fViewZ);
 	HRESULT				Setup_ShaderProps(LPD3DXEFFECT& pEffect);

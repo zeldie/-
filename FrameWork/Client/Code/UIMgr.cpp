@@ -2508,20 +2508,20 @@ void CUIMgr::CreateFaceUI(LPDIRECT3DDEVICE9 pGraphicDev)
 
 	//////////////////////////////////////////////////////////////////////////
 	////////////////////////&& BodyColor &&///////////////////////////////////
-	//텍스처 
-	pGameObject = m_pCustomizingColorBG = CCustomizingColorBG::Create(pGraphicDev, L"Body", 936.6f, 480.6f, 326.2f, 110.2f, 0.1f); //435.f, 147.f
-	if (pGameObject == nullptr)
-		return;
-	Add_GameObject(Engine::UI, L"CustomizingColorBG", pGameObject);
-	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용	
+	////텍스처 
+	//pGameObject = m_pCustomizingColorBG = CCustomizingColorBG::Create(pGraphicDev, L"Body", 936.6f, 480.6f, 326.2f, 110.2f, 0.1f); //435.f, 147.f
+	//if (pGameObject == nullptr)
+	//	return;
+	//Add_GameObject(Engine::UI, L"CustomizingColorBG", pGameObject);
+	////m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용	
 
-	//Line UnderBrow
-	pGameObject = CCustomizingMenu::Create(pGraphicDev, CCustomizingMenu::LINE, 934.3f, 461.7f, 321.4f, 7.6f, 0.1f);
-	if (pGameObject == nullptr)
-		return;
-	Add_GameObject(Engine::UI, L"CustomizingMenu", pGameObject);
-	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용
-	m_vecMenuLine.emplace_back(dynamic_cast<CCustomizingMenu*>(pGameObject));
+	////Line UnderBrow
+	//pGameObject = CCustomizingMenu::Create(pGraphicDev, CCustomizingMenu::LINE, 934.3f, 461.7f, 321.4f, 7.6f, 0.1f);
+	//if (pGameObject == nullptr)
+	//	return;
+	//Add_GameObject(Engine::UI, L"CustomizingMenu", pGameObject);
+	////m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용
+	//m_vecMenuLine.emplace_back(dynamic_cast<CCustomizingMenu*>(pGameObject));
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -2664,20 +2664,20 @@ void CUIMgr::CreateHairUI(LPDIRECT3DDEVICE9 pGraphicDev)
 
 	//////////////////////////////////////////////////////////////////////////////
 	////////////////////////&& HairColor &&///////////////////////////////////
-	//텍스처 
-	pGameObject = m_pCustomizingColorBG = CCustomizingColorBG::Create(pGraphicDev, L"Hair", 936.6f, 570.f, 326.2f, 110.2f, 0.1f); //435.f, 147.f
-	if (pGameObject == nullptr)
-		return;
-	Add_GameObject(Engine::UI, L"CustomizingColorBG", pGameObject);
-	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용	
+	////텍스처 
+	//pGameObject = m_pCustomizingColorBG = CCustomizingColorBG::Create(pGraphicDev, L"Hair", 936.6f, 570.f, 326.2f, 110.2f, 0.1f); //435.f, 147.f
+	//if (pGameObject == nullptr)
+	//	return;
+	//Add_GameObject(Engine::UI, L"CustomizingColorBG", pGameObject);
+	////m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용	
 
-	//Line UnderBrow
-	pGameObject = CCustomizingMenu::Create(pGraphicDev, CCustomizingMenu::LINE, 934.3f, 551.7f, 321.4f, 7.6f, 0.1f);
-	if (pGameObject == nullptr)
-		return;
-	Add_GameObject(Engine::UI, L"CustomizingMenu", pGameObject);
-	//m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용
-	m_vecMenuLine.emplace_back(dynamic_cast<CCustomizingMenu*>(pGameObject));
+	////Line UnderBrow
+	//pGameObject = CCustomizingMenu::Create(pGraphicDev, CCustomizingMenu::LINE, 934.3f, 551.7f, 321.4f, 7.6f, 0.1f);
+	//if (pGameObject == nullptr)
+	//	return;
+	//Add_GameObject(Engine::UI, L"CustomizingMenu", pGameObject);
+	////m_vecCurUI.emplace_back(dynamic_cast<CUIObject*>(pGameObject)); //->자리이동용
+	//m_vecMenuLine.emplace_back(dynamic_cast<CCustomizingMenu*>(pGameObject));
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -4100,5 +4100,5 @@ void CUIMgr::KeyInput(const _double & dTimeDelta)
 	_vec3 vPos = dynamic_cast<Engine::CScreenTex*>(pBuffer)->Get_vStartPos();
 	_vec2 vSize = dynamic_cast<Engine::CScreenTex*>(pBuffer)->Get_vSize();
 
-	cout << m_iNextIndex << '\t' << vPos.x << '\t' << vPos.y << '\t' << vSize.x << '\t' << vSize.y << endl;
+	//cout << m_iNextIndex << '\t' << vPos.x << '\t' << vPos.y << '\t' << vSize.x << '\t' << vSize.y << endl;
 }
