@@ -133,3 +133,4 @@ Static|UltimateRecharge|..\..\Resource\Texture\UI\UltimateRecharge\UltimateRecha
 Static|UltimateSlot|..\..\Resource\Texture\UI\UltimateSlot\UltimateSlot%d.tga|4
 Static|Waiting|..\..\Resource\Texture\UI\Waiting\Waiting%d.tga|3
 Static|Yellow|..\..\Resource\Texture\UI\Yellow\Yellow%d.tga|1
+Static|WeaponUI|..\..\Resource\Texture\UI\WeaponUI\WeaponUI%d.tga|3

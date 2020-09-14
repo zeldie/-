@@ -811,14 +811,8 @@
     <Filter Include="02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot">
       <UniqueIdentifier>{ab0b6e7b-7c71-4991-ae57-13006d212376}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObject\00.Logo\01.LoadingIcon">
-      <UniqueIdentifier>{be065851-83f9-4df8-b87e-c07cdd5c837d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObject\00.Logo\03.Text_Complete">
-      <UniqueIdentifier>{194ec6b1-3876-4d18-92a2-57a0cbcb08ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObject\00.Logo\02.Text_Loading">
-      <UniqueIdentifier>{dccbfdd3-4f87-45fb-bbae-10c333527b73}</UniqueIdentifier>
+    <Filter Include="02.GameObject\04.UI\26.WeaponUI">
+      <UniqueIdentifier>{31e427a9-fb4e-4e3c-be62-338b5e277fe6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1590,17 +1584,8 @@
     <ClInclude Include="..\Code\RunPlayerItemSlot.h">
       <Filter>02.GameObject\04.UI\24.Run\04.RunPlayerItemSlot</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RunPlayerObserver.h">
-      <Filter>99.Default</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\LoadingIcon.h">
-      <Filter>02.GameObject\00.Logo\01.LoadingIcon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Text_Complete.h">
-      <Filter>02.GameObject\00.Logo\03.Text_Complete</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Text_Loading.h">
-      <Filter>02.GameObject\00.Logo\02.Text_Loading</Filter>
+    <ClInclude Include="..\Code\WeaponUI.h">
+      <Filter>02.GameObject\04.UI\26.WeaponUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2381,17 +2366,8 @@
     <ClCompile Include="..\Code\Orb.cpp">
       <Filter>98.Header</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RunPlayerObserver.cpp">
-      <Filter>98.Header</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\LoadingIcon.cpp">
-      <Filter>02.GameObject\00.Logo\01.LoadingIcon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Text_Complete.cpp">
-      <Filter>02.GameObject\00.Logo\03.Text_Complete</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Text_Loading.cpp">
-      <Filter>02.GameObject\00.Logo\02.Text_Loading</Filter>
+    <ClCompile Include="..\Code\WeaponUI.cpp">
+      <Filter>02.GameObject\04.UI\26.WeaponUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

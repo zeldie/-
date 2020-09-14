@@ -412,6 +412,7 @@
     <ClInclude Include="..\Code\UltimateRecharge.h" />
     <ClInclude Include="..\Code\UltimateSlot.h" />
     <ClInclude Include="..\Code\Waiting.h" />
+    <ClInclude Include="..\Code\WeaponUI.h" />
     <ClInclude Include="..\Code\Yellow.h" />
     <ClInclude Include="..\Code\Water.h" />
     <ClInclude Include="..\Header\Client_Defines.h" />
@@ -678,6 +679,7 @@
     <ClCompile Include="..\Code\UltimateRecharge.cpp" />
     <ClCompile Include="..\Code\UltimateSlot.cpp" />
     <ClCompile Include="..\Code\Waiting.cpp" />
+    <ClCompile Include="..\Code\WeaponUI.cpp" />
     <ClCompile Include="..\Code\Yellow.cpp" />
     <ClCompile Include="..\Code\Water.cpp" />
     <ClCompile Include="Client.cpp" />

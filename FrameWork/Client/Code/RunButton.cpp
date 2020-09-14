@@ -85,8 +85,11 @@ _int CRunButton::LateUpdate_GameObject(const _double & dTimeDelta)
 			m_pUIMgr->EraseRunCountDown();
 
 			//³ª°¡±â -> °á°úÃ¢ ¶ÑµÐ
-			m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
-
+			if (m_bOneClick)
+			{
+				m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
+				m_bOneClick = false;
+			}
 		}
 	}
 
