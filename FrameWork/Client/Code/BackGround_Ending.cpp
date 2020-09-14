@@ -101,7 +101,17 @@ HRESULT CBackGround_Ending::Clone_Component()
 
 HRESULT CBackGround_Ending::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 {
-	CBaseObject::Set_ShaderMatrix(pEffect);
+	//CBaseObject::Set_ShaderMatrix(pEffect);
+
+	_matrix matWorld, matView, matProj;
+	m_pTransformCom->Get_WorldMatrix(&matWorld);
+	D3DXMatrixIdentity(&matView);
+	D3DXMatrixIdentity(&matProj);	
+
+	pEffect->SetMatrix("g_matWorld", &matWorld);
+	pEffect->SetMatrix("g_matView", &matView);
+	pEffect->SetMatrix("g_matProj", &matProj);
+
 	m_pTextureCom->SetTexture(pEffect, "g_DiffuseTexture");
 
 

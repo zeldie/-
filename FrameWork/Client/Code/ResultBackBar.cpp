@@ -272,10 +272,6 @@ void CResultBackBar::GetResult()
 		_uint iBlueTeam = m_pUIMgr->Get_BlueScore();
 		_uint iRedTeam = m_pUIMgr->Get_RedScore();
 
-		////test/////////////////
-		//iBlueTeam = 150;
-		//iRedTeam = 100;
-		///////////////////////
 		wsprintf(m_szBlueTotalScore, L"%d", iBlueTeam);
 		wsprintf(m_szRedTotalScore, L"%d", iRedTeam);
 
@@ -294,14 +290,6 @@ void CResultBackBar::GetResult()
 		//////Á¤º¸
 		//PLAYER
 		FLAG_RESULT tPlayer = m_pUIMgr->Get_FlagResultInfo(OBJECT_PLAYER);
-
-		////test//////////////////////////////
-		//tPlayer.iEarnedPoints = 100;
-		//tPlayer.iKill = 5;
-		//tPlayer.iDamage = 25683;
-		//tPlayer.iBreak = 456821542;
-		/////////////////////////////////////////
-
 
 		lstrcpy(m_szFlagResult[PLAYER].szName, tPlayer.szName);
 		wsprintf(m_szFlagResult[PLAYER].szEarnedPoints, L"%d", tPlayer.iEarnedPoints);

@@ -9,10 +9,17 @@
 #include "PuzzleGame.h"
 #include "RunGame.h"
 #include "Customize.h"
+
+#include "LogoIcon.h"
+#include "LoadingIcon.h"
+#include "Text_Loading.h"
+#include "Text_Complete.h"
+
 #include "Ending.h"
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CScene(pGraphicDev),
 	m_pLoading(nullptr)
+	, m_bComplete(false)
 {
 }
 
@@ -43,8 +50,27 @@ _int CLogo::Update_Scene(const _double & dTimeDelta)
 
 	if (true == m_pLoading->Get_Finish())
 	{
+		if (!m_bComplete)
+		{
+			m_bComplete = true;
+
+			dynamic_cast<CLoadingIcon*>(m_pLoadingIcon)->Set_Dead(true);
+			dynamic_cast<CText_Loading*>(m_pText_Loading)->Set_Dead(true);
+
+			Engine::CGameObject*		pGameObject = nullptr;
+
+			pGameObject = CText_Complete::Create(m_pGraphicDev);
+			if (pGameObject == nullptr)
+				return E_FAIL;
+
+
+			Engine::Add_GameObject(Engine::UI, L"COMPLETE", pGameObject);
+		}
+
+
+
 		// 로딩완료 체크용 사운드
-		
+
 		////////////////////////스토리상의  씬체인지///////////////////
 		if (Engine::KeyPressing(DIK_RETURN))
 		{
@@ -216,7 +242,7 @@ _int CLogo::LateUpdate_Scene(const _double & dTimeDelta)
 
 void CLogo::Render_Scene()
 {
-	Engine::Render_Font(L"Font_Default", m_pLoading->Get_String(), &_vec2(20.f, 10.f), D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	Engine::Render_Font(L"Font_휴먼명조", m_pLoading->Get_String(), &_vec2(500.f, 360.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 }
 
 
@@ -258,6 +284,18 @@ HRESULT CLogo::Ready_UI_Layer()
 	if (pGameObject == nullptr)
 		return E_FAIL;
 	if (FAILED(pLayer->Add_GameObject(L"BackGround", pGameObject)))
+		return E_FAIL;
+
+	m_pLoadingIcon = pGameObject = CLoadingIcon::Create(m_pGraphicDev);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	if (FAILED(pLayer->Add_GameObject(L"LoadingIcon", pGameObject)))
+		return E_FAIL;
+
+	m_pText_Loading = pGameObject = CText_Loading::Create(m_pGraphicDev);
+	if (pGameObject == nullptr)
+		return E_FAIL;
+	if (FAILED(pLayer->Add_GameObject(L"Text_Loading", pGameObject)))
 		return E_FAIL;
 
 	m_mapLayer.emplace(Engine::UI, pLayer);

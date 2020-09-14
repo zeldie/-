@@ -29,12 +29,12 @@ HRESULT CTextureEffect::Ready_GameObject(TEXTUREEFFECT eEffectID, _vec3* pPos, _
 
 	if (TEXTURE_TS_SMOKE0 == eEffectID) //ÈñÁ¤
 	{
-		m_fTS_Alpha = 0.7f;
+		m_fTS_Alpha = 1.f; //0.7
 		m_fTS_Scale = 300.f;
 	}
 	else if (TEXTURE_TS_SMOKE1 == eEffectID)
 	{
-		m_fTS_Alpha = 0.8f;
+		m_fTS_Alpha = 1.f; //0.8
 		m_fTS_Scale = 200.f;
 		m_iTextureNum = 1;
 	}
@@ -702,7 +702,7 @@ void CTextureEffect::Set_Info(TEXTUREEFFECT eEffectID, _vec3* pPos, _vec3* pAngl
 		m_iPass = 9;
 		break;
 	}
-	case TEXTURE_TS_SMOKE0:
+	case TEXTURE_TS_SMOKE0: //ÈñÁ¤
 	{
 		m_fTS_Scale = 300.f;
 		m_pTransformCom->Set_Scale(m_fTS_Scale, m_fTS_Scale, m_fTS_Scale);
@@ -712,10 +712,10 @@ void CTextureEffect::Set_Info(TEXTUREEFFECT eEffectID, _vec3* pPos, _vec3* pAngl
 		m_bLoop = true;
 		m_fFrameSpeed = 1.f;
 		m_iPass = 18;
-		m_fTS_Alpha = 0.8f;
+		m_fTS_Alpha = 1.f;
 		break;
 	}
-	case TEXTURE_TS_SMOKE1:
+	case TEXTURE_TS_SMOKE1: //ÈñÁ¤
 	{
 		m_fTS_Scale = 200.f;
 		m_pTransformCom->Set_Scale(m_fTS_Scale, m_fTS_Scale, m_fTS_Scale);
@@ -725,7 +725,7 @@ void CTextureEffect::Set_Info(TEXTUREEFFECT eEffectID, _vec3* pPos, _vec3* pAngl
 		m_bLoop = true;
 		m_fFrameSpeed = 1.f;
 		m_iPass = 18;
-		m_fTS_Alpha = 0.7f;
+		m_fTS_Alpha = 1.f;
 		m_iTextureNum = 1;
 		break;
 	}
@@ -1430,6 +1430,9 @@ void CTextureEffect::Transform(const _double& dTimeDelta)
 		|| TEXTURE_TS_SMOKE1 == m_eTextureEffect)
 	{
 		m_fTS_Alpha -= _float(dTimeDelta*0.4);
+		if (0.f >= m_fTS_Alpha)
+			m_fTS_Alpha = 0.f;
+
 		m_fTS_Scale += _float(dTimeDelta * 10);
 		m_pTransformCom->Set_Scale(m_fTS_Scale, m_fTS_Scale, m_fTS_Scale);
 	}
