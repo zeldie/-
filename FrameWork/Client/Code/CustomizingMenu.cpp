@@ -109,7 +109,7 @@ void CCustomizingMenu::RenderCustomizeList()
 	{
 		Engine::Render_Font(L"Font_GODIC2", L"´« ¸ð¾ç", &_vec2(935.5f, 161.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); 
 		Engine::Render_Font(L"Font_GODIC2", L"´«½ç ¸ð¾ç", &_vec2(935.5f, 291.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+130
-		Engine::Render_Font(L"Font_GODIC2", L"¸ö »ö»ó", &_vec2(935.5f, 441.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+150
+		//Engine::Render_Font(L"Font_GODIC2", L"¸ö »ö»ó", &_vec2(935.5f, 441.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+150
 	}
 	else if (CUIMgr::UITYPE_HAIR_INCUSTOMIZE == CUIMgr::GetInstance()->Get_UIType())
 	{
@@ -117,7 +117,7 @@ void CCustomizingMenu::RenderCustomizeList()
 		Engine::Render_Font(L"Font_GODIC2", L"µÞ¸Ó¸® ¸ð¾ç", &_vec2(935.5f, 141.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+130
 		Engine::Render_Font(L"Font_GODIC2", L"¿·¸Ó¸® ¸ð¾ç", &_vec2(935.5f, 271.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+130
 		Engine::Render_Font(L"Font_GODIC2", L"²¿¸®¸Ó¸® ¸ð¾ç", &_vec2(935.5f, 401.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+130
-		Engine::Render_Font(L"Font_GODIC2", L"¸Ó¸® »ö»ó", &_vec2(935.5f, 531.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+130
+		//Engine::Render_Font(L"Font_GODIC2", L"¸Ó¸® »ö»ó", &_vec2(935.5f, 531.9f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f)); //+130
 	}
 	else if (CUIMgr::UITYPE_CLOTHES_INCUSTOMIZE == CUIMgr::GetInstance()->Get_UIType())
 	{
