@@ -10,7 +10,7 @@ class CLightCamera;
 extern CLightCamera* m_pLightCamera;
 extern _vec3 vTest;
 extern _double temp;
-extern float temp2;
+extern float Gamma;
 extern _vec3 vCamPos;
 #define __EXTERN_H__
 #endif // __EXTERN_H__

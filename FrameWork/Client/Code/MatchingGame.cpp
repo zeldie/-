@@ -310,16 +310,16 @@ HRESULT CMatchingGame::Ready_Environment_Layer()
 
 	Engine::CGameObject*		pGameObject = nullptr;
 
-	//pGameObject = CMiniGameCamera::Create(m_pGraphicDev,
-	//	&_vec3(800.f, 100.f, 0.f),
-	//	&_vec3(0.f, 0.f, 1.f),
-	//	&_vec3(0.f, 1.f, 0.f),
-	//	D3DXToRadian(45.f),
-	//	_float(WINCX) / WINCY,
-	//	0.7f,
-	//	4000.f);
-	//if (FAILED(pLayer->Add_GameObject(L"MiniGameCamera", pGameObject)))
-	//	return E_FAIL;
+	pGameObject = CMiniGameCamera::Create(m_pGraphicDev,
+		&_vec3(800.f, 100.f, 0.f),
+		&_vec3(0.f, 0.f, 1.f),
+		&_vec3(0.f, 1.f, 0.f),
+		D3DXToRadian(45.f),
+		_float(WINCX) / WINCY,
+		0.7f,
+		4000.f);
+	if (FAILED(pLayer->Add_GameObject(L"MiniGameCamera", pGameObject)))
+		return E_FAIL;
 
 	pGameObject = CSkySphere::Create(m_pGraphicDev, CSkySphere::SKY_SHOOTINGSTAGE);
 	if (FAILED(pLayer->Add_GameObject(L"ZSky", pGameObject)))

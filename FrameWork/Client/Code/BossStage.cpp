@@ -72,7 +72,7 @@ HRESULT CBossStage::Load_Architecture(Engine::CLayer* pLayer, WCHAR * wstrPath)
 		ReadFile(hFile, &vecScale, sizeof(_vec3), &dwByte, nullptr);
 		if (wstrObjTag == L"Mesh_StainedGlass")
 		{
-			if (m_iStainedGlassNum < 4)
+			if (m_iStainedGlassNum < 2)
 			{
 				if (FAILED(pLayer->Add_GameObject(wstrObjTag, CStainedGlass::Create(m_pGraphicDev, &vecPos, &vecAngle, &vecScale, true, m_iStainedGlassNum))))
 					return E_FAIL;

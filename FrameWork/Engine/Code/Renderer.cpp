@@ -75,7 +75,7 @@ void Engine::CRenderer::Render_GameObject(LPDIRECT3DDEVICE9 & pGraphicDev, const
 	Render_Fade(pGraphicDev, dTimeDelta); // 화면 넘어갈때 ->FIX
 	if (m_bDrawRenderTarget)
 	{
-		Engine::Render_RenderTarget(Engine::PRE_DEPTH);
+		//Engine::Render_RenderTarget(Engine::PRE_DEPTH);
 		Engine::Render_RenderTarget(Engine::GEOMETRY); // List
 		Engine::Render_RenderTarget(Engine::SHADE);
 		Engine::Render_RenderTarget(Engine::HDR_BASE);
@@ -84,11 +84,11 @@ void Engine::CRenderer::Render_GameObject(LPDIRECT3DDEVICE9 & pGraphicDev, const
 		//Engine::Render_RenderTarget(Engine::LUMINANCE3);
 		//Engine::Render_RenderTarget(Engine::LUMINANCE4);
 		//Engine::Render_RenderTarget(Engine::LUMINANCE5);
-		Engine::Render_RenderTarget(Engine::LUMINANCE6);
+		//Engine::Render_RenderTarget(Engine::LUMINANCE6);
 		Engine::Render_RenderTarget(Engine::BRIGHTPASS);
 		//Engine::Render_RenderTarget(Engine::BRIGHTPASSDOWNSAMPLE);
-		Engine::Render_RenderTarget(Engine::HORIZONTALBLUR);
-		Engine::Render_RenderTarget(Engine::VERTICALBLUR);
+		//Engine::Render_RenderTarget(Engine::HORIZONTALBLUR);
+		//Engine::Render_RenderTarget(Engine::VERTICALBLUR);
 		//Engine::Render_RenderTarget(Engine::CARTOON); //List
 		Engine::Render_RenderTarget(Engine::OUTLINE);
 		//Engine::Render_RenderTarget(Engine::OCCLUSION);
@@ -97,20 +97,20 @@ void Engine::CRenderer::Render_GameObject(LPDIRECT3DDEVICE9 & pGraphicDev, const
 		Engine::Render_RenderTarget(Engine::OCCLUSION_VERTICALBLUR);
 		Engine::Render_RenderTarget(Engine::SHADOW_PLAYER); // List
 		//DOF
-		Engine::Render_RenderTarget(Engine::HDRFINISH);
-		Engine::Render_RenderTarget(Engine::DOFDOWNSAMPLE);
-		Engine::Render_RenderTarget(Engine::DOFHORIZONTALBLUR);
+		//Engine::Render_RenderTarget(Engine::HDRFINISH);
+		//Engine::Render_RenderTarget(Engine::DOFDOWNSAMPLE);
+		//Engine::Render_RenderTarget(Engine::DOFHORIZONTALBLUR);
 		Engine::Render_RenderTarget(Engine::DOFVERTICALBLUR);
 
 		//LightShaft
-		Engine::Render_RenderTarget(Engine::OCCLUSIONSUB);
+		//Engine::Render_RenderTarget(Engine::OCCLUSIONSUB);
 		Engine::Render_RenderTarget(Engine::LIGHTSHAFT);
 		//HDR_ALPHA
 		Engine::Render_RenderTarget(Engine::BLUR);
 
 		//SHadowFilter
 		Engine::Render_RenderTarget(Engine::FINALIMAGE);
-		Engine::Render_RenderTarget(Engine::RADIALBLUR);
+		//Engine::Render_RenderTarget(Engine::RADIALBLUR);
 	}
 
 	Clear_RenderGroup();
@@ -190,9 +190,8 @@ HRESULT CRenderer::Ready_Renderer(LPDIRECT3DDEVICE9& pGraphicDev)
 	pIndex[1]._2 = 3;
 
 	m_pIB->Unlock();
-
-
-	if (FAILED(m_pGraphicDev->CreateDepthStencilSurface(10240.f, 5760.f, D3DFMT_D24S8, D3DMULTISAMPLE_NONE, 0, TRUE, &m_pShadow_DS_Surface, nullptr)))
+ 
+	if (FAILED(m_pGraphicDev->CreateDepthStencilSurface(1280.f, 720.f, D3DFMT_D24S8, D3DMULTISAMPLE_NONE, 0, TRUE, &m_pShadow_DS_Surface, nullptr)))
 		return E_FAIL;
 
 	return S_OK;
@@ -969,7 +968,8 @@ void CRenderer::Render_LightShaft(LPDIRECT3DDEVICE9 & pGraphicDev)
 	Safe_AddRef(pEffect);
 	Engine::SetUp_OnShader(pEffect, Engine::OCCLUSIONSUB, "g_OcclusionTexture");
 	//X : Density, Y : Decay, Z : Weight, W : Exposure
-	pEffect->SetVector("vLightShaftValue", &_vec4(0.926f, 0.96f, 0.58f, 0.1f));
+	//pEffect->SetVector("vLightShaftValue", &_vec4(0.726f, 0.99f, 0.38f, 0.2f));
+	pEffect->SetVector("vLightShaftValue", &_vec4(0.926f, 0.96815f, 0.38f, 0.1f));
 	pEffect->SetFloat("fLightPositionX", m_vLightPosition.x);
 	pEffect->SetFloat("fLightPositionY", m_vLightPosition.y);
 	pEffect->Begin(NULL, 0);
