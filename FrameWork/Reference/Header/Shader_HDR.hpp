@@ -1,3 +1,4 @@
+float Gamma;
 texture g_HDRBaseTexture;
 
 sampler HDRBaseSampler = sampler_state 
@@ -222,7 +223,7 @@ PS_OUT PS_BRIGHTPASS(PS_IN In)
 	float luminance = max(vAverage.r, max(vAverage.g, vAverage.b));
 	if (luminance < fBrightPassThreshold)
 		vAverage = vector(0.f, 0.f, 0.f, 1.f);
-	Out.vColor = vAverage + pow(abs(tex2D(BlurSampler, In.vTexUV)), 2.2f);
+	Out.vColor = vAverage + pow(abs(tex2D(BlurSampler, In.vTexUV)), 2.2);
 	return Out;
 }
 
@@ -268,8 +269,8 @@ PS_OUT PS_FIANL(PS_IN In)
 	PS_OUT Out = (PS_OUT)0;
 
 	// Read the HDR value that was computed as part of the original scene
-	vector vC = pow(abs(tex2D(HDRBaseSampler, In.vTexUV)), 2.2f) * fMiddleGray / (Luminance + 0.001f);
-	//vector vC = pow(abs(tex2D(HDRBaseSampler, In.vTexUV) * fMiddleGray / (Luminance + 0.001f)), 2.2f);
+	vector vC = pow(abs(tex2D(HDRBaseSampler, In.vTexUV)), 2.2) * fMiddleGray / (Luminance + 0.001f);
+	//vector vC = pow(abs(tex2D(HDRBaseSampler, In.vTexUV) * fMiddleGray / (Luminance + 0.001f)), Gamma);
 
 	// Read the luminance value, target the centre of the texture
 	// which will map to the only pixel in it!
@@ -298,7 +299,7 @@ PS_OUT PS_FIANL(PS_IN In)
 	//vB += (yWeight * (1.f - xWeight))             * tex2D(VerticalBlurSampler, In.vTexUV + float2(0.0f, yDir));
 	//vB += (xWeight * yWeight)                      * tex2D(VerticalBlurSampler, In.vTexUV + float2(xDir, yDir));
 
-	vector vBlur = pow(abs(tex2D(BlurSampler, In.vTexUV)), 2.2f);
+	vector vBlur = pow(abs(tex2D(BlurSampler, In.vTexUV)), 2.2);
 	// Compute the actual colour:
 	vector vFinal = vC + vB + vBlur * 2.f;
 	//vC = vC + 0.25f * vB;

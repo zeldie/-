@@ -57,7 +57,6 @@ _int CMatchingPlayer::Update_GameObject(const _double & dTimeDelta)
 {
 	CDynamicMeshObject::Update_GameObject(dTimeDelta);
 
-	D3DXMatrixOrthoLH(&m_matProj, WINCX, WINCY, 0.1f, 4000.f); //->직교투영
 
 	return Engine::NO_EVENT;
 }
@@ -266,7 +265,7 @@ HRESULT CMatchingPlayer::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 	pEffect->SetMatrix("g_matWorld", &matWorld);
 	pEffect->SetMatrix("g_matView", &matView);
 	pEffect->SetMatrix("g_matProj", &m_matProj);
-	pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
+	//pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
 	return S_OK;
 }
 

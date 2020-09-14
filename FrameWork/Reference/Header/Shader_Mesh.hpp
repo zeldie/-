@@ -74,11 +74,11 @@ magfilter = linear;
 mipfilter = linear;
 };
 
-texture			g_ShadowFilterTexture;
+texture			g_DistortionColorTexture;
 
-sampler ShadowFilterSampler = sampler_state
+sampler DistortionColorSampler = sampler_state
 {
-	texture = g_ShadowFilterTexture;
+	texture = g_DistortionColorTexture;
 minfilter = linear;
 magfilter = linear;
 mipfilter = linear;
@@ -100,7 +100,7 @@ float g_fTerrainMipMap; //희정
 
 vector vOcclusionColor; // GODRAY
 float fInvCamFar; // DEPTH
-float fShadowBias = -0.00000125f;
+float fShadowBias = -0.00000225f;
 float3 g_vCamPos;
 float3 g_vPosition;
 struct VS_IN_FIRST
@@ -398,7 +398,7 @@ PS_OUT_FIRST PS_MAIN(PS_IN_FIRST In)
 	//알베도
 	Out.vColor = tex2D(DiffuseSampler, In.vTexUV);
 	Out.vColor *= vChangeColor;
-	Out.vColor.a = In.fBlur;
+
 
 	//노말
 	vector tangentNormal = tex2D(NormalSampler, In.vTexUV);
@@ -424,7 +424,7 @@ PS_OUT_FIRST PS_MAIN(PS_IN_FIRST In)
 	}
 	//발광
 	Out.vEmmisive = tex2D(EmmisiveSampler, In.vTexUV);
-	
+	Out.vColor.a = In.fBlur;
 	return Out;
 }
 
@@ -654,7 +654,7 @@ PS_OUT_FIRST PS_DECAL_DISSAPEAR(PS_IN_FIRST In)
 
 float fDistortionWeight;
 float fDistortionUV;
-vector vDistortionColor;
+//vector vDistortionColor;
 PS_OUT_FIRST PS_DISTORTION(PS_IN_FIRST In)
 {
 
@@ -663,7 +663,8 @@ PS_OUT_FIRST PS_DISTORTION(PS_IN_FIRST In)
 	//알베도
 	vector vDistortion = tex2D(DistortionSampler, In.vTexUV);
 	float fWeight = vDistortion.r * fDistortionWeight;
-	Out.vColor = tex2D(DiffuseSampler, In.vTexUV + float2(fWeight, fWeight + fDistortionUV));
+	Out.vColor = tex2D(DiffuseSampler, In.vTexUV + float2(fWeight + fDistortionUV * 2.f, fWeight + fDistortionUV));
+	vector vDistortionColor = tex2D(DistortionColorSampler, In.vTexUV);
 	Out.vColor *= vDistortionColor;
 	//노말
 	vector tangentNormal = tex2D(NormalSampler, In.vTexUV);

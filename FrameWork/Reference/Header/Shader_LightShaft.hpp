@@ -26,7 +26,7 @@ struct PS_OUT
 PS_OUT PS_LIGHTSHAFT(PS_IN In)
 {
 	PS_OUT		Out = (PS_OUT)0;
-	float2 deltaTexCoord = (In.vTexUV- float2(0.5f, 0.2f));
+	float2 deltaTexCoord = (In.vTexUV- float2(fLightPositionX, fLightPositionY));
 	deltaTexCoord *= vLightShaftValue.x / NUM_SAMPLES;
 	vector vcolor = tex2D(OcclusionSampler, In.vTexUV);
 	float illuminationDecay = 1.f;

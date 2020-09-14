@@ -14,7 +14,7 @@ CLightCamera*			m_pLightCamera = nullptr;
 //아래 이 코드는 클라에서 실시간으로 값을 확인할려고 씀, 값을 늘리는방법은 아래 Update에 KeyPressing 으로 만듬
 _vec3 vTest = _vec3(1.f, 1.f, 1.f);
 _double temp = 0;
-float temp2 = 300.f;
+
 CMainApp::CMainApp()
 	:m_pDeviceClass(nullptr),
 	m_pManagement(nullptr),
