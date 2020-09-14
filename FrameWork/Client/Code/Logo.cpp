@@ -15,6 +15,7 @@
 #include "Text_Loading.h"
 #include "Text_Complete.h"
 
+#include "Ending.h"
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CScene(pGraphicDev),
 	m_pLoading(nullptr)
