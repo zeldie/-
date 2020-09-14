@@ -76,11 +76,11 @@ HRESULT CApostle::Ready_GameObject(_vec3 * pPos, _vec3 * pAngle, _vec3 * pScale)
 	Engine::Subscribe(Engine::PLAYER, m_pPlayerObserver);
 
 	m_tBaseInfo.eObjectID = OBJECT_MONSTER;
-	m_tBaseInfo.iMaxHp = 400;
-	m_tBaseInfo.iHp = 400;
-	m_tBaseInfo.iPrevHp = 400;
-	m_tBaseInfo.iSuperAmmor = 1000;
-	m_tBaseInfo.iMaxSuperAmmor = 1000;
+	m_tBaseInfo.iMaxHp = 80000;
+	m_tBaseInfo.iHp = 80000;
+	m_tBaseInfo.iPrevHp = 80000;
+	m_tBaseInfo.iSuperAmmor = 30000;
+	m_tBaseInfo.iMaxSuperAmmor = 30000;
 	m_tBaseInfo.iCheatATK = 0;
 	m_iPhase = 1;
 	m_dbAddDelay = 0.5;

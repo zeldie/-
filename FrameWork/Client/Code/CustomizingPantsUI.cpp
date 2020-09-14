@@ -5,7 +5,8 @@
 CCustomizingPantsUI::CCustomizingPantsUI(LPDIRECT3DDEVICE9 pGraphicDev)
 	:CUIObject(pGraphicDev),
 	m_ePantsType(PANTSTYPE_END),
-	m_bChoose(false)
+	m_bChoose(false),
+	m_bCheckDouble(false)
 {
 }
 
@@ -50,10 +51,21 @@ _int CCustomizingPantsUI::LateUpdate_GameObject(const _double & dTimeDelta)
 
 	if (m_bChoose && Engine::MouseUp(Engine::DIM_LB))
 	{
-		//텍스쳐 주변 테두리
-		CUIMgr::GetInstance()->CheckIsWearing(L"Pants", m_ePantsType);
-		//실제 파츠 변경
-		CUIMgr::GetInstance()->ChangeParts(L"Pants", m_ePantsType);
+		if (!m_bCheckDouble)
+		{
+			//텍스쳐 주변 테두리
+			CUIMgr::GetInstance()->CheckIsWearing(L"Pants", m_ePantsType);
+			//실제 파츠 변경
+			CUIMgr::GetInstance()->ChangeParts(L"Pants", m_ePantsType);
+
+			m_bCheckDouble = true;
+		}
+		else
+		{
+			//바지한번 더 누르면 안입은상태로 만들수있다
+			CUIMgr::GetInstance()->TakeOffParts(L"Pants");
+			m_bCheckDouble = false;
+		}
 	}
 
 

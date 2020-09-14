@@ -202,17 +202,19 @@ void CResultBackBar::Render_Geometry(const _double & dTimeDelta)
 			//Engine::Render_Font(L"Font_GODICHEAVY", L"임무완료", &_vec2(126.f, 270.f), D3DXCOLOR(0.08f, 0.71f, 0.95f, 1.f));
 
 			//Engine::Render_Font(L"Font_GODIC", L"카르마", &_vec2(156.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
-			Engine::Render_Font(L"Font_GODIC", L"이름", &_vec2(915.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
+			Engine::Render_Font(L"Font_GODIC", L"이름", &_vec2(765.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
 			//Engine::Render_Font(L"Font_GODIC", L"방해량", &_vec2(381.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
 			//Engine::Render_Font(L"Font_GODIC", L"피해량", &_vec2(501.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
-			Engine::Render_Font(L"Font_GODIC", L"데스", &_vec2(1031.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
-			Engine::Render_Font(L"Font_GODIC", L"클리어 타임", &_vec2(1151, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
+			Engine::Render_Font(L"Font_GODIC", L"데스", &_vec2(881.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
+			Engine::Render_Font(L"Font_GODIC", L"클리어 타임", &_vec2(1001.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
+			Engine::Render_Font(L"Font_GODIC", L"점수", &_vec2(1134.f, 310.f), D3DXCOLOR(0.49f, 0.48f, 0.52f, 1.f));
 
-			Engine::Render_Font(L"Font_GODIC2", L"탐욕의 사도", &_vec2(901.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+			Engine::Render_Font(L"Font_GODIC2", L"탐욕의 사도", &_vec2(751.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 			//Engine::Render_Font(L"Font_GODIC", m_szTotalBreak/*m_wstrTotalBreak*/, &_vec2(384.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 			//Engine::Render_Font(L"Font_GODIC", m_szTotalDamage/* m_wstrTotalDamage*/, &_vec2(504.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
-			Engine::Render_Font(L"Font_GODIC2", m_wstrTotalDeath, &_vec2(1034, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
-			Engine::Render_Font(L"Font_GODIC2", m_wstrTotalTime, &_vec2(1154, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+			Engine::Render_Font(L"Font_GODIC2", m_wstrTotalDeath, &_vec2(884.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+			Engine::Render_Font(L"Font_GODIC2", m_wstrTotalTime, &_vec2(1004.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+			Engine::Render_Font(L"Font_GODIC2", m_szTotalRunGamePoints, &_vec2(1137.f, 350.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 
 		}
 	}
@@ -270,10 +272,6 @@ void CResultBackBar::GetResult()
 		_uint iBlueTeam = m_pUIMgr->Get_BlueScore();
 		_uint iRedTeam = m_pUIMgr->Get_RedScore();
 
-		////test/////////////////
-		//iBlueTeam = 150;
-		//iRedTeam = 100;
-		///////////////////////
 		wsprintf(m_szBlueTotalScore, L"%d", iBlueTeam);
 		wsprintf(m_szRedTotalScore, L"%d", iRedTeam);
 
@@ -292,14 +290,6 @@ void CResultBackBar::GetResult()
 		//////정보
 		//PLAYER
 		FLAG_RESULT tPlayer = m_pUIMgr->Get_FlagResultInfo(OBJECT_PLAYER);
-
-		////test//////////////////////////////
-		//tPlayer.iEarnedPoints = 100;
-		//tPlayer.iKill = 5;
-		//tPlayer.iDamage = 25683;
-		//tPlayer.iBreak = 456821542;
-		/////////////////////////////////////////
-
 
 		lstrcpy(m_szFlagResult[PLAYER].szName, tPlayer.szName);
 		wsprintf(m_szFlagResult[PLAYER].szEarnedPoints, L"%d", tPlayer.iEarnedPoints);
@@ -353,8 +343,13 @@ void CResultBackBar::GetResult()
 	}
 	else if (CUIMgr::UITYPE_RESULT_Run == m_pUIMgr->Get_UIType())
 	{
+		//데스
 		m_iTotalDeath = m_pUIMgr->Get_AccumulatedDeath();
 		m_wstrTotalDeath = to_wstring(m_iTotalDeath);
+		
+		//점수		
+		_uint iTotalRunGamePoints = m_pUIMgr->GetAccumulatedRunGamePoints();
+		MakeComma(iTotalRunGamePoints, m_szTotalRunGamePoints);
 	}
 }
 

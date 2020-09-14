@@ -303,6 +303,35 @@ VS_DEPTH_OUT	VS_DEPTH(VS_DEPTH_IN In)
 	Out.vTexUV = In.vTexUV;
 	return Out;
 }
+float2 ChangeUV;
+VS_OUT_FIRST	VS_UVCHANGE(VS_IN_FIRST In)
+{
+	VS_OUT_FIRST		Out = (VS_OUT_FIRST)0;
+
+	matrix	matWV, matWVP;
+
+	matWV = mul(g_matWorld, g_matView);
+	matWVP = mul(matWV, g_matProj);
+
+	Out.vPosition = mul(vector(In.vPosition.xyz, 1.f), matWVP);
+	Out.vProjPos = Out.vPosition;
+	Out.vViewPos = mul(vector(In.vPosition.xyz, 1.f), matWV);
+
+	matrix	matLightWV, matLightWVP;
+	matLightWV = mul(g_matWorld, g_matLightView);
+	matLightWVP = mul(matLightWV, g_matLightProj);
+	Out.vLightProjPos = mul(vector(In.vPosition.xyz, 1.f), matLightWVP);
+	Out.vTexUV = In.vTexUV + ChangeUV;
+
+	float3 worldNormal = mul(In.vNormal, (float3x3)g_matWorld);
+	Out.vNormal = normalize(worldNormal);
+	float3 worldTangent = mul(In.vTangent, (float3x3)g_matWorld);
+	Out.vTangent = normalize(worldTangent);
+	float3 worldBinormal = mul(In.vBiNormal, (float3x3)g_matWorld);
+	Out.vBiNormal = normalize(worldBinormal);
+	Out.fBlur = saturate(abs(Out.vViewPos.z - fFocalDistance) / fFocalRange);
+	return Out;
+}
 
 struct	PS_IN_FIRST
 {
@@ -1070,5 +1099,12 @@ technique		Default_Device
 
 	vertexshader = compile vs_3_0 VS_ALPHA();
 	pixelshader = compile ps_3_0 PS_ALPHA();
+	}
+
+	pass	UVCHANGE //22
+	{
+
+	vertexshader = compile vs_3_0 VS_UVCHANGE();
+	pixelshader = compile ps_3_0 PS_MAIN();
 	}
 };

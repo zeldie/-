@@ -32,6 +32,9 @@ CRunGame::CRunGame(LPDIRECT3DDEVICE9 pGraphicDev)
 	, m_bInit(false)
 	, m_szStageSecond(L"")
 	, m_dTotalTime(0.f)
+	, m_bOneCreateUI(true)
+	, m_bRenderStart(false)
+	, m_bOne(true)
 {
 }
 
@@ -116,7 +119,7 @@ HRESULT CRunGame::Ready_Scene()
 	CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Wall_Left.dat", LINETYPE::LINE_WALL_LEFT_MID, SECT_1);
 	CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Wall_Right.dat", LINETYPE::LINE_WALL_RIGHT_MID, SECT_1);
 	CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Top_Mid.dat", LINETYPE::LINE_TOP_MID, SECT_1);
-	
+
 	//CRunGameMgr::GetInstance()->Load_Line(L"../../Data/Mesh/Line_Bot_Left2.dat", LINETYPE::LINE_BOTTOM_LEFT, SECT_2);
 
 	CCameraMgr::GetInstance()->SettingCamView();
@@ -135,6 +138,11 @@ _int CRunGame::Update_Scene(const _double & dTimeDelta)
 	m_pUIMgr->UI_OnCheck();
 
 	_int iExit = Engine::CScene::Update_Scene(dTimeDelta);
+
+	if (CUIMgr::GetInstance()->Get_RunGameStart())
+	{
+		m_bRenderStart = true;
+	}
 
 	LateInit();
 
@@ -238,13 +246,28 @@ _int CRunGame::Update_Scene(const _double & dTimeDelta)
 			return iExit;
 		}
 	}
-	
+
 	if (Engine::KeyDown(DIK_F8))
 	{
 		m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
 	}
+
+	//컷씬끝나고 결과창!
+	if (CCameraMgr::GetInstance()->Get_ItemGetCheck())
+	{
+		if (m_bOneCreateUI)
+		{
+			//시간멈추고
+			m_pUIMgr->Set_RunGameTimeStop(false);
+
+			//결과창
+			m_pUIMgr->CreateResultUI_Run(m_pGraphicDev);
+			m_bOneCreateUI = false;
+		}
+	}
+
 	////////////////////////////////
-	// 로비로
+	// 결과창 -> 로비로
 	if (CUIMgr::UITYPE_RESULT_Run == m_pUIMgr->Get_UIType())
 	{
 		if (CUIMgr::GetInstance()->CheckClickEXITButton())
@@ -276,10 +299,17 @@ _int CRunGame::Update_Scene(const _double & dTimeDelta)
 	m_pLightCamera->Update_GameObject(dTimeDelta);
 	////////////////////////////////
 	m_dEnterSceneTime += dTimeDelta;
-	if (!m_bEnterScene && m_dEnterSceneTime > 5)
+	if (!m_bEnterScene && m_dEnterSceneTime > 2)
 	{
 		CLoadingMgr::GetInstance()->Set_EndFade(true);
 		m_bEnterScene = true;
+		
+		if (m_bOne)
+		{
+			m_pUIMgr->CreateRunUI(m_pGraphicDev);
+			m_bOne = false;
+		}
+
 	}
 	return iExit;
 }
@@ -306,9 +336,16 @@ void CRunGame::Render_Scene()
 	//////희정 추가
 	//실제게임에서는 위에 주석걸거니까.
 	//결과창일 때를 제외하고 시간이 보인다.
-	if(CUIMgr::UITYPE_RESULT_Run != CUIMgr::GetInstance()->Get_UIType())
-		RenderTime(); 
-
+	if (CUIMgr::UITYPE_RESULT_Run != CUIMgr::GetInstance()->Get_UIType())
+	{
+		if (m_bRenderStart)
+		{
+			//시간
+			RenderTime();
+			//점수
+			RenderPoints();
+		}
+	}	
 }
 
 void CRunGame::RenderTime()
@@ -316,20 +353,20 @@ void CRunGame::RenderTime()
 	//_double dStageTime = m_pUIMgr->Get_StageTime();
 	//시간 누적
 	m_pUIMgr->SetAccumulatedTime(m_dTotalTime);
-	
+
 	//앞에 초
 	wsprintf(m_szStageSecond, L"%d", (_uint)m_dTotalTime);
-	
+
 	//자릿수구하기-> 글자 위치
 	_uint iQuotient = (_uint)m_dTotalTime / 100;
 	_uint iUnitNumber = 0;
-	if ( 0 != iQuotient) //3자리수
+	if (0 != iQuotient) //3자리수
 	{
 		iUnitNumber = 3;
 	}
 	else
 	{
-		if (0 != (_uint)m_dTotalTime /10) // 2자리수
+		if (0 != (_uint)m_dTotalTime / 10) // 2자리수
 		{
 			iUnitNumber = 2;
 		}
@@ -379,15 +416,76 @@ void CRunGame::RenderTime()
 	//////////////////////////////////////////////////////
 }
 
+void CRunGame::RenderPoints()
+{
+	_tchar szPoint[MIN_STR];
+	ZeroMemory(szPoint, sizeof(_tchar)*(MIN_STR));
+	MakeComma(m_pUIMgr->GetAccumulatedRunGamePoints(), szPoint);
+
+	Engine::Render_Font(L"Font_GODIC3", szPoint, &_vec2(600.f,70.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+}
+
 void CRunGame::StageTimeCheck(const _double& dTimeDelta)
 {
-	if(!m_pUIMgr->Get_RunGameTimeStop())
+	if (!m_pUIMgr->Get_RunGameTimeStop())
+	{
 		m_dTotalTime += dTimeDelta;
+		//시간흐르면 점수도 1 점씩 오르게
+		m_pUIMgr->SetAccumulatedRunGamePoints(1);
+	}
 	else
 	{
 		m_dTotalTime = m_dTotalTime;
 	}
+}
 
+void CRunGame::MakeComma(_uint iData, _tchar * szResult)
+{
+	_tchar szBuff[MAX_STR], *szCopy;
+
+	_uint iLen = wsprintf(szBuff, L"%d", iData);
+	//음수 조건 제외
+
+	szCopy = szBuff;
+	//자릿수가 3자리 이상이어야 ',' 사용 -> 자릿수 체크
+	_uint AddCnt = iLen / 3;
+	_uint SkipCnt = iLen % 3;
+
+	if (AddCnt > 0 && !SkipCnt)
+		AddCnt--;
+
+	//자릿수가 3자리 이상이면 ',' 찍는다
+	if (AddCnt > 0)
+	{
+		//선두에 있는 ','앞에 추가될 숫자복사
+		if (SkipCnt > 0)
+		{
+			//memcpy(szResult, szCopy, SkipCnt);
+			lstrcpy(&szResult[0], &szBuff[0]);
+
+			szResult += SkipCnt;
+			*szResult++ = ',';
+
+			szCopy += SkipCnt;
+			iLen -= SkipCnt;
+		}
+
+		for (_uint i = 0; i < iLen; i++)
+		{
+			//3의 배수마다 ',' 추가
+			if (i && !(i % 3))
+				*szResult++ = ',';
+
+			*szResult++ = *szCopy++;
+		}
+
+		*szResult = 0;
+	}
+	else
+	{
+		//자릿수가 3자리가 안되면 원본복사
+		memcpy(szResult, szCopy, iLen + 1);
+	}
 }
 
 HRESULT CRunGame::Ready_Environment_Layer()
@@ -439,7 +537,7 @@ HRESULT CRunGame::Ready_GameObject_Layer()
 	Load_Architecture(pLayer, L"../../Data/Mesh/Map_Run001.dat");
 	//Load_Architecture(pLayer, L"../../Data/Mesh/Map_Run02.dat");
 	//Load_Architecture(pLayer, L"../../Data/Mesh/Map_RunTestBig.dat");
-	 
+
 	m_mapLayer.emplace(Engine::GAMEOBJECT, pLayer);
 
 	return S_OK;
@@ -453,7 +551,6 @@ HRESULT CRunGame::Ready_UI_Layer()
 
 	//Engine::CGameObject*		pGameObject = nullptr;
 	m_pUIMgr->Set_UIType(CUIMgr::UITYPE_RUN);
-	
 	m_mapLayer.emplace(Engine::UI, pLayer);
 	return S_OK;
 }
@@ -477,14 +574,14 @@ void CRunGame::LateInit()
 {
 	if (m_bInit)
 		return;
-	
+
 	CSoundMgr::Get_Instance()->AllStop();
 	CSoundMgr::Get_Instance()->BGMSTART(99);
 	m_bInit = true;
 
 	CRunGameMgr::GetInstance()->Create_Obstacle(1);
 
-	m_pUIMgr->CreateRunUI(m_pGraphicDev);
+	
 	m_pUIMgr->CreateMouse(m_pGraphicDev, CMouse::MOUSE_INVISIBLE);
 }
 

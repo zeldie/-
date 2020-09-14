@@ -48,7 +48,7 @@ void Engine::CRenderer::Render_GameObject(LPDIRECT3DDEVICE9 & pGraphicDev, const
 	/*m_iRenderNonAlpha = m_RenderGroup[RENDER_NONALPHA].size();
 	m_iRenderAlpha = m_RenderGroup[RENDER_ALPHA].size();
 	m_iRenderUI = m_RenderGroup[RENDER_UI].size();*/
-	//Render_Shadow(pGraphicDev, dTimeDelta);	// 툴작업할때 주석걸어야함, 그림자타겟에 그림자 그림 ->FIX
+	Render_Shadow(pGraphicDev, dTimeDelta);	// 툴작업할때 주석걸어야함, 그림자타겟에 그림자 그림 ->FIX
 	Render_Depth(pGraphicDev, dTimeDelta);	// 툴작업할때 주석걸어야함, SSD을 위해 지형들에게뎁스를 미리 넣어줌 ->FIX
 	Render_Priority(pGraphicDev, dTimeDelta);	// 툴작업할때 주석걸어야함, 딱히 안쓰는듯 -> FIX
 	Render_Geometry(pGraphicDev, dTimeDelta);   // 일반적인 렌더 ->FIX

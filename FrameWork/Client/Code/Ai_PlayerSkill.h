@@ -16,8 +16,8 @@ public:
 	virtual void Rotation_Direction(const _matrix matView, const _vec3 vPlayerLook, _float* fCrossy, _vec3* vDir, _float* fDegree);
 
 public:
-	void			Enter_State(CBasePlayer* pPlayer) override;
-	void			Update_State(const _double dTimeDelta) override;
+	void					Enter_State(CBasePlayer* pPlayer) override;
+	void					Update_State(const _double dTimeDelta) override;
 	CAi_Player::STATE_ID	LateUpadte_State(const _double dTimeDelta) override;
 
 private:
@@ -44,6 +44,7 @@ private:
 
 	_vec3 vTargetPos;
 	_vec3 vStartPos;
+	_vec3 m_vOrbUltPos;
 
 	_float fLength;
 

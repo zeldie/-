@@ -19,6 +19,7 @@
 #include "Belatos.h"
 #include "Tree.h"
 #include "Flag.h"
+#include "Ending.h"
 
 #include "LightCamera.h"
 CCartel::CCartel(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -105,6 +106,10 @@ HRESULT CCartel::Load_Architecture(Engine::CLayer* pLayer, WCHAR * wstrPath)
 
 HRESULT CCartel::Ready_Scene()
 {
+	m_pUIMgr->Set_PlayerMainWeapon(2); //대검
+	m_pUIMgr->Set_PlayerSubWeapon(3); //오브
+
+
 	if (FAILED(Ready_Environment_Layer()))
 		return E_FAIL;
 	if (FAILED(Ready_GameObject_Layer()))
@@ -294,7 +299,7 @@ _int CCartel::Update_Scene(const _double & dTimeDelta)
 	}
 
 
-	// 일단 다시 로비...나중에 엔딩크레딧으로!
+	// 나중에 엔딩크레딧으로!
 	if (CUIMgr::UITYPE_RESULT_Cartel == m_pUIMgr->Get_UIType())
 	{
 		if (CUIMgr::GetInstance()->CheckClickEXITButton())
@@ -313,7 +318,7 @@ _int CCartel::Update_Scene(const _double & dTimeDelta)
 					m_pUIMgr->ClearPointerUI();
 					Engine::CScene*		pScene = nullptr;
 
-					pScene = CLobby::Create(m_pGraphicDev);
+					pScene = CEnding::Create(m_pGraphicDev);
 					if (pScene == nullptr)
 						return E_FAIL;
 

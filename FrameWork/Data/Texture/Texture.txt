@@ -116,6 +116,8 @@ Static|RunGame_Item_Money|..\..\Resource\Texture\UI\RunGame_Item_Money\RunGame_M
 Static|RunGame_Item_Recovery|..\..\Resource\Texture\UI\RunGame_Item_Recovery\RunGame_Item_Recovery%d.tga|1
 Static|RunGame_Item_SpeedUp|..\..\Resource\Texture\UI\RunGame_Item_SpeedUp\RunGame_Item_SpeedUp%d.tga|1
 Static|RunGame_Teleport|..\..\Resource\Texture\UI\RunGame_Teleport\RunGame_Teleport%d.tga|1
+Static|RunPlayerHP|..\..\Resource\Texture\UI\RunPlayerHP\RunPlayerHP%d.tga|2
+Static|RunPlayerItem|..\..\Resource\Texture\UI\RunPlayerItem\RunPlayerItem%d.tga|2
 Static|SelectMission|..\..\Resource\Texture\UI\SelectMission\SelectMission%d.tga|2
 Static|SkillSlot|..\..\Resource\Texture\UI\SkillSlot\SkillSlot%d.tga|3
 Static|Skill_Basic|..\..\Resource\Texture\UI\Skill_Basic\Skill_Basic%d.tga|2

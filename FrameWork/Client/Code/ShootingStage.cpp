@@ -114,6 +114,8 @@ HRESULT CShootingStage::Ready_Scene()
 	m_pUIMgr->SetZeroForAccumulatedVariables();
 	m_pUIMgr->Set_ZeroStageTime();
 
+	CCameraMgr::GetInstance()->Set_MouseFix(true);
+
 	return S_OK;
 }
 
@@ -340,7 +342,6 @@ _int CShootingStage::LateUpdate_Scene(const _double & dTimeDelta)
 
 void CShootingStage::Render_Scene()
 {
-
 	++m_dwRenderCnt;
 	if (m_dTime >= 1)
 	{

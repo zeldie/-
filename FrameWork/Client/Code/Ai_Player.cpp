@@ -204,6 +204,7 @@ _int CAi_Player::Update_GameObject(const _double & dTimeDelta)
 		if (CAiMgr::GetInstance()->Get_CartelStart() == true)
 			m_pAiState->Update_State(dTimeDelta);
 	}
+
 	else if (CUIMgr::GetInstance()->Get_UI_Working()) 	//UI가 켜져있을 땐 일반 상태
 	{
 		m_eCurState = COMMON_COMBATWAIT;
@@ -257,6 +258,8 @@ _int CAi_Player::Update_GameObject(const _double & dTimeDelta)
 	_vec3 vLook = *(m_pTransformCom->Get_Info(Engine::INFO_LOOK));
 	//vLightAt = *pPos;
 
+
+
 	CBasePlayer::Update_GameObject(dTimeDelta);
 
 	ObserverPass();
@@ -276,6 +279,7 @@ _int CAi_Player::LateUpdate_GameObject(const _double & dTimeDelta)
 	// yh test code
 	m_tBaseInfo.vObjectPos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
 	// yh test end
+
 
 	if (m_eCtrlType == CTRL_AI_ALLIANCE)
 	{
@@ -357,6 +361,7 @@ void CAi_Player::Render_Geometry(const _double & dTimeDelta)
 	Engine::Safe_AddRef(pEffect);
 	if (FAILED(Setup_ShaderProps(pEffect)))
 		return;
+
 	_uint iPassMax = 0;
 	pEffect->Begin(&iPassMax, 0);
 	
@@ -736,7 +741,7 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 			m_iPreHp = (m_tBaseInfo.iHp - iBasicDmg*0.7*1.5);
 			CUIMgr::GetInstance()->CreateDamageBox(m_pGraphicDev, m_pTransformCom, CDamageBox::DAMAGEBOXTYPE::CRITICAL, iBasicDmg *1.5);
 
-			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(플레이어가 맞는 입장))
+			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(ai가 맞는 입장))
 			CUIMgr::GetInstance()->SetAccumulatedDamageForFlag(pObj->Get_BaseInfo()->eObjectID, iBasicDmg *1.5);
 
 			if (pObj->Get_BaseInfo()->eObjectID == OBJECT_PLAYER)
@@ -753,7 +758,7 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 			m_iPreHp = (_int)(m_tBaseInfo.iHp - iBasicDmg*0.7);
 			CUIMgr::GetInstance()->CreateDamageBox(m_pGraphicDev, m_pTransformCom, CDamageBox::DAMAGEBOXTYPE::BASIC, iBasicDmg);
 
-			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(플레이어가 맞는 입장))
+			//희정 추가(깃발전에서 필요한 누적 데미지 계산을 위해서 추가.(ai가 맞는 입장))
 			CUIMgr::GetInstance()->SetAccumulatedDamageForFlag(pObj->Get_BaseInfo()->eObjectID, iBasicDmg);
 
 			if (pObj->Get_BaseInfo()->eObjectID == OBJECT_PLAYER)
@@ -784,6 +789,16 @@ void CAi_Player::Set_Collision_Effect(CBaseObject * pObj)
 			{
 				// 희정 추가(깃발전에서 누가누구죽였는지 뜨는 UI)
 				CUIMgr::GetInstance()->CheckFlagScore(m_pGraphicDev, pObj->Get_BaseInfo()->eObjectID, m_tBaseInfo.eObjectID);
+
+				if (OBJECT_PLAYER == pObj->Get_BaseInfo()->eObjectID || OBJECT_ALLIANCE == pObj->Get_BaseInfo()->eObjectID)
+				{
+					//kill voice
+					CSoundMgr::Get_Instance()->HoSoundOn(rand() % 6 + 48, 1.f);
+				}
+				else if (OBJECT_ENEMY_1 == pObj->Get_BaseInfo()->eObjectID || OBJECT_ENEMY_2 == pObj->Get_BaseInfo()->eObjectID)
+				{
+					CSoundMgr::Get_Instance()->HoSoundOn(rand() % 2 + 54, 1.f);
+				}
 			}
 
 			// Dead
@@ -939,6 +954,7 @@ void CAi_Player::Change_State()
 			{
 				m_bIsAttacked = false;
 				m_eIdNext = ID_COMMON;
+				m_eCurState = CBasePlayer::PLAYER_STATE::COMMON_COMBATWAIT;
 				return;
 			}
 		}
@@ -954,6 +970,7 @@ void CAi_Player::Change_State()
 		{
 			m_pAiState = new CAi_CsState;
 			m_pAiState->Enter_State(this);
+
 			// Weapon Swap
 			// Weapon의 1번 애니메이션은 Wait
 			if (m_eMainWeapon == PLAYER_WEAPONTYPE::DUALSWORD)
@@ -1250,7 +1267,12 @@ void CAi_Player::Dead_Player(const _double & dTimeDelta)
 		m_pDynamicMeshCom->Set_AnimationSet(COMMON_DYING);
 
 		if (m_pDynamicMeshCom->Is_AnimationSetFinish(0.2))
+		{
+			if (m_eMainWeapon == CBasePlayer::LONGBOW)
+				static_cast<CLongBow*>(Get_MainWeaponPointer())->Reset_LBDissolve();
 			m_eDeadStep = DEAD2;
+		}
+			
 	}
 	break;
 	case CAi_Player::DEAD2:

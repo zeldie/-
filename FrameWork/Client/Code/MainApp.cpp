@@ -207,6 +207,7 @@ void CMainApp::Render_MainApp(const _double& dTimeDelta)
 	Engine::Render_End();
 }
 
+
 HRESULT CMainApp::SetUp_DefaultSetting(LPDIRECT3DDEVICE9 * ppGraphicDev)
 {
 	if (FAILED(Engine::Ready_GraphicDev(g_hWnd, Engine::MODE_WIN, WINCX, WINCY, &m_pDeviceClass)))
@@ -271,6 +272,10 @@ HRESULT CMainApp::Ready_BasicComponent()
 		return E_FAIL;
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_Complete", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/Complete/Complete.png", 1)))
 		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_BackGround_Ending", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/BackGround/BackGround_Ending.tga", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_Ending_Credit", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/BackGround/Ending_Credit.tga", 1)))
+		return E_FAIL;
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Decal_SkillTarget", Engine::TEX_CUBE, L"../../Resource/Cube/SkillTarget.dds", 1)))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Decal_Decal", Engine::TEX_CUBE, L"../../Resource/Cube/Decal.dds", 1)))
@@ -320,7 +325,13 @@ HRESULT CMainApp::Ready_BasicLight()
 	tLightInfo.Direction = _vec3(0.f, -1.f, 1.f);
 	if (FAILED(Engine::Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
 		return E_FAIL;
-
+	tLightInfo.Type = D3DLIGHT_DIRECTIONAL;
+	tLightInfo.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+	tLightInfo.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+	tLightInfo.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.f);
+	tLightInfo.Direction = _vec3(0.f, 1.f, -1.f);
+	if (FAILED(Engine::Ready_Light(m_pGraphicDev, &tLightInfo, 1)))
+		return E_FAIL;
 	/*tLightInfo.Type = D3DLIGHT_DIRECTIONAL;
 	tLightInfo.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
 	tLightInfo.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);

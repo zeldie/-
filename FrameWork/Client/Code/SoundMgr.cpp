@@ -117,8 +117,8 @@ void CSoundMgr::StopSound(CHANNELID eID)
 
 void CSoundMgr::AllStop()
 {
-	for (int ix = 0; ix < MAX_CHANNEL; ++ix)
-		m_pChannelArr[ix]->stop();
+	/*for (int ix = 0; ix < MAX_CHANNEL; ++ix)
+		m_pChannelArr[ix]->stop();*/
 
 	m_pChannelBGM[BGM]->stop();
 }
@@ -1082,6 +1082,54 @@ void CSoundMgr::Load_HoSoundFile()
 	eRes = m_pSystem->createSound("../../Sound/MiniGame/MyTurn.mp3", FMOD_DEFAULT, 0, &pSound);
 	m_vecHoSound.push_back(pSound);
 	ERRCHECK(eRes);
+
+	// 46 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Killed0.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 47 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Killed1.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 48 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Kill0.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 49 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Kill1.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 50 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Kill2.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 51 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Kill3.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 52 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Kill4.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 53 / Cartel / Killed
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Kill5.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 54 / Cartel / Aliance_Killed0
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Aliance_Killed0.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+	// 55 / Cartel / Aliance_Killed0
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Aliance_Killed0.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 56 / Cartel / Aliance_Killed0
+	eRes = m_pSystem->createSound("../../Sound/Cartel/Voice_Win.mp3", FMOD_DEFAULT, 0, &pSound);
+	m_vecHoSound.push_back(pSound);
+	ERRCHECK(eRes);
 }
 
 void CSoundMgr::Load_SiwonSoundFile()
@@ -1487,6 +1535,11 @@ void CSoundMgr::Load_AiSoundFile()
 
 	// 61 / Enemy2 Att4 / Att4
 	eRes = m_pSystem->createSound("../../Sound/AI_Enemy2_Sound/Ai_Man2_Attack_Short_4.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecAiSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 62 / Ending_BGM
+	eRes = m_pSystem->createSound("../../Sound/BGM/CartelBGM2.ogg", FMOD_DEFAULT, 0, &pSound);
 	m_vecAiSound.push_back(pSound);
 	ERRCHECK(eRes);
 }

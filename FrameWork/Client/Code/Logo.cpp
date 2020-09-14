@@ -211,6 +211,20 @@ _int CLogo::Update_Scene(const _double & dTimeDelta)
 
 				return iExit;
 			}
+			if (Engine::KeyDown(DIK_F12))
+			{
+				Engine::ClearSubject();
+
+				Engine::CScene*		pScene = nullptr;
+
+				pScene = CEnding::Create(m_pGraphicDev);
+				if (pScene == nullptr)
+					return E_FAIL;
+
+				iExit = Engine::SetUp_Scene(pScene);
+
+				return iExit;
+			}
 		}
 
 		/////////////////////////////////

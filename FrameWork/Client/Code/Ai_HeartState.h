@@ -14,19 +14,18 @@ public:
 	virtual void Rotation_Direction(const _matrix matView, const _vec3 vPlayerLook, _float* fCrossy, _vec3* vDir, _float* fDegree);
 
 public:
-	void					Enter_State(CBasePlayer* pPlayer) override;
-	void					Update_State(const _double dTimeDelta) override;
+	void				Enter_State(CBasePlayer* pPlayer) override;
+	void				Update_State(const _double dTimeDelta) override;
 	CAi_Player::STATE_ID	LateUpadte_State(const _double dTimeDelta) override;
 
 private:
 	void Update_PlayerPattern(const _double dTimeDelta);
-	void Key_Check();
 	void Airborne(const _double dTimeDelta);
 
 private:
 	COLLISIONID m_eCollID;
 	
-	_vec3		m_vAi_TargetPos;
+	_vec3		m_vTargetPos;
 	_vec3		m_vPurpose;
 
 	_bool		m_bAvoid;

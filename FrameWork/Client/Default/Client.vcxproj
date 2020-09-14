@@ -210,6 +210,7 @@
     <ClInclude Include="..\Code\Arrow.h" />
     <ClInclude Include="..\Code\BackBar.h" />
     <ClInclude Include="..\Code\BackGround.h" />
+    <ClInclude Include="..\Code\BackGround_Ending.h" />
     <ClInclude Include="..\Code\BackHair.h" />
     <ClInclude Include="..\Code\BaseEffect.h" />
     <ClInclude Include="..\Code\BaseObject.h" />
@@ -260,6 +261,8 @@
     <ClInclude Include="..\Code\DynamicEffect.h" />
     <ClInclude Include="..\Code\DynamicMeshObject.h" />
     <ClInclude Include="..\Code\EffectMgr.h" />
+    <ClInclude Include="..\Code\Ending.h" />
+    <ClInclude Include="..\Code\Ending_Credit.h" />
     <ClInclude Include="..\Code\FanShapeEffect.h" />
     <ClInclude Include="..\Code\FateShot.h" />
     <ClInclude Include="..\Code\FDBCreator.h" />
@@ -364,7 +367,11 @@
     <ClInclude Include="..\Code\RunObj_Obstacle.h" />
     <ClInclude Include="..\Code\RunPlayer.h" />
     <ClInclude Include="..\Code\RunPlayerDown_End.h" />
+    <ClInclude Include="..\Code\RunPlayerHP.h" />
     <ClInclude Include="..\Code\RunPlayerIdle1.h" />
+    <ClInclude Include="..\Code\RunPlayerItem.h" />
+    <ClInclude Include="..\Code\RunPlayerItemSlot.h" />
+    <ClInclude Include="..\Code\RunPlayerObserver.h" />
     <ClInclude Include="..\Code\RunPlayerObserver.h" />
     <ClInclude Include="..\Code\RunPlayerRun.h" />
     <ClInclude Include="..\Code\RunPlayerState.h" />
@@ -470,6 +477,7 @@
     <ClCompile Include="..\Code\Arrow.cpp" />
     <ClCompile Include="..\Code\BackBar.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
+    <ClCompile Include="..\Code\BackGround_Ending.cpp" />
     <ClCompile Include="..\Code\BackHair.cpp" />
     <ClCompile Include="..\Code\BaseEffect.cpp" />
     <ClCompile Include="..\Code\BaseObject.cpp" />
@@ -520,6 +528,8 @@
     <ClCompile Include="..\Code\DynamicEffect.cpp" />
     <ClCompile Include="..\Code\DynamicMeshObject.cpp" />
     <ClCompile Include="..\Code\EffectMgr.cpp" />
+    <ClCompile Include="..\Code\Ending.cpp" />
+    <ClCompile Include="..\Code\Ending_Credit.cpp" />
     <ClCompile Include="..\Code\FanShapeEffect.cpp" />
     <ClCompile Include="..\Code\FateShot.cpp" />
     <ClCompile Include="..\Code\FDBCreator.cpp" />
@@ -624,7 +634,11 @@
     <ClCompile Include="..\Code\RunObj_Obstacle.cpp" />
     <ClCompile Include="..\Code\RunPlayer.cpp" />
     <ClCompile Include="..\Code\RunPlayerDown_End.cpp" />
+    <ClCompile Include="..\Code\RunPlayerHP.cpp" />
     <ClCompile Include="..\Code\RunPlayerIdle1.cpp" />
+    <ClCompile Include="..\Code\RunPlayerItem.cpp" />
+    <ClCompile Include="..\Code\RunPlayerItemSlot.cpp" />
+    <ClCompile Include="..\Code\RunPlayerObserver.cpp" />
     <ClCompile Include="..\Code\RunPlayerObserver.cpp" />
     <ClCompile Include="..\Code\RunPlayerRun.cpp" />
     <ClCompile Include="..\Code\RunPlayerState.cpp" />

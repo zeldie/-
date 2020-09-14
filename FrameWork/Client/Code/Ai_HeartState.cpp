@@ -11,7 +11,7 @@ CAi_HeartState::CAi_HeartState()
 	m_fAngle(0.f),
 	m_dbKnockBackTime(0.0)
 {
-	ZeroMemory(m_vAi_TargetPos, sizeof(_vec3));
+	ZeroMemory(m_vTargetPos, sizeof(_vec3));
 	ZeroMemory(m_vPurpose, sizeof(_vec3));
 }
 
@@ -42,8 +42,19 @@ void CAi_HeartState::Rotation_Direction(const _matrix matView, const _vec3 vPlay
 void CAi_HeartState::Enter_State(CBasePlayer * pPlayer)
 {
 	CAi_PlayerState::Enter_State(pPlayer);
+
 	m_eCollID = m_pPlayer->Get_CollisionID();
-	m_vAi_TargetPos = m_pPlayer->Get_TargetPos();
+	
+	m_pPlayer->Set_AirComboLevel(0);
+
+	//// SuperArmor - Break
+	//if (!m_pPlayer->Get_Break())
+	//	m_eCollID = COLLISION_HIT;
+
+	m_pPlayer->Set_BattleType(CAi_Player::TYPE_BATTLE);
+
+	m_vTargetPos = m_pPlayer->Get_TargetPos();
+	m_pPlayer->Get_Renderer()->Set_RadialBlur(false);
 }
 
 void CAi_HeartState::Update_State(const _double dTimeDelta)
@@ -53,23 +64,36 @@ void CAi_HeartState::Update_State(const _double dTimeDelta)
 
 CAi_Player::STATE_ID CAi_HeartState::LateUpadte_State(const _double dTimeDelta)
 {
+	if (m_pPlayer->Get_TargetPlayer() == nullptr)
+	{
+		m_pPlayer->Set_isAttacked(false);
+		m_bIsAttacked = false;
+	}
+
 	if (m_bIsAttacked)
 		return CAi_Player::ID_HEART;
 	else
+	{
+		if (0 >= m_pPlayer->Get_BaseInfo()->iHp)
+			m_pPlayer->Set_Dead(true);
 		return CAi_Player::ID_COMMON;
+	}
 }
 
 void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 {
+	if (m_pPlayer->Get_TargetPlayer() == nullptr)
+		return;
+
 	_vec3 vPos = *m_pTransform->Get_Info(Engine::INFO_POS);
-	_vec3 vDir = *m_pTransform->Get_Info(Engine::INFO_POS) - m_vAi_TargetPos;
+	_vec3 vDir = *m_pTransform->Get_Info(Engine::INFO_POS) - m_vTargetPos;
 	vDir.y = 0.f;
 
 	D3DXVec3Normalize(&vDir, &vDir);
 
 	if (m_bRotation)
 	{
-		_vec3 vTarget = m_vAi_TargetPos - *m_pTransform->Get_Info(Engine::INFO_POS);
+		_vec3 vTarget = m_vTargetPos - *m_pTransform->Get_Info(Engine::INFO_POS);
 		vTarget.y = 0.f;
 		D3DXVec3Normalize(&vTarget, &vTarget);
 		_vec3 vLook =*m_pTransform->Get_Info(Engine::INFO_LOOK);
@@ -115,8 +139,9 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 					m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(*m_pTransform->Get_Info(Engine::INFO_LOOK) * 750.f * (_float)(1.0 - m_dbKnockBackTime)*(_float)dTimeDelta), m_dwNaviIndex)));
 			}
 
-			if (m_pMeshCom->Is_AnimationSetFinish(0.2))
+			if (m_pMeshCom->Get_TrackTime()>=m_pMeshCom->Get_Period()*0.5)
 			{
+				m_pPlayer->Reset_SuperAmmor();
 				m_bIsAttacked = false;
 				m_bJumpHit = false;
 				m_pPlayer->Set_Heart();
@@ -127,7 +152,7 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 
 		else if (m_pPlayer->Get_CurState() == CAi_Player::COMMON_RTDOWN_AIR_LANDING_F_F)
 		{
-			Key_Check();
+			//Key_Check();
 
 			if (m_pMeshCom->Is_AnimationSetFinish(0.2))
 			{
@@ -163,6 +188,7 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 			{
 				_vec3 vPosY;
 				m_pPlayer->Set_Jump_Finish();
+				m_pPlayer->Set_Fall_End();
 				m_pNaviCom->Find_PosY(&vPos, m_dwNaviIndex, vPosY);
 				m_pTransform->Set_Pos(&vPosY);
 				m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_RTDOWN_AIR_LANDING_F_F);
@@ -216,8 +242,9 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 					m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(*m_pTransform->Get_Info(Engine::INFO_LOOK) * 750.f * (_float)(1.0-m_dbKnockBackTime)*(_float)dTimeDelta), m_dwNaviIndex)));
 			}
 
-			if (m_pMeshCom->Is_AnimationSetFinish(0.2))
+			if (m_pMeshCom->Get_TrackTime() >= m_pMeshCom->Get_Period()*0.5)
 			{
+				m_pPlayer->Reset_SuperAmmor();
 				m_bIsAttacked = false;
 				m_pPlayer->Set_Heart();
 				break;
@@ -225,7 +252,7 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 			break;
 		}
 
-		if (m_bKnockBack)
+		else if (m_bKnockBack)
 		{
 			if (m_pPlayer->Get_Jump())
 			{
@@ -239,6 +266,7 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 				{
 					_vec3 vPosY;
 					m_pPlayer->Set_Jump_Finish();
+					m_pPlayer->Set_Fall_End();
 					m_pNaviCom->Find_PosY(&vPos, m_dwNaviIndex, vPosY);
 					m_bKnockBack = false;
 					m_dbKnockBackTime = 0.0;
@@ -265,12 +293,12 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 			}
 		}
 
-		else
+		else if(!m_bKnockBack)
 		{
 			m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_RTDOWN_F_F);
 			m_pPlayer->Set_State(CAi_Player::COMMON_RTDOWN_F_F);
 
-			Key_Check();
+			//Key_Check();
 
 			if (m_pMeshCom->Is_AnimationSetFinish(0.2))
 			{
@@ -286,7 +314,14 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 					m_pPlayer->Set_State(CAi_Player::COMMON_STANDUPATTACK);
 				}
 			}
-		}		
+		}
+
+		else
+		{
+			m_bIsAttacked = false;
+			m_bJumpHit = false;
+			m_pPlayer->Set_Heart();
+		}
 	}
 		break;
 	case COLLISION_AIR_UP:
@@ -314,61 +349,12 @@ void CAi_HeartState::Update_PlayerPattern(const _double dTimeDelta)
 	}
 }
 
-void CAi_HeartState::Key_Check()
-{
-	_matrix matView = m_pPlayer->Get_ViewMatrix();
-	_vec3 vLook = *m_pTransform->Get_Info(Engine::INFO_LOOK);
-	_vec3 vDir = { 0.f,0.f,0.f };
-
-	//if (Engine::KeyPressing(DIK_W))
-	//{
-	//	_vec3 vMove = { matView.m[2][0], 0.f,matView.m[2][2] };
-	//	m_vPurpose += vMove;
-	//	m_bAvoid = true;
-	//}
-	//if (Engine::KeyPressing(DIK_A))
-	//{
-	//	_vec3 vMove = { -matView.m[0][0], 0.f,-matView.m[0][2] };
-	//	m_vPurpose += vMove;
-	//	m_bAvoid = true;
-	//}
-	//if (Engine::KeyPressing(DIK_S))
-	//{
-	//	_vec3 vMove = { -matView.m[2][0], 0.f,-matView.m[2][2] };
-	//	m_vPurpose += vMove;
-	//	m_bAvoid = true;
-	//}
-	//if (Engine::KeyPressing(DIK_D))
-	//{
-	//	_vec3 vMove = { matView.m[0][0], 0.f,matView.m[0][2] };
-	//	m_vPurpose += vMove;
-	//	m_bAvoid = true;
-	//}
-
-	_float fCrossy, fDegree;
-
-	CAi_PlayerState::Rotation_Direction(matView, vLook, m_vPurpose, &fCrossy, &vDir, &fDegree);
-
-	if (!isnan(fDegree))
-	{
-		if (fCrossy > 0.f)
-			m_fAngle = fDegree;
-		else
-			m_fAngle = 360.f - fDegree;			
-	}
-
-	//if (Engine::KeyDown(DIK_W) || Engine::KeyDown(DIK_A) || Engine::KeyDown(DIK_S) || Engine::KeyDown(DIK_D) || Engine::KeyDown(DIK_LSHIFT))
-	//{
-	//	m_bAvoid = true;
-	//}
-}
-
 void CAi_HeartState::Airborne(const _double dTimeDelta)
 {
 	m_dbKnockBackTime += dTimeDelta*2.0;
 
 	_vec3 vPos = *m_pTransform->Get_Info(Engine::INFO_POS);
-	_vec3 vDir = *m_pTransform->Get_Info(Engine::INFO_POS) - m_vAi_TargetPos;
+	_vec3 vDir = *m_pTransform->Get_Info(Engine::INFO_POS) - m_vTargetPos;
 	vDir.y = 0.f;
 
 	D3DXVec3Normalize(&vDir, &vDir);
@@ -388,8 +374,9 @@ void CAi_HeartState::Airborne(const _double dTimeDelta)
 				m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(*m_pTransform->Get_Info(Engine::INFO_LOOK) * 750.f * (_float)(1.0 - m_dbKnockBackTime)*(_float)dTimeDelta), m_dwNaviIndex)));
 		}
 
-		if (m_pMeshCom->Is_AnimationSetFinish(0.2))
+		if (m_pMeshCom->Get_TrackTime() >= m_pMeshCom->Get_Period()*0.5)
 		{
+			m_pPlayer->Reset_SuperAmmor();
 			m_bIsAttacked = false;
 			m_pPlayer->Set_Heart();
 			return;
@@ -399,7 +386,7 @@ void CAi_HeartState::Airborne(const _double dTimeDelta)
 
 	if (m_pPlayer->Get_CurState() == CAi_Player::COMMON_RTDOWN_AIR_LANDING_F_F)
 	{
-		Key_Check();
+		//Key_Check();
 
 		if (m_pMeshCom->Is_AnimationSetFinish(0.2))
 		{
@@ -441,6 +428,7 @@ void CAi_HeartState::Airborne(const _double dTimeDelta)
 		{
 			_vec3 vPosY;
 			m_pPlayer->Set_Jump_Finish();
+			m_pPlayer->Set_Fall_End();
 			m_pNaviCom->Find_PosY(&vPos, m_dwNaviIndex, vPosY);
 			m_pTransform->Set_Pos(&vPosY);
 			m_pMeshCom->Set_AnimationSet(CAi_Player::COMMON_RTDOWN_AIR_LANDING_F_F);

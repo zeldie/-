@@ -310,20 +310,20 @@ HRESULT CMatchingGame::Ready_Environment_Layer()
 
 	Engine::CGameObject*		pGameObject = nullptr;
 
-	pGameObject = CMiniGameCamera::Create(m_pGraphicDev,
-		&_vec3(800.f, 100.f, 0.f),
-		&_vec3(0.f, 0.f, 1.f),
-		&_vec3(0.f, 1.f, 0.f),
-		D3DXToRadian(45.f),
-		_float(WINCX) / WINCY,
-		0.7f,
-		4000.f);
-	if (FAILED(pLayer->Add_GameObject(L"MiniGameCamera", pGameObject)))
-		return E_FAIL;
-
-	//pGameObject = CSkySphere::Create(m_pGraphicDev, CSkySphere::SKY_SHOOTINGSTAGE);
-	//if (FAILED(pLayer->Add_GameObject(L"ZSky", pGameObject)))
+	//pGameObject = CMiniGameCamera::Create(m_pGraphicDev,
+	//	&_vec3(800.f, 100.f, 0.f),
+	//	&_vec3(0.f, 0.f, 1.f),
+	//	&_vec3(0.f, 1.f, 0.f),
+	//	D3DXToRadian(45.f),
+	//	_float(WINCX) / WINCY,
+	//	0.7f,
+	//	4000.f);
+	//if (FAILED(pLayer->Add_GameObject(L"MiniGameCamera", pGameObject)))
 	//	return E_FAIL;
+
+	pGameObject = CSkySphere::Create(m_pGraphicDev, CSkySphere::SKY_SHOOTINGSTAGE);
+	if (FAILED(pLayer->Add_GameObject(L"ZSky", pGameObject)))
+		return E_FAIL;
 
 	m_mapLayer.emplace(Engine::ENVIRONMENT, pLayer);
 
@@ -386,7 +386,7 @@ HRESULT CMatchingGame::Ready_Light()
 	//tLightInfo.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
 	//tLightInfo.Ambient = D3DXCOLOR(0.3f, 0.3f, 0.3f, 1.f);
 	//tLightInfo.Direction = _vec3(0.f, -1.f, 1.f);
-	//if (FAILED(Engine::Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
+	//if (FAILED(Engine::Ready_Light(m_pGraphicDev, &tLightInfo, 1)))
 	//	return E_FAIL;
 	return S_OK;
 }
@@ -403,5 +403,6 @@ CMatchingGame * CMatchingGame::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CMatchingGame::Free()
 {
+
 	Engine::CScene::Free();
 }

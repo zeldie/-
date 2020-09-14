@@ -71,6 +71,7 @@ public:
 	void				Change_Brow(_uint iBroNum);
 	void				Change_Eye(_uint iEyeNum);
 
+	void				Release_Pants();
 	void				Update_Parts(const _double& dTimeDelta, _vec3* pPos, _vec3* pAngle, _vec3* pScale, _uint iAnimationNum);
 	void				LateUpdate_Parts(const _double& dTimeDelta);
 public:
