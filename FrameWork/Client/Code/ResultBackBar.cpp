@@ -17,7 +17,8 @@ CResultBackBar::CResultBackBar(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_szTotalBreak(L""),
 	//m_wstrTotalBreak(L""),
 	m_iTotalDeath(0),
-	m_wstrTotalDeath(L"")
+	m_wstrTotalDeath(L""),
+	m_szTotalRunGamePoints(L"")
 {
 	//fx = 0.f;
 	//fy= 0.f;

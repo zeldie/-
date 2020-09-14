@@ -76,6 +76,6 @@ using namespace std;
 
 #endif // _DEBUG
 
-#pragma comment(linker,"/entry:wWinMainCRTStartup /subsystem:console")
+//#pragma comment(linker,"/entry:wWinMainCRTStartup /subsystem:console")
 
 //#define LOADINGTHREAD

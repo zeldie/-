@@ -87,7 +87,7 @@ _int CLogo::Update_Scene(const _double & dTimeDelta)
 				Engine::ClearRenderer();
 				Engine::CScene*		pScene = nullptr;
 
-				pScene = CLobby::Create(m_pGraphicDev);
+				pScene = CCustomize::Create(m_pGraphicDev);
 				if (pScene == nullptr)
 					return E_FAIL;
 

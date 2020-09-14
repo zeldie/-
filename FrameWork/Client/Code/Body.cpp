@@ -292,15 +292,15 @@ HRESULT CBody::Ready_GameObject(SEX eSexType, _vec3 * pPos, _vec3 * pAngle, _vec
 	m_pTransformCom->Set_Scale(pScale);
 	m_pDynamicMeshCom->Set_AnimationSet(1);
 	Link_Hands(0);
-	Link_Top(0);
-	Link_Foot(0);
+	Link_Top(3);
+	Link_Foot(2);
 	Link_Pants(0);
 	Link_FrontHair(0);
-	Link_BackHair(0);
-	Link_TailHair(0);
-	Link_SideHair(0);
+	Link_BackHair(2);
+	Link_TailHair(1);
+	Link_SideHair(3);
 
-	m_vBodyColor = _vec4(1.f, 0.f, 0.f, 1.f);
+	m_vBodyColor = _vec4(1.f, 0.5f, 0.4f, 1.f);
 	Change_HairColor(_vec4(1.f, 1.f, 0.f, 1.f));
 	return S_OK;
 }

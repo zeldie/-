@@ -85,7 +85,12 @@ _int CCustomize::Update_Scene(const _double & dTimeDelta)
 	}
 
 
-
+	m_dEnterSceneTime += dTimeDelta;
+	if (!m_bEnterScene && m_dEnterSceneTime > 5)
+	{
+		CLoadingMgr::GetInstance()->Set_EndFade(true);
+		m_bEnterScene = true;
+	}
 
 	//if (Engine::KeyDown(DIK_F5))
 	//{

@@ -61,7 +61,7 @@ public:
 	void	Set_StartFade(_bool bStartFade) { m_bStartFade = bStartFade; }
 	void	Set_EndFade(_bool bEndFade) { m_bEndFade = bEndFade; }
 	void	Set_CamFar(_float fFar) { m_fCamFar = fFar; }
-
+	void	Change_Gamma(_float fGamma) { m_fGamma += fGamma; }
 
 	//아래는 다른 클래스들이 쓰게끔
 public:
@@ -106,6 +106,7 @@ private:
 
 	LPDIRECT3DSURFACE9			m_pOriginal_DS_Surface;
 	LPDIRECT3DSURFACE9			m_pShadow_DS_Surface;
+	_float						m_fGamma;
 public:
 	static		CRenderer*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual		CComponent*		Clone();

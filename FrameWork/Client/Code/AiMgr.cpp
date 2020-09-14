@@ -1425,189 +1425,189 @@ void CAiMgr::Check_Animation()
 
 void CAiMgr::Debug()
 {
-	if (Engine::KeyDown(DIK_NUMPAD2))
-	{
-		for (auto& rObj : m_vecAiCharacter)
-		{
-			if (rObj->Get_ControlType() == CONTROLTYPE::CTRL_AI_ALLIANCE)
-			{
-				CBasePlayer* pTarget = rObj->Get_TargetPlayer();
+	//if (Engine::KeyDown(DIK_NUMPAD2))
+	//{
+	//	for (auto& rObj : m_vecAiCharacter)
+	//	{
+	//		if (rObj->Get_ControlType() == CONTROLTYPE::CTRL_AI_ALLIANCE)
+	//		{
+	//			CBasePlayer* pTarget = rObj->Get_TargetPlayer();
 
-				//cout << "CTRL_AI_ALLIANCE의 타겟주소 : " << pTarget << endl;
+	//			//cout << "CTRL_AI_ALLIANCE의 타겟주소 : " << pTarget << endl;
 
-				if (pTarget == nullptr)
-				{
-					//cout << "CTRL_AI_ALLIANCE의 타겟 : nullptr" << endl;
-				}
-				else
-				{
-					switch (pTarget->Get_ControlType())
-					{
-					case CONTROLTYPE::CTRL_PLAYER:
-						//cout << "CTRL_AI_ALLIANCE의 타겟 : PLAYER " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ALLIANCE:
-						//cout << "CTRL_AI_ALLIANCE의 타겟 : ALLIANCE " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ENERMY_1:
-						//cout << "CTRL_AI_ALLIANCE의 타겟 : ENEMY_1 " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ENERMY_2:
-						//cout << "CTRL_AI_ALLIANCE의 타겟 : ENEMY_2 " << endl;
-						break;
-					default:
-						//cout << "CTRL_AI_ALLIANCE의 타겟 : ??? " << endl;
-						break;
-					}
-				}
+	//			if (pTarget == nullptr)
+	//			{
+	//				//cout << "CTRL_AI_ALLIANCE의 타겟 : nullptr" << endl;
+	//			}
+	//			else
+	//			{
+	//				switch (pTarget->Get_ControlType())
+	//				{
+	//				case CONTROLTYPE::CTRL_PLAYER:
+	//					//cout << "CTRL_AI_ALLIANCE의 타겟 : PLAYER " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ALLIANCE:
+	//					//cout << "CTRL_AI_ALLIANCE의 타겟 : ALLIANCE " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ENERMY_1:
+	//					//cout << "CTRL_AI_ALLIANCE의 타겟 : ENEMY_1 " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ENERMY_2:
+	//					//cout << "CTRL_AI_ALLIANCE의 타겟 : ENEMY_2 " << endl;
+	//					break;
+	//				default:
+	//					//cout << "CTRL_AI_ALLIANCE의 타겟 : ??? " << endl;
+	//					break;
+	//				}
+	//			}
 
-				
+	//			
 
-				switch (rObj->Get_StateState())
-				{
-				case STATETYPE::STATE_COMMON:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : Common" << endl;
-					break;
-				case STATETYPE::STATE_ATTACK:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : Attack" << endl;
-					break;
-				case STATETYPE::STATE_CAPTURE_FLAG:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : capture_flag" << endl;
-					break;
-				case STATETYPE::STATE_AVOID:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : avoid" << endl;
-					break;
-				case STATETYPE::STATE_HIT:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : hit" << endl;
-					break;
-				case STATETYPE::STATE_MOVE_TO_BACKWARD:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : move to backward" << endl;
-					break;
-				default:
-					//cout << "CTRL_AI_ALLIANCE의 상태 : ???" << endl;
-					break;
-				}
-			}
-			else if (rObj->Get_ControlType() == CONTROLTYPE::CTRL_AI_ENERMY_1)
-			{
-				CBasePlayer* pTarget = rObj->Get_TargetPlayer();
+	//			switch (rObj->Get_StateState())
+	//			{
+	//			case STATETYPE::STATE_COMMON:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : Common" << endl;
+	//				break;
+	//			case STATETYPE::STATE_ATTACK:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : Attack" << endl;
+	//				break;
+	//			case STATETYPE::STATE_CAPTURE_FLAG:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : capture_flag" << endl;
+	//				break;
+	//			case STATETYPE::STATE_AVOID:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : avoid" << endl;
+	//				break;
+	//			case STATETYPE::STATE_HIT:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : hit" << endl;
+	//				break;
+	//			case STATETYPE::STATE_MOVE_TO_BACKWARD:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : move to backward" << endl;
+	//				break;
+	//			default:
+	//				//cout << "CTRL_AI_ALLIANCE의 상태 : ???" << endl;
+	//				break;
+	//			}
+	//		}
+	//		else if (rObj->Get_ControlType() == CONTROLTYPE::CTRL_AI_ENERMY_1)
+	//		{
+	//			CBasePlayer* pTarget = rObj->Get_TargetPlayer();
 
-				//cout << "CTRL_AI_ENERMY_1의 타겟주소 : " << pTarget << endl;
+	//			//cout << "CTRL_AI_ENERMY_1의 타겟주소 : " << pTarget << endl;
 
-				if (pTarget == nullptr)
-				{
-					//cout << "CTRL_AI_ENERMY_1의 타겟 : nullptr" << endl;
-				}
-				else
-				{
-					switch (pTarget->Get_ControlType())
-					{
-					case CONTROLTYPE::CTRL_PLAYER:
-						//cout << "CTRL_AI_ENERMY_1의 타겟 : PLAYER " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ALLIANCE:
-						//cout << "CTRL_AI_ENERMY_1의 타겟 : ALLIANCE " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ENERMY_1:
-						//cout << "CTRL_AI_ENERMY_1의 타겟 : ENEMY_1 " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ENERMY_2:
-						//cout << "CTRL_AI_ENERMY_1의 타겟 : ENEMY_2 " << endl;
-						break;
-					default:
-						//cout << "CTRL_AI_ENERMY_1의 타겟 : ??? " << endl;
-						break;
-					}
-				}
+	//			if (pTarget == nullptr)
+	//			{
+	//				//cout << "CTRL_AI_ENERMY_1의 타겟 : nullptr" << endl;
+	//			}
+	//			else
+	//			{
+	//				switch (pTarget->Get_ControlType())
+	//				{
+	//				case CONTROLTYPE::CTRL_PLAYER:
+	//					//cout << "CTRL_AI_ENERMY_1의 타겟 : PLAYER " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ALLIANCE:
+	//					//cout << "CTRL_AI_ENERMY_1의 타겟 : ALLIANCE " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ENERMY_1:
+	//					//cout << "CTRL_AI_ENERMY_1의 타겟 : ENEMY_1 " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ENERMY_2:
+	//					//cout << "CTRL_AI_ENERMY_1의 타겟 : ENEMY_2 " << endl;
+	//					break;
+	//				default:
+	//					//cout << "CTRL_AI_ENERMY_1의 타겟 : ??? " << endl;
+	//					break;
+	//				}
+	//			}
 
-				switch (rObj->Get_StateState())
-				{
-				case STATETYPE::STATE_COMMON:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : Common" << endl;
-					break;
-				case STATETYPE::STATE_ATTACK:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : Attack" << endl;
-					break;
-				case STATETYPE::STATE_CAPTURE_FLAG:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : capture_flag" << endl;
-					break;
-				case STATETYPE::STATE_AVOID:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : avoid" << endl;
-					break;
-				case STATETYPE::STATE_HIT:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : hit" << endl;
-					break;
-				case STATETYPE::STATE_MOVE_TO_BACKWARD:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : move to backward" << endl;
-					break;
-				default:
-					//cout << "CTRL_AI_ENERMY_1의 상태 : ???" << endl;
-					break;
-				}
-			}
-			else if (rObj->Get_ControlType() == CONTROLTYPE::CTRL_AI_ENERMY_2)
-			{
-				CBasePlayer* pTarget = rObj->Get_TargetPlayer();
+	//			switch (rObj->Get_StateState())
+	//			{
+	//			case STATETYPE::STATE_COMMON:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : Common" << endl;
+	//				break;
+	//			case STATETYPE::STATE_ATTACK:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : Attack" << endl;
+	//				break;
+	//			case STATETYPE::STATE_CAPTURE_FLAG:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : capture_flag" << endl;
+	//				break;
+	//			case STATETYPE::STATE_AVOID:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : avoid" << endl;
+	//				break;
+	//			case STATETYPE::STATE_HIT:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : hit" << endl;
+	//				break;
+	//			case STATETYPE::STATE_MOVE_TO_BACKWARD:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : move to backward" << endl;
+	//				break;
+	//			default:
+	//				//cout << "CTRL_AI_ENERMY_1의 상태 : ???" << endl;
+	//				break;
+	//			}
+	//		}
+	//		else if (rObj->Get_ControlType() == CONTROLTYPE::CTRL_AI_ENERMY_2)
+	//		{
+	//			CBasePlayer* pTarget = rObj->Get_TargetPlayer();
 
-				//cout << "CTRL_AI_ENERMY_2의 타겟주소 : " << pTarget << endl;
+	//			//cout << "CTRL_AI_ENERMY_2의 타겟주소 : " << pTarget << endl;
 
-				if (pTarget == nullptr)
-				{
-					//cout << "CTRL_AI_ENERMY_2의 타겟 : nullptr" << endl;
-				}
-				else
-				{
-					switch (pTarget->Get_ControlType())
-					{
-					case CONTROLTYPE::CTRL_PLAYER:
-						//cout << "CTRL_AI_ENERMY_2의 타겟 : PLAYER " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ALLIANCE:
-						//cout << "CTRL_AI_ENERMY_2의 타겟 : ALLIANCE " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ENERMY_1:
-						//cout << "CTRL_AI_ENERMY_2의 타겟 : ENEMY_1 " << endl;
-						break;
-					case CONTROLTYPE::CTRL_AI_ENERMY_2:
-						//cout << "CTRL_AI_ENERMY_2의 타겟 : ENEMY_2 " << endl;
-						break;
-					default:
-						//cout << "CTRL_AI_ENERMY_2의 타겟 : ??? " << endl;
-						break;
-					}
-				}
+	//			if (pTarget == nullptr)
+	//			{
+	//				//cout << "CTRL_AI_ENERMY_2의 타겟 : nullptr" << endl;
+	//			}
+	//			else
+	//			{
+	//				switch (pTarget->Get_ControlType())
+	//				{
+	//				case CONTROLTYPE::CTRL_PLAYER:
+	//					//cout << "CTRL_AI_ENERMY_2의 타겟 : PLAYER " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ALLIANCE:
+	//					//cout << "CTRL_AI_ENERMY_2의 타겟 : ALLIANCE " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ENERMY_1:
+	//					//cout << "CTRL_AI_ENERMY_2의 타겟 : ENEMY_1 " << endl;
+	//					break;
+	//				case CONTROLTYPE::CTRL_AI_ENERMY_2:
+	//					//cout << "CTRL_AI_ENERMY_2의 타겟 : ENEMY_2 " << endl;
+	//					break;
+	//				default:
+	//					//cout << "CTRL_AI_ENERMY_2의 타겟 : ??? " << endl;
+	//					break;
+	//				}
+	//			}
 
 
-				switch (rObj->Get_StateState())
-				{
-				case STATETYPE::STATE_COMMON:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : Common" << endl;
-					break;
-				case STATETYPE::STATE_ATTACK:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : Attack" << endl;
-					break;
-				case STATETYPE::STATE_CAPTURE_FLAG:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : capture_flag" << endl;
-					break;
-				case STATETYPE::STATE_AVOID:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : avoid" << endl;
-					break;
-				case STATETYPE::STATE_HIT:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : hit" << endl;
-					break;
-				case STATETYPE::STATE_MOVE_TO_BACKWARD:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : move to backward" << endl;
-					break;
-				default:
-					//cout << "CTRL_AI_ENERMY_2의 상태 : ???" << endl;
-					break;
-				}
-			}
-		}
-	}
+	//			switch (rObj->Get_StateState())
+	//			{
+	//			case STATETYPE::STATE_COMMON:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : Common" << endl;
+	//				break;
+	//			case STATETYPE::STATE_ATTACK:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : Attack" << endl;
+	//				break;
+	//			case STATETYPE::STATE_CAPTURE_FLAG:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : capture_flag" << endl;
+	//				break;
+	//			case STATETYPE::STATE_AVOID:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : avoid" << endl;
+	//				break;
+	//			case STATETYPE::STATE_HIT:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : hit" << endl;
+	//				break;
+	//			case STATETYPE::STATE_MOVE_TO_BACKWARD:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : move to backward" << endl;
+	//				break;
+	//			default:
+	//				//cout << "CTRL_AI_ENERMY_2의 상태 : ???" << endl;
+	//				break;
+	//			}
+	//		}
+	//	}
+	//}
 
-	if (Engine::KeyDown(DIK_NUMPAD3))
-		system("pause");
+	//if (Engine::KeyDown(DIK_NUMPAD3))
+	//	system("pause");
 }
 
 void CAiMgr::Cheat()
