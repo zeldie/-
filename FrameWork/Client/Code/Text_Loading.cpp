@@ -25,7 +25,7 @@ HRESULT CText_Loading::Ready_GameObject()
 	m_pTransformCom->Set_Scale(306.6f, 60.f, 100.f);
 	//m_pTransformCom->Set_Pos(&_vec3(700.f, 400.f, 0.f));
 
-	m_pTransformCom->Set_Pos(600.7f - (WINCX >> 1), -400.f + (WINCY >> 1), 0.f);
+	m_pTransformCom->Set_Pos(640.f - (WINCX >> 1), -400.f + (WINCY >> 1), 0.f);
 
 	return S_OK;
 }

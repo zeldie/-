@@ -432,21 +432,75 @@ void CMatchingMgr::Shuffle_Card()
 {
 	// 카드번호 생성
 	CMatchingCard::CARDNUMBER eNum[40];
-	for (int i = 0; i < 20; i++)
-	{
-		eNum[i] = (CMatchingCard::CARDNUMBER)(2 + i);
-		eNum[i + 20] = (CMatchingCard::CARDNUMBER)(2 + i);
-	}
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	eNum[i] = (CMatchingCard::CARDNUMBER)(2 + i);
+	//	eNum[i + 20] = (CMatchingCard::CARDNUMBER)(2 + i);
+	//}
 
-	// 카드 섞기
-	for (int i = 0; i < 40; i++)
-	{
-		int iRan = rand() % 40;
-		CMatchingCard::CARDNUMBER eTemp;
-		eTemp = eNum[i];
-		eNum[i] = eNum[iRan];
-		eNum[iRan] = eTemp;
-	}
+	//// 카드 섞기
+	//for (int i = 0; i < 40; i++)
+	//{
+	//	int iRan = rand() % 40;
+	//	CMatchingCard::CARDNUMBER eTemp;
+	//	eTemp = eNum[i];
+	//	eNum[i] = eNum[iRan];
+	//	eNum[iRan] = eTemp;
+	//}
+
+	eNum[0] = CMatchingCard::CARDNUMBER::NUM_1_A;
+	eNum[1] = CMatchingCard::CARDNUMBER::NUM_1_B;
+	eNum[2] = CMatchingCard::CARDNUMBER::NUM_2_A;
+	eNum[3] = CMatchingCard::CARDNUMBER::NUM_2_B;
+	eNum[4] = CMatchingCard::CARDNUMBER::NUM_1_B;
+
+	eNum[5] = CMatchingCard::CARDNUMBER::NUM_3_A;
+	eNum[6] = CMatchingCard::CARDNUMBER::NUM_3_B;
+	eNum[7] = CMatchingCard::CARDNUMBER::NUM_4_A;
+	eNum[8] = CMatchingCard::CARDNUMBER::NUM_2_B;
+	eNum[9] = CMatchingCard::CARDNUMBER::NUM_4_B;
+
+
+	eNum[10] = CMatchingCard::CARDNUMBER::NUM_1_A;
+	eNum[11] = CMatchingCard::CARDNUMBER::NUM_3_B;
+	eNum[12] = CMatchingCard::CARDNUMBER::NUM_5_A;
+	eNum[13] = CMatchingCard::CARDNUMBER::NUM_5_A;
+	eNum[14] = CMatchingCard::CARDNUMBER::NUM_5_B;
+
+	eNum[15] = CMatchingCard::CARDNUMBER::NUM_6_A;
+	eNum[16] = CMatchingCard::CARDNUMBER::NUM_6_B;
+	eNum[17] = CMatchingCard::CARDNUMBER::NUM_7_A;
+	eNum[18] = CMatchingCard::CARDNUMBER::NUM_4_B;
+	eNum[19] = CMatchingCard::CARDNUMBER::NUM_7_A;
+
+
+	eNum[20] = CMatchingCard::CARDNUMBER::NUM_5_B;
+	eNum[21] = CMatchingCard::CARDNUMBER::NUM_7_B;
+	eNum[22] = CMatchingCard::CARDNUMBER::NUM_8_A;
+	eNum[23] = CMatchingCard::CARDNUMBER::NUM_2_A;
+	eNum[24] = CMatchingCard::CARDNUMBER::NUM_7_B;
+
+	eNum[25] = CMatchingCard::CARDNUMBER::NUM_8_B;
+	eNum[26] = CMatchingCard::CARDNUMBER::NUM_9_A;
+	eNum[27] = CMatchingCard::CARDNUMBER::NUM_8_A;
+	eNum[28] = CMatchingCard::CARDNUMBER::NUM_9_B;
+	eNum[29] = CMatchingCard::CARDNUMBER::NUM_8_B;
+
+
+	eNum[30] = CMatchingCard::CARDNUMBER::NUM_6_A;
+	eNum[31] = CMatchingCard::CARDNUMBER::NUM_10_A;
+	eNum[32] = CMatchingCard::CARDNUMBER::NUM_10_B;
+	eNum[33] = CMatchingCard::CARDNUMBER::NUM_10_A;
+	eNum[34] = CMatchingCard::CARDNUMBER::NUM_9_A;
+
+	eNum[35] = CMatchingCard::CARDNUMBER::NUM_9_B;
+	eNum[36] = CMatchingCard::CARDNUMBER::NUM_10_B;
+	eNum[37] = CMatchingCard::CARDNUMBER::NUM_6_B;
+	eNum[38] = CMatchingCard::CARDNUMBER::NUM_4_A;
+	eNum[39] = CMatchingCard::CARDNUMBER::NUM_3_A;
+
+
+
 
 	// 카드번호 설정
 	int i = 0;
