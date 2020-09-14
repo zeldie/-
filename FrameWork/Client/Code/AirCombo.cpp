@@ -965,12 +965,11 @@ CPlayer::STATE_ID CAirCombo::LateUpadte_State(const _double dTimeDelta)
 					{
 						_vec3 vTargetLook = Engine::GetDir(m_vTargetPos, vPos);
 						D3DXVec3Normalize(&vTargetLook, &vTargetLook);
-
 						pGameObject = CArrow::Create(Engine::Get_Device(), CArrow::BASIC_ARROW, &(vPos + _vec3(0.f, 50.f, 0.f)), &_vec3(0.f, 0.f, 0.f), 100.f, m_vTargetPos, m_pPlayer->Get_ControlType());
 					}
 					else
 						pGameObject = CArrow::Create(Engine::Get_Device(), CArrow::BASIC_ARROW, &(vPos + _vec3(0.f, 50.f, 0.f)), &_vec3(0.f, 0.f, 0.f), 100.f, vPos + vLook + _vec3(0.f, 50.f, 0.f), m_pPlayer->Get_ControlType());
-					Engine::Add_GameObject(Engine::GAMEOBJECT, L"OrbCore", pGameObject);
+					Engine::Add_GameObject(Engine::GAMEOBJECT, L"Arrow", pGameObject);
 					m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_BOW_RING, m_pPlayer->Get_PlayerTransform()->Get_WorldMatrix(), m_pPlayer->Get_PlayerTransform()->Get_Angle(), *m_pPlayer->Get_BaseInfo());
 					m_bEffect = false;
 

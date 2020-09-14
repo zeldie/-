@@ -433,6 +433,8 @@ private:
 	Engine::CTransform*		m_pBelatosTransformCom; // 벨라토스
 	Engine::CTransform*		m_pAITransfomCom1; // AI1
 	Engine::CTransform*		m_pAITransfomCom2; // AI2
+
+	_bool					m_bCreateRunResultUI_Once;
 };
 
 #endif
