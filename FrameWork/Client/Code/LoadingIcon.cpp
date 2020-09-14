@@ -22,10 +22,10 @@ HRESULT CLoadingIcon::Ready_GameObject()
 	if (FAILED(Clone_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scale(100.f, 100.f, 100.f);
+	m_pTransformCom->Set_Scale(50.f, 50.f, 1.f);
 	//m_pTransformCom->Set_Pos(&_vec3(700.f, 400.f, 0.f));
 
-	m_pTransformCom->Set_Pos(820.f - (WINCX >> 1), -400.f + (WINCY >> 1), 0.f);
+	m_pTransformCom->Set_Pos(820.f - (WINCX >> 1), -397.f + (WINCY >> 1), 0.f);
 
 	return S_OK;
 }
@@ -45,7 +45,7 @@ _int CLoadingIcon::LateUpdate_GameObject(const _double & dTimeDelta)
 {
 	CNormalObject::LateUpdate_GameObject(dTimeDelta);
 
-	m_pTransformCom->Rotation(Engine::ROT_Z, (_float)dTimeDelta*200.f);
+	m_pTransformCom->Rotation(Engine::ROT_Z, (_float)dTimeDelta*300.f);
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_UI, this);
 

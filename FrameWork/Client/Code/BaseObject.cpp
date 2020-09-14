@@ -48,7 +48,6 @@ HRESULT CBaseObject::Set_ShaderMatrix(LPD3DXEFFECT & pEffect)
 	m_pGraphicDev->GetViewport(&ViewPort);
 	_vec2 fTexScale = _vec2(1.f / ViewPort.Width, 1.f / ViewPort.Height);
 	pEffect->SetValue("g_texmapscale", &fTexScale, sizeof(_vec2));
-	//pEffect->SetFloat("Gamma", 2.2f);
 	return S_OK;
 }
 
