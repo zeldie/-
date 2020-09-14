@@ -400,15 +400,15 @@ HRESULT CCartel::Ready_GameObject_Layer()
 
 	// 天天天天天天天天天天天天天天天 Ai 儅撩 天天天天天天天天天天天天天天天天天天天
 
-	//pGameObject = m_pAiMgr->Create_Alliance();
-	//if (FAILED(pLayer->Add_GameObject(m_pAiMgr->Get_NameAlliance(), pGameObject)))
-	//	return E_FAIL;
+	pGameObject = m_pAiMgr->Create_Alliance();
+	if (FAILED(pLayer->Add_GameObject(m_pAiMgr->Get_NameAlliance(), pGameObject)))
+		return E_FAIL;
 
-	//pGameObject = m_pAiMgr->Create_Enermy_1();
-	//if (FAILED(pLayer->Add_GameObject(m_pAiMgr->Get_NameEnermy_1(), pGameObject)))
-	//	return E_FAIL;
+	pGameObject = m_pAiMgr->Create_Enermy_1();
+	if (FAILED(pLayer->Add_GameObject(m_pAiMgr->Get_NameEnermy_1(), pGameObject)))
+		return E_FAIL;
 
-	//m_pUIMgr->Set_AITransformCom1(static_cast<CBasePlayer*>(pGameObject)->Get_TransformCom());
+	m_pUIMgr->Set_AITransformCom1(static_cast<CBasePlayer*>(pGameObject)->Get_TransformCom());
 
 	pGameObject = m_pAiMgr->Create_Enermy_2();
 	if (FAILED(pLayer->Add_GameObject(m_pAiMgr->Get_NameEnermy_2(), pGameObject)))
