@@ -814,6 +814,21 @@
     <Filter Include="02.GameObject\04.UI\26.WeaponUI">
       <UniqueIdentifier>{31e427a9-fb4e-4e3c-be62-338b5e277fe6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1">
+      <UniqueIdentifier>{3da7ae0c-2ccf-4370-8210-41de2456c1dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\01.Stage\104.RunWeapon_LongBow">
+      <UniqueIdentifier>{4a7f1ed6-9553-4fe7-afa9-ef796c085543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\01.LoadingIcon">
+      <UniqueIdentifier>{6ce8438c-d650-4a7e-83cc-dfdb3ad225e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\02.Text_Loading">
+      <UniqueIdentifier>{6c2b4801-6119-4045-bde8-399729608abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\03.Text_Complete">
+      <UniqueIdentifier>{e65e9757-365e-411e-bb8b-1e09ae5714ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1545,12 +1560,6 @@
     <ClInclude Include="..\Code\CustomizingButton.h">
       <Filter>02.GameObject\04.UI\25.Customizing\07.CustomizingButton</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RunPlayerIdle1.h">
-      <Filter>98.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\RunWeapon_LongBow.h">
-      <Filter>98.Header</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\Orb.h">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
     </ClInclude>
@@ -1575,9 +1584,6 @@
     <ClInclude Include="..\Code\RunPlayerHP.h">
       <Filter>02.GameObject\04.UI\24.Run\02.RunPlayerHP</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RunPlayerObserver.h">
-      <Filter>96.Observer\04.RunPlayerObserver</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\RunPlayerItem.h">
       <Filter>02.GameObject\04.UI\24.Run\03.RunPlayerItem</Filter>
     </ClInclude>
@@ -1586,6 +1592,24 @@
     </ClInclude>
     <ClInclude Include="..\Code\WeaponUI.h">
       <Filter>02.GameObject\04.UI\26.WeaponUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerIdle1.h">
+      <Filter>02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunWeapon_LongBow.h">
+      <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerObserver.h">
+      <Filter>96.Observer\04.RunPlayerObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LoadingIcon.h">
+      <Filter>02.GameObject\00.Logo\01.LoadingIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Text_Loading.h">
+      <Filter>02.GameObject\00.Logo\02.Text_Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Text_Complete.h">
+      <Filter>02.GameObject\00.Logo\03.Text_Complete</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2324,12 +2348,6 @@
     <ClCompile Include="..\Code\CustomizingButton.cpp">
       <Filter>02.GameObject\04.UI\25.Customizing\07.CustomizingButton</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RunPlayerIdle1.cpp">
-      <Filter>98.Header</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
-      <Filter>98.Header</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Orb.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Orb</Filter>
     </ClCompile>
@@ -2354,9 +2372,6 @@
     <ClCompile Include="..\Code\RunPlayerHP.cpp">
       <Filter>02.GameObject\04.UI\24.Run\02.RunPlayerHP</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RunPlayerObserver.cpp">
-      <Filter>96.Observer\04.RunPlayerObserver</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\RunPlayerItem.cpp">
       <Filter>02.GameObject\04.UI\24.Run\03.RunPlayerItem</Filter>
     </ClCompile>
@@ -2368,6 +2383,24 @@
     </ClCompile>
     <ClCompile Include="..\Code\WeaponUI.cpp">
       <Filter>02.GameObject\04.UI\26.WeaponUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerIdle1.cpp">
+      <Filter>02.GameObject\01.Stage\15.RunPlayer\00.RunPlayerState\04.RunPlayerIdle1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunWeapon_LongBow.cpp">
+      <Filter>02.GameObject\01.Stage\104.RunWeapon_LongBow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerObserver.cpp">
+      <Filter>96.Observer\04.RunPlayerObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LoadingIcon.cpp">
+      <Filter>02.GameObject\00.Logo\01.LoadingIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Text_Loading.cpp">
+      <Filter>02.GameObject\00.Logo\02.Text_Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Text_Complete.cpp">
+      <Filter>02.GameObject\00.Logo\03.Text_Complete</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,8 @@ CNPCButton::CNPCButton(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_pUIMgr(CUIMgr::GetInstance()),
 	m_eButtonType(BUTTONTYPE_END),
 	m_bChoose(false),
-	m_bSceneChange(false)
+	m_bSceneChange(false),
+	m_bSound(true)
 {
 }
 
@@ -51,9 +52,16 @@ _int CNPCButton::LateUpdate_GameObject(const _double & dTimeDelta)
 	else
 		m_bChoose = false;
 
+	//m_bSound = true;
 
-	if (m_bChoose && Engine::MouseUp(Engine::DIM_LB))
+	if (m_bChoose && Engine::MouseDown(Engine::DIM_LB))
 	{
+		//if (m_bSound)//
+		//{
+		//	CSoundMgr::Get_Instance()->UISoundOn(0);
+		//	m_bSound = false;
+		//}
+
 		CheckNPCQuest();
 	}
 

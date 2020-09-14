@@ -301,7 +301,7 @@ HRESULT CBody::Ready_GameObject(SEX eSexType, _vec3 * pPos, _vec3 * pAngle, _vec
 	Link_SideHair(3);
 
 	m_vBodyColor = _vec4(1.f, 0.5f, 0.4f, 1.f);
-	Change_HairColor(_vec4(1.f, 1.f, 0.f, 1.f));
+	Change_HairColor(_vec4(0.76f, 0.86f, 1.f, 1.f));
 	return S_OK;
 }
 
