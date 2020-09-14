@@ -10,7 +10,7 @@
 #include "RunGame.h"
 #include "Customize.h"
 
-#include "LogoIcon.h"
+//#include "LogoIcon.h"
 #include "LoadingIcon.h"
 #include "Text_Loading.h"
 #include "Text_Complete.h"

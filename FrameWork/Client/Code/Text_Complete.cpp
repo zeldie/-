@@ -22,7 +22,8 @@ HRESULT CText_Complete::Ready_GameObject()
 	if (FAILED(Clone_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scale(286.8f, 51.f, 100.f);
+	//m_pTransformCom->Set_Scale(286.8f, 51.f, 100.f);	// COMPLETE ÀÌ¹ÌÁö
+	m_pTransformCom->Set_Scale(364.8f, 52.2f, 100.f);	// PRESS ENTER
 	//m_pTransformCom->Set_Pos(&_vec3(700.f, 400.f, 0.f));
 
 	m_pTransformCom->Set_Pos(640.f - (WINCX >> 1), -400.f + (WINCY >> 1), 0.f);

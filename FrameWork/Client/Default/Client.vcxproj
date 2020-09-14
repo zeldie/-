@@ -300,7 +300,6 @@
     <ClInclude Include="..\Code\LoadingMgr.h" />
     <ClInclude Include="..\Code\Lobby.h" />
     <ClInclude Include="..\Code\Logo.h" />
-    <ClInclude Include="..\Code\LogoIcon.h" />
     <ClInclude Include="..\Code\LongBow.h" />
     <ClInclude Include="..\Code\MainApp.h" />
     <ClInclude Include="..\Code\MatchingAI.h" />
@@ -567,7 +566,6 @@
     <ClCompile Include="..\Code\LoadingMgr.cpp" />
     <ClCompile Include="..\Code\Lobby.cpp" />
     <ClCompile Include="..\Code\Logo.cpp" />
-    <ClCompile Include="..\Code\LogoIcon.cpp" />
     <ClCompile Include="..\Code\LongBow.cpp" />
     <ClCompile Include="..\Code\MainApp.cpp" />
     <ClCompile Include="..\Code\MatchingAI.cpp" />

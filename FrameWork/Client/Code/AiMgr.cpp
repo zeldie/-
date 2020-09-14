@@ -567,6 +567,7 @@ void CAiMgr::Ai_Attack_LongRange(CBasePlayer * pAi, const _double & dTimeDelta)
 	pAi->Set_DownKey(KEY_W);
 	pAi->Set_PressKey(KEY_W);
 
+	//LB_Q(pAi, dTimeDelta);
 
 	Run_AttackType(pAi, dTimeDelta);
 }
@@ -2410,7 +2411,7 @@ void CAiMgr::Update_Skill_Cooldown(const _double & dTimeDelta)
 			switch (iter->first)
 			{
 			case AI_SKILL::SKILL_Q:
-				if (iter->second > 60)
+				if (iter->second > 40)
 				{
 					iter = m_map_Skill_Cooldown[i].erase(iter);
 					////cout << "Q스킬 쿨타임 완료" << endl;
