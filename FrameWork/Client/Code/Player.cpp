@@ -339,7 +339,6 @@ _int CPlayer::Update_GameObject(const _double & dTimeDelta)
 	}
 
 	m_tBaseInfo.vObjectPos = *m_pTransformCom->Get_Info(Engine::INFO_POS);
-
 	return Engine::NO_EVENT;
 }
 

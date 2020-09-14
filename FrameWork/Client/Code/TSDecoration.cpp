@@ -218,6 +218,7 @@ HRESULT CTSDecoration::Clone_Component()
 HRESULT CTSDecoration::Setup_ShaderProps(LPD3DXEFFECT & pEffect)
 {
 	CBaseObject::Set_ShaderMatrix(pEffect);
+	pEffect->SetVector("vChangeColor", &_vec4(3.f, 3.f, 3.f, 1.f));
 	return S_OK;
 }
 

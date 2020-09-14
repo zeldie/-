@@ -98,7 +98,7 @@ void CArchitecture::Render_Geometry(const _double & dTimeDelta)
 
 void CArchitecture::Render_Shadow(const _double & dTimeDelta)
 {
-	LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
+	/*LPD3DXEFFECT	pEffect = m_pShaderCom->Get_EffectHandle();
 	if (pEffect == nullptr)
 		return;
 	Engine::Safe_AddRef(pEffect);
@@ -118,7 +118,7 @@ void CArchitecture::Render_Shadow(const _double & dTimeDelta)
 		pEffect->EndPass();
 	}
 	pEffect->End();
-	Engine::Safe_Release(pEffect);
+	Engine::Safe_Release(pEffect);*/
 }
 
 HRESULT CArchitecture::Clone_Component(wstring wstrObjectKey)

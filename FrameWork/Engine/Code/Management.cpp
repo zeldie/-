@@ -161,53 +161,53 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 	//프리뎁스
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::PRE_DEPTH, ViewPort.Width, ViewPort.Height, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::PRE_DEPTH, 540.f, 540.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::PRE_DEPTH, 540.f, 540.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
-	//알베도
+	//알베도 <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::ALBEDO, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::ALBEDO, 0.f, 0.f, 180.f, 180.f)))
 		return E_FAIL;
-	//노말
+	//노말 <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::NORMAL, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::NORMAL, 0.f, 180.f, 180.f, 180.f)))
 		return E_FAIL;
-	//뎁스
+	//뎁스 <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::DEPTH, ViewPort.Width, ViewPort.Height, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DEPTH, 0.f, 360.f, 180.f, 180.f)))
 		return E_FAIL;
-	//이미시브
+	//이미시브 <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::EMMISIVE, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::EMMISIVE, 0.f, 540.f, 180.f, 180.f)))
 		return E_FAIL;
-	//쉐이드
+	//쉐이드 <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADE, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::SHADE, 180.f, 0.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::SHADE, 360.f, 0.f, 180.f, 180.f)))
 		return E_FAIL;
 
-	//finalIMAGE
+	//finalIMAGE <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::FINALIMAGE, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::FINALIMAGE, 900.f, 360.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::FINALIMAGE, 540.f, 180.f, 180.f, 180.f)))
 		return E_FAIL;
 
 
-	//Blur
+	//Blur <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::BLUR, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::BLUR, 360.f, 360.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::BLUR, 360.f, 540.f, 180.f, 180.f)))
 		return E_FAIL;
 
-	//HDRBase
+	//HDRBase <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::HDR_BASE, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
 
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::HDR_BASE, 360.f, 0.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::HDR_BASE, 360.f, 180.f, 180.f, 180.f)))
 		return E_FAIL;
 
 	//Luminance GreyDownSample
@@ -240,13 +240,13 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 	//5
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::LUMINANCE6, 1, 1, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::LUMINANCE6, 360.f, 180.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::LUMINANCE6, 360.f, 180.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
-	//BrightPass
+	//BrightPass <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::BRIGHTPASS, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::BRIGHTPASS, 540.f, 0.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::BRIGHTPASS, 360.f, 360.f, 180.f, 180.f)))
 		return E_FAIL;
 
 	//BrightPassDownSample
@@ -258,14 +258,14 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 	//HorizontalBlur
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::HORIZONTALBLUR, ViewPort.Width * 0.5f, ViewPort.Height * 0.5f, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::HORIZONTALBLUR, 540.f, 180.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::HORIZONTALBLUR, 540.f, 180.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
 	//VerticlaBlur
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::VERTICALBLUR, ViewPort.Width * 0.5f, ViewPort.Height * 0.5f,  D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::VERTICALBLUR, 540.f, 360.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::VERTICALBLUR, 540.f, 360.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
 	//Outline_Ready
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::OUTLINE_READY, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
@@ -273,13 +273,13 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 	/*if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OUTLINE_READY, 180.f, 180.f, 180.f, 180.f)))
 		return E_FAIL;*/
 
-	//Outline
+	//Outline <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::OUTLINE, ViewPort.Width, ViewPort.Height, D3DFMT_A32B32G32R32F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OUTLINE, 180.f, 180.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OUTLINE, 180.f, 0.f, 180.f, 180.f)))
 		return E_FAIL;
 
-	//Occlusion
+	//Occlusion <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::OCCLUSION, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
 	/*if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OCCLUSION, 180.f, 540.f, 180.f, 180.f)))
@@ -294,54 +294,54 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 	//Occlusion VERTICALBLUR
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::OCCLUSION_VERTICALBLUR, 160, 120, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OCCLUSION_VERTICALBLUR, 180.f, 540.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OCCLUSION_VERTICALBLUR, 180.f, 360.f, 180.f, 180.f)))
 		return E_FAIL;
 
-	//HDR FINISH
+	//HDR FINISH <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::HDRFINISH, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::HDRFINISH, 720.f, 0.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::HDRFINISH, 720.f, 0.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
 	//DOF DOWNSAMPLE
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::DOFDOWNSAMPLE, _uint(ViewPort.Width * 0.5f), _uint(ViewPort.Height * 0.5f), D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DOFDOWNSAMPLE, 720.f, 180.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DOFDOWNSAMPLE, 720.f, 180.f, 180.f, 180.f)))
+	//	return E_FAIL;
 	//DOF_HORIZONTALBLUR
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::DOFHORIZONTALBLUR, _uint(ViewPort.Width * 0.5f), _uint(ViewPort.Height * 0.5f), D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DOFHORIZONTALBLUR, 720.f, 360.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DOFHORIZONTALBLUR, 720.f, 360.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
 	//DOF_VERTICALBLUR
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::DOFVERTICALBLUR, _uint(ViewPort.Width * 0.5f), _uint(ViewPort.Height * 0.5f), D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DOFVERTICALBLUR, 720.f, 540.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::DOFVERTICALBLUR, 540.f, 0.f, 180.f, 180.f)))
 		return E_FAIL;
 
-	//LightShaft
+	//LightShaft <--------------------
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::LIGHTSHAFT, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::LIGHTSHAFT, 900.f, 0.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::LIGHTSHAFT, 180.f, 540.f, 180.f, 180.f)))
 		return E_FAIL;
 
 	//OcclusionSub ,이거는 라이트섀프트 위함
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::OCCLUSIONSUB, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OCCLUSIONSUB, 900.f, 180.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::OCCLUSIONSUB, 900.f, 180.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
 	//Radial BLur
 	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::RADIALBLUR, ViewPort.Width, ViewPort.Height, D3DFMT_A16B16G16R16F, D3DXCOLOR(0.f, 0.f, 0.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::RADIALBLUR, 360.f, 540.f, 180.f, 180.f)))
-		return E_FAIL;
+	//if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::RADIALBLUR, 360.f, 540.f, 180.f, 180.f)))
+	//	return E_FAIL;
 
-	//Shadow
-	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADOW_PLAYER, 10240.f, 5760.f, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
+	//Shadow <--------------------
+	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADOW_PLAYER, 1280.f, 720.f, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
 		return E_FAIL;
-	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::SHADOW_PLAYER, 180.f, 360.f, 180.f, 180.f)))
+	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::SHADOW_PLAYER, 180.f, 180.f, 180.f, 180.f)))
 		return E_FAIL;
 	//7680.f, 4320.f
 	//지오메트리 MRT list + SUB
@@ -358,9 +358,6 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 		return E_FAIL;
 	if (Engine::Ready_MRT(Engine::CARTOON, Engine::OCCLUSIONSUB))
 		return E_FAIL;
-
-	//if (Engine::Ready_MRT(Engine::SHADOW, Engine::SHADOW_PLAYER))
-	//	return E_FAIL;
 
 
 	return S_OK;
