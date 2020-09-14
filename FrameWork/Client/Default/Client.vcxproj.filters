@@ -793,6 +793,21 @@
     <Filter Include="02.GameObject\04.UI\25.Customizing\07.CustomizingButton">
       <UniqueIdentifier>{72475da3-cafe-4119-a06c-c6423e7fd8b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="96.Observer\04.RunPlayerObserver">
+      <UniqueIdentifier>{d9c7dc98-fe50-424b-917a-c1c023c7f09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\01.LogoIcon">
+      <UniqueIdentifier>{d4751031-a44d-4c75-8a78-6cd3492d0e5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\02.LoadingIcon">
+      <UniqueIdentifier>{25b6efa2-5e51-46ed-9feb-7d4caafbb674}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\03.Text_Loading">
+      <UniqueIdentifier>{3e30a699-82b5-4005-98b1-6afbad335ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\04.Text_Complete">
+      <UniqueIdentifier>{afa1977e-f51c-4d5c-8746-7865491ef3e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1542,6 +1557,21 @@
     <ClInclude Include="..\Code\Ai_Player.h">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\RunPlayerObserver.h">
+      <Filter>96.Observer\04.RunPlayerObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LogoIcon.h">
+      <Filter>02.GameObject\00.Logo\01.LogoIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LoadingIcon.h">
+      <Filter>02.GameObject\00.Logo\02.LoadingIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Text_Loading.h">
+      <Filter>02.GameObject\00.Logo\03.Text_Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Text_Complete.h">
+      <Filter>02.GameObject\00.Logo\04.Text_Complete</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1946,9 +1976,6 @@
     <ClCompile Include="..\Code\Ai_BasicCombo.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player\00.Ai_State\01.Ai_BasicCombo</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Orb.cpp">
-      <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\04.Ob</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\DualSword.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\02.Weapon\01.Ds</Filter>
     </ClCompile>
@@ -2299,6 +2326,24 @@
     </ClCompile>
     <ClCompile Include="..\Code\Ai_Player.cpp">
       <Filter>02.GameObject\01.Stage\00.Player\03.Ai_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Orb.cpp">
+      <Filter>98.Header</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RunPlayerObserver.cpp">
+      <Filter>96.Observer\04.RunPlayerObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LogoIcon.cpp">
+      <Filter>02.GameObject\00.Logo\01.LogoIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LoadingIcon.cpp">
+      <Filter>02.GameObject\00.Logo\02.LoadingIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Text_Loading.cpp">
+      <Filter>02.GameObject\00.Logo\03.Text_Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Text_Complete.cpp">
+      <Filter>02.GameObject\00.Logo\04.Text_Complete</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,11 @@ private:
 
 private:
 	CLoading*		m_pLoading;
+
+	Engine::CGameObject*	m_pLoadingIcon;
+	Engine::CGameObject*	m_pText_Loading;
+	_bool					m_bComplete;
+
 public:
 	static CLogo*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual void	Free() override;

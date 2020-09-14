@@ -68,7 +68,8 @@ HRESULT CMainApp::Ready_MainApp()
 		return E_FAIL;
 	if (FAILED(Engine::Ready_Font(m_pGraphicDev, L"Font_GODICHEAVY2", L"∏º¿∫ ∞ÌµÒ", 30, 50, FW_HEAVY)))
 		return E_FAIL;
-
+	if (FAILED(Engine::Ready_Font(m_pGraphicDev, L"Font_»ﬁ∏’∏Ì¡∂", L"HYΩ≈∏Ì¡∂", 15, 25, FW_HEAVY)))
+		return E_FAIL;
 
 	srand((_uint)time(NULL));	
 
@@ -263,6 +264,12 @@ HRESULT CMainApp::Ready_BasicComponent()
 
 	//Background Texture
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_BackGround", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/BackGround/BackGround.tga", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_LogoIcon", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/LogoIcon/LogoIcon.tga", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_Loading", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/Loading/Loading.png", 1)))
+		return E_FAIL;
+	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Texture_Complete", Engine::TEX_NORMAL, L"../../Resource/BasicTexture/Complete/Complete.png", 1)))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_Texture(m_pGraphicDev, Engine::RESOURCE_STATIC, L"Decal_SkillTarget", Engine::TEX_CUBE, L"../../Resource/Cube/SkillTarget.dds", 1)))
 		return E_FAIL;

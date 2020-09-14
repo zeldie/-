@@ -293,9 +293,11 @@
     <ClInclude Include="..\Code\LightCamera.h" />
     <ClInclude Include="..\Code\LineBar.h" />
     <ClInclude Include="..\Code\Loading.h" />
+    <ClInclude Include="..\Code\LoadingIcon.h" />
     <ClInclude Include="..\Code\LoadingMgr.h" />
     <ClInclude Include="..\Code\Lobby.h" />
     <ClInclude Include="..\Code\Logo.h" />
+    <ClInclude Include="..\Code\LogoIcon.h" />
     <ClInclude Include="..\Code\LongBow.h" />
     <ClInclude Include="..\Code\MainApp.h" />
     <ClInclude Include="..\Code\MatchingAI.h" />
@@ -363,6 +365,7 @@
     <ClInclude Include="..\Code\RunPlayer.h" />
     <ClInclude Include="..\Code\RunPlayerDown_End.h" />
     <ClInclude Include="..\Code\RunPlayerIdle1.h" />
+    <ClInclude Include="..\Code\RunPlayerObserver.h" />
     <ClInclude Include="..\Code\RunPlayerRun.h" />
     <ClInclude Include="..\Code\RunPlayerState.h" />
     <ClInclude Include="..\Code\RunPlayerWait.h" />
@@ -388,6 +391,8 @@
     <ClInclude Include="..\Code\TailHair.h" />
     <ClInclude Include="..\Code\Terrain.h" />
     <ClInclude Include="..\Code\TextureEffect.h" />
+    <ClInclude Include="..\Code\Text_Complete.h" />
+    <ClInclude Include="..\Code\Text_Loading.h" />
     <ClInclude Include="..\Code\Tired.h" />
     <ClInclude Include="..\Code\Top.h" />
     <ClInclude Include="..\Code\Tree.h">
@@ -548,9 +553,11 @@
     <ClCompile Include="..\Code\LightCamera.cpp" />
     <ClCompile Include="..\Code\LineBar.cpp" />
     <ClCompile Include="..\Code\Loading.cpp" />
+    <ClCompile Include="..\Code\LoadingIcon.cpp" />
     <ClCompile Include="..\Code\LoadingMgr.cpp" />
     <ClCompile Include="..\Code\Lobby.cpp" />
     <ClCompile Include="..\Code\Logo.cpp" />
+    <ClCompile Include="..\Code\LogoIcon.cpp" />
     <ClCompile Include="..\Code\LongBow.cpp" />
     <ClCompile Include="..\Code\MainApp.cpp" />
     <ClCompile Include="..\Code\MatchingAI.cpp" />
@@ -618,6 +625,7 @@
     <ClCompile Include="..\Code\RunPlayer.cpp" />
     <ClCompile Include="..\Code\RunPlayerDown_End.cpp" />
     <ClCompile Include="..\Code\RunPlayerIdle1.cpp" />
+    <ClCompile Include="..\Code\RunPlayerObserver.cpp" />
     <ClCompile Include="..\Code\RunPlayerRun.cpp" />
     <ClCompile Include="..\Code\RunPlayerState.cpp" />
     <ClCompile Include="..\Code\RunPlayerWait.cpp" />
@@ -643,6 +651,8 @@
     <ClCompile Include="..\Code\TailHair.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />
     <ClCompile Include="..\Code\TextureEffect.cpp" />
+    <ClCompile Include="..\Code\Text_Complete.cpp" />
+    <ClCompile Include="..\Code\Text_Loading.cpp" />
     <ClCompile Include="..\Code\Tired.cpp" />
     <ClCompile Include="..\Code\Top.cpp" />
     <ClCompile Include="..\Code\Tree.cpp">
