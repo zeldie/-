@@ -103,9 +103,9 @@ _int CMainApp::Update_MainApp(const _double& dTimeDelta)
 
 	Engine::Set_InputDev();
 
-	////희정 UI TEST ->위치 조절 
-	//if(Engine::KeyPressing(DIK_RCONTROL))
-	//	m_pUIMgr->KeyInput(dTimeDelta);
+	//희정 UI TEST ->위치 조절 
+	if(Engine::KeyPressing(DIK_RCONTROL))
+		m_pUIMgr->KeyInput(dTimeDelta);
 
 	//////////////////TestCode/////////////////////////////////
 	if (Engine::KeyDown(DIK_F2))

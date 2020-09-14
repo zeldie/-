@@ -1491,10 +1491,10 @@ void CPlayer::InGyunCodeTest(const _double & dTimeDelta)
 {
 	if (Engine::KeyPressing(DIK_LCONTROL))
 	{
-		if (Engine::KeyDown(DIK_1))
-			m_pRendererCom->Change_Gamma(dTimeDelta * 5);
-		if(Engine::KeyDown(DIK_2))
-			m_pRendererCom->Change_Gamma(-dTimeDelta * 5);
+		//if (Engine::KeyDown(DIK_1))
+		//	m_pRendererCom->Change_Gamma(dTimeDelta * 5);
+		//if(Engine::KeyDown(DIK_2))
+		//	m_pRendererCom->Change_Gamma(-dTimeDelta * 5);
 	}
 	
 }

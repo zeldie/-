@@ -11,7 +11,8 @@ CRunPlayerItemSlot::CRunPlayerItemSlot(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_dDuration(0.f),
 	m_eRunPlayerPower(RUN_POWER_END),
 	m_dMaxDuration(0.f),
-	m_bOne(true)
+	m_bOne(true),
+	m_bOtherOne(0)
 {
 }
 
@@ -24,11 +25,11 @@ HRESULT CRunPlayerItemSlot::Ready_GameObject(ITEMSLOT eType, ITEMTYPE eItemType,
 {
 	if (FAILED(Clone_Component(fX, fY, fSizeX, fSizeY, fViewZ)))
 		return E_FAIL;
-	
+
 	m_eItemSlot = eType;
 	m_eItemType = eItemType;
 	m_bRenderUI = bBool;
-	
+
 	if (RECHARGE == m_eItemSlot)
 	{
 		//옵저버 신청
@@ -45,17 +46,23 @@ _int CRunPlayerItemSlot::Update_GameObject(const _double & dTimeDelta)
 {
 	if (m_bIsDead)
 		return Engine::OBJ_DEAD;
-	
+
 	if (RECHARGE == m_eItemSlot)
 	{
 		if (m_bOne)
 		{
 			m_eRunPlayerPower = m_pRunPlayerObserver->Get_Power();
-			
-			if (RUN_POWER_BIG == m_eRunPlayerPower || RUN_POWER_SPEEDUP == m_eRunPlayerPower)
+
+			if (RUN_POWER_BIG == m_eRunPlayerPower)
 			{
 				m_bOne = false;
 			}
+		}
+		if (m_bOtherOne)
+		{
+			m_eRunPlayerPower = m_pRunPlayerObserver->Get_Power();
+			if (RUN_POWER_SPEEDUP == m_eRunPlayerPower)
+				m_bOtherOne = false;
 		}
 	}
 
@@ -66,7 +73,7 @@ _int CRunPlayerItemSlot::Update_GameObject(const _double & dTimeDelta)
 _int CRunPlayerItemSlot::LateUpdate_GameObject(const _double & dTimeDelta)
 {
 	CUIObject::LateUpdate_GameObject(dTimeDelta);
-	
+
 	if (RECHARGE == m_eItemSlot)
 	{
 		if (RUN_POWER_BIG == m_eRunPlayerPower)
@@ -76,28 +83,30 @@ _int CRunPlayerItemSlot::LateUpdate_GameObject(const _double & dTimeDelta)
 				m_bRenderUI = true;
 				if (m_bLateInit)
 				{
-					m_dMaxDuration = 5.f/*m_pRunPlayerObserver->Get_Time_Big()*/;
-
-					m_dDuration = m_dMaxDuration;
+					m_dMaxDuration = 5.f;
+					m_dDuration = 0.f;
 					m_bLateInit = false;
 				}
 
-				m_dDuration -= dTimeDelta;
-				_float fResultValue = (_float)m_dDuration / (_float)m_dMaxDuration;
-				m_pScreenTexBufferCom->VertexYControl_UpDir(fResultValue);
-
-
-				if (0.f >= m_dDuration)
+				m_dDuration += dTimeDelta;
+				if (m_dMaxDuration <= m_dDuration)
 				{
 					m_bRenderUI = false;
 					m_bLateInit = true;
 					m_dMaxDuration = 0.f;
 					m_dDuration = 0.f;
 					m_bOne = true;
+
+				}
+				else
+				{
+					_float fResultValue = (_float)m_dDuration / (_float)m_dMaxDuration;
+					m_pScreenTexBufferCom->VertexYControl_UpDir(fResultValue);
 				}
 			}
 		}
-		else if(RUN_POWER_SPEEDUP == m_eRunPlayerPower)
+
+		if (RUN_POWER_SPEEDUP == m_eRunPlayerPower)
 		{
 			if (SPEEDUP == m_eItemType)
 			{
@@ -105,23 +114,23 @@ _int CRunPlayerItemSlot::LateUpdate_GameObject(const _double & dTimeDelta)
 				if (m_bLateInit)
 				{
 					m_dMaxDuration = 3.f/*m_pRunPlayerObserver->Get_Time_SpeedUp()*/;
-
-					m_dDuration = m_dMaxDuration;
+					m_dDuration = 0.f;
 					m_bLateInit = false;
 				}
 
-				m_dDuration -= dTimeDelta;
-				_float fResultValue = (_float)m_dDuration / (_float)m_dMaxDuration;
-				m_pScreenTexBufferCom->VertexYControl_UpDir(fResultValue);
-
-
-				if (0.f >= m_dDuration)
+				m_dDuration += dTimeDelta;
+				if (m_dMaxDuration <= m_dDuration)
 				{
 					m_bRenderUI = false;
 					m_bLateInit = true;
 					m_dMaxDuration = 0.f;
 					m_dDuration = 0.f;
-					m_bOne = true;
+					m_bOtherOne = true;
+				}
+				else
+				{
+					_float fResultValue = (_float)m_dDuration / (_float)m_dMaxDuration;
+					m_pScreenTexBufferCom->VertexYControl_UpDir(fResultValue);
 				}
 			}
 		}
@@ -218,7 +227,7 @@ CRunPlayerItemSlot * CRunPlayerItemSlot::Create(LPDIRECT3DDEVICE9 pGraphicDev, I
 {
 	CRunPlayerItemSlot* pInstance = new CRunPlayerItemSlot(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_GameObject(eType, eItemType,bBool, fX, fY, fSizeX, fSizeY, fViewZ)))
+	if (FAILED(pInstance->Ready_GameObject(eType, eItemType, bBool, fX, fY, fSizeX, fSizeY, fViewZ)))
 		Engine::Safe_Release(pInstance);
 
 	return pInstance;

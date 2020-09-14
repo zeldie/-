@@ -823,6 +823,10 @@ void CRunPlayer::RunningFinish()
 		Change_State(STATE_IDLE_1);
 		m_eMoveState = MOVESTATE_FINISH;
 		// call cam cutscene
+
+		//½Ã°£¸ØÃß°í wÁ¡¼ö¸ØÃß°í
+		m_pUIMgr->Set_RunGameTimeStop(true);
+		
 		CCameraMgr::GetInstance()->Set_ItemGet();
 	}
 }

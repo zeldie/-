@@ -148,6 +148,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 		{
 			if (m_vecSelectedCard[0]->Get_CardNum() == m_vecSelectedCard[1]->Get_CardNum())
 			{
+				CSoundMgr::Get_Instance()->SiwonSoundOn(15);
+
 				++m_iPlayerPoint;
 				++m_iCombo;
 
@@ -167,6 +169,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 			{
 				if (!m_bFailed)
 				{
+					CSoundMgr::Get_Instance()->SiwonSoundOn(16);
+
 					m_dDelay = g_dAccumulatedTime + 0.5;
 					m_bFailed = true;
 
@@ -222,6 +226,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 						if ((m_tAIData[i].eCardNum == m_tAIData[j].eCardNum) &&
 							((m_tAIData[i].eCardNum != CMatchingCard::CARDNUMBER::NUM_END) && (m_tAIData[j].eCardNum != CMatchingCard::CARDNUMBER::NUM_END)))
 						{
+							CSoundMgr::Get_Instance()->SiwonSoundOn(15);
+
 							++m_iAIPoint;
 							++m_iCombo;
 
@@ -254,6 +260,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 					{
 						if (m_vecCard[i]->Get_CardNum() == m_vecCard[j]->Get_CardNum())
 						{
+							CSoundMgr::Get_Instance()->SiwonSoundOn(15);
+
 							++m_iAIPoint;
 							++m_iCombo;
 
@@ -276,6 +284,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 						}
 						else
 						{
+							CSoundMgr::Get_Instance()->SiwonSoundOn(16);
+
 							m_tAIData[i].eAIData = DATA_KNOWN;
 							m_tAIData[j].eAIData = DATA_KNOWN;
 							m_tAIData[i].eCardNum = m_vecCard[i]->Get_CardNum();
@@ -305,6 +315,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 					{
 						if (m_vecCard[i]->Get_CardNum() == m_vecCard[j]->Get_CardNum())
 						{
+							CSoundMgr::Get_Instance()->SiwonSoundOn(15);
+
 							++m_iAIPoint;
 							++m_iCombo;
 
@@ -325,6 +337,8 @@ void CMatchingMgr::Update_MatchingMgr(const _double & dTimeDelta)
 						}
 						else
 						{
+							CSoundMgr::Get_Instance()->SiwonSoundOn(16);
+
 							m_tAIData[i].eAIData = DATA_KNOWN;
 							m_tAIData[j].eAIData = DATA_KNOWN;
 							m_tAIData[i].eCardNum = m_vecCard[i]->Get_CardNum();

@@ -79,8 +79,8 @@ HRESULT CApostle::Ready_GameObject(_vec3 * pPos, _vec3 * pAngle, _vec3 * pScale)
 	m_tBaseInfo.iMaxHp = 80000;
 	m_tBaseInfo.iHp = 80000;
 	m_tBaseInfo.iPrevHp = 80000;
-	m_tBaseInfo.iSuperAmmor = 30000;
-	m_tBaseInfo.iMaxSuperAmmor = 30000;
+	m_tBaseInfo.iSuperAmmor = 1500;
+	m_tBaseInfo.iMaxSuperAmmor = 1500;
 	m_tBaseInfo.iCheatATK = 0;
 	m_iPhase = 1;
 	m_dbAddDelay = 0.5;

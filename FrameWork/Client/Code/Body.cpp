@@ -295,7 +295,7 @@ HRESULT CBody::Ready_GameObject(SEX eSexType, _vec3 * pPos, _vec3 * pAngle, _vec
 	Link_Top(3);
 	Link_Foot(2);
 	Link_Pants(0);
-	Link_FrontHair(2);
+	Link_FrontHair(0);
 	Link_BackHair(2);
 	Link_TailHair(1);
 	Link_SideHair(3);
