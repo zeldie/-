@@ -1225,6 +1225,21 @@ void CSoundMgr::Load_SiwonSoundFile()
 	m_vecSiwonSound.push_back(pSound);
 	ERRCHECK(eRes);
 
+	// 15 / 매칭게임 / 성공
+	eRes = m_pSystem->createSound("../../Sound/Matching/UI_PopUp_01_D.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecSiwonSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 16 / 매칭게임 / 실패
+	eRes = m_pSystem->createSound("../../Sound/Matching/UI_PopUp_05_A.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecSiwonSound.push_back(pSound);
+	ERRCHECK(eRes);
+
+	// 17 / 퍼즐게임 / 클릭
+	eRes = m_pSystem->createSound("../../Sound/Puzzle/UI_MouseClick_01_B.ogg", FMOD_DEFAULT, 0, &pSound);
+	m_vecSiwonSound.push_back(pSound);
+	ERRCHECK(eRes);
+
 
 
 }

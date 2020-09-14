@@ -72,7 +72,7 @@ HRESULT CArrow::Ready_GameObject(ARROW_TYPE eArrowType, _vec3 * pPos, _vec3* pAn
 		tBase.eObjectID = OBJECT_ENEMY_1;
 	else if (eControlType == CTRL_AI_ENERMY_2)
 		tBase.eObjectID = OBJECT_ENEMY_2;
-
+	
 	if (m_eArrowType == BASIC_ARROW)
 	{
 		m_pTransformCom->Set_Angle(pAngle);
@@ -167,7 +167,6 @@ _int CArrow::Update_GameObject(const _double & dTimeDelta)
 
 	Move(dTimeDelta);
 	CStaticMeshObject::Update_GameObject(dTimeDelta);
-
 	m_fLifeTime -= dTimeDelta;
 
 	return Engine::NO_EVENT;

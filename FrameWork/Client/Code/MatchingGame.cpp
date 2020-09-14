@@ -283,7 +283,7 @@ void CMatchingGame::Render_Scene()
 	++m_dwRenderCnt;
 	if (m_dTime >= 1)
 	{
-		wsprintf(m_szFPS, L"FPS : %d", m_dwRenderCnt);
+		//wsprintf(m_szFPS, L"FPS : %d", m_dwRenderCnt);
 		m_dTime = 0;
 		m_dwRenderCnt = 0;
 	}

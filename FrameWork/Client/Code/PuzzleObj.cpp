@@ -51,6 +51,8 @@ _int CPuzzleObj::LateUpdate_GameObject(const _double & dTimeDelta)
 	if (m_bChoose && Engine::MouseUp(Engine::DIM_LB))
 	{
 		CPuzzleMgr::GetInstance()->Clicked_Puzzle(this);
+
+		CSoundMgr::Get_Instance()->SiwonSoundOn(17);
 	}
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_UI, this);
