@@ -22,6 +22,8 @@ private:
 	HRESULT	Ready_GameObject_Layer();
 	HRESULT	Ready_UI_Layer();
 
+private:
+	_bool m_bLateInit;
 
 public:
 	static CEnding*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
