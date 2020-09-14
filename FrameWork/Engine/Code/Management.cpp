@@ -339,7 +339,7 @@ HRESULT CManagement::Ready_Shaders(LPDIRECT3DDEVICE9 & pGraphicDev)
 	//	return E_FAIL;
 
 	//Shadow <--------------------
-	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADOW_PLAYER, 1280.f, 720.f, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
+	if (FAILED(Engine::Ready_RenderTarget(pGraphicDev, Engine::SHADOW_PLAYER, 7680.f, 4320.f, D3DFMT_A32B32G32R32F, D3DXCOLOR(1.f, 1.f, 1.f, 1.f))))
 		return E_FAIL;
 	if (FAILED(Engine::Ready_RenderTargetBuffer(Engine::SHADOW_PLAYER, 180.f, 180.f, 180.f, 180.f)))
 		return E_FAIL;
