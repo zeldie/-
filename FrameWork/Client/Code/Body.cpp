@@ -417,12 +417,12 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 				if (i == 0 ) // ¸ö
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
-					pEffect->SetVector("vDyeColor", &_vec4(m_vBodyColor));
-					//pEffect->SetTexture("g_DiffuseTexture", iter->ppDiffuseTexture[i]);
+					pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
+					pEffect->SetTexture("g_DiffuseTexture", iter->ppDiffuseTexture[i]);
 					pEffect->SetTexture("g_NormalTexture", iter->ppNormalTexture[i]);
 					pEffect->SetTexture("g_SpecularTexture", iter->ppSpecularTexture[i]);
 					pEffect->SetTexture("g_EmmisiveTexture", iter->ppEmmisiveTexture[i]);
-					pEffect->BeginPass(18);
+					pEffect->BeginPass(0);
 					pEffect->CommitChanges();
 					m_pDynamicMeshCom->Render_Meshes(iter, i);
 					pEffect->EndPass();
@@ -431,12 +431,12 @@ void CBody::Render_Geometry(const _double & dTimeDelta)
 				else if (i == 1) // ¼Ó¿Ê
 				{
 					m_pDynamicMeshCom->Render_Meshes_Begin(iter);
-					pEffect->SetVector("vDyeColor", &_vec4(m_vBodyColor));
-					//pEffect->SetTexture("g_DiffuseTexture", iter->ppDiffuseTexture[i]);
+					pEffect->SetVector("vChangeColor", &_vec4(1.f, 1.f, 1.f, 1.f));
+					pEffect->SetTexture("g_DiffuseTexture", iter->ppDiffuseTexture[i]);
 					pEffect->SetTexture("g_NormalTexture", iter->ppNormalTexture[i]);
 					pEffect->SetTexture("g_SpecularTexture", iter->ppSpecularTexture[i]);
 					pEffect->SetTexture("g_EmmisiveTexture", iter->ppEmmisiveTexture[i]);
-					pEffect->BeginPass(18);
+					pEffect->BeginPass(0);
 					pEffect->CommitChanges();
 					m_pDynamicMeshCom->Render_Meshes(iter, i);
 					pEffect->EndPass();
