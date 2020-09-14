@@ -85,11 +85,11 @@ _int CStaticCamera::Update_GameObject(const _double & dTimeDelta)
 	}
 
 
-	if (m_bFlag)
-	{
-		CutScene_Flag(dTimeDelta);
-		return S_OK;
-	}
+	//if (m_bFlag)
+	//{
+	//	CutScene_Flag(dTimeDelta);
+	//	return S_OK;
+	//}
 
 
 	if (m_bCutScene)

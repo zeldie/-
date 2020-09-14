@@ -429,7 +429,6 @@ CAi_Player::STATE_ID CAi_PlayerSkill::LateUpadte_State(const _double dTimeDelta)
 				m_pEffectMgr->Create_Effect(Engine::EFFECTTYPE::EFFECT_BOW_RING, m_pPlayer->Get_PlayerTransform()->Get_WorldMatrix(), m_pPlayer->Get_PlayerTransform()->Get_Angle(), *m_pPlayer->Get_BaseInfo());
 				m_dArrowTerm = 0;
 			}
-			
 			_vec3 vPos = m_pPlayer->GetPlayerPos();
 			_vec3 vLook = *m_pTransform->Get_Info(Engine::INFO_LOOK);
 			m_pTransform->Set_Pos(&(m_pNaviCom->Move_OnNaviMesh(&vPos, &(-vLook * 500.f * (_float)((1.5 - m_dbPush)*dTimeDelta)), m_dwNaviIndex)));
@@ -556,6 +555,7 @@ CAi_Player::STATE_ID CAi_PlayerSkill::LateUpadte_State(const _double dTimeDelta)
 			Engine::Add_GameObject(Engine::GAMEOBJECT, L"Phoenix", pGameObject);
 			m_bEffect = false;
 			static_cast<CLongBow*>(m_pPlayer->Get_MainWeaponPointer())->Reset_LBDissolve();
+			CSoundMgr::Get_Instance()->AiSoundOn(62);
 		}
 	}
 

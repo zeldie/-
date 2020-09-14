@@ -72,7 +72,7 @@ HRESULT CEnding::Ready_GameObject_Layer()
 
 	Engine::CGameObject*		pGameObject = nullptr;
 
-	pGameObject = CEnding_Credit::Create(m_pGraphicDev, WINCX >> 1, (WINCY >> 1) + 1500);
+	pGameObject = CEnding_Credit::Create(m_pGraphicDev, WINCX >> 1, (WINCY >> 1) + 1700);
 	if (FAILED(pLayer->Add_GameObject(L"Ending_Credit", pGameObject)))
 		return E_FAIL;
 

@@ -1538,7 +1538,7 @@ void CSoundMgr::Load_AiSoundFile()
 	m_vecAiSound.push_back(pSound);
 	ERRCHECK(eRes);
 
-	// 62 / Enemy2 Att4 / Att4
+	// 62 / LongBow Ultimate / Ultimate
 	eRes = m_pSystem->createSound("../../Sound/LongBow/LB_Ultimate.ogg", FMOD_DEFAULT, 0, &pSound);
 	m_vecAiSound.push_back(pSound);
 	ERRCHECK(eRes);
