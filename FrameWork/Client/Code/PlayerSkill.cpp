@@ -224,6 +224,7 @@ CPlayer::STATE_ID CPlayerSkill::LateUpadte_State(const _double dTimeDelta)
 			m_pMeshCom->Set_AnimationSet(CPlayer::COMMON_COMBATWAIT);
 			m_pPlayer->Set_AnimationSpeed(1);
 			WeaponDissolve();
+			m_pPlayer->Release_Decal();
 			return CPlayer::ID_COMMON;
 		}
 
