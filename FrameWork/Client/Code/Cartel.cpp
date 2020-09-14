@@ -19,6 +19,7 @@
 #include "Belatos.h"
 #include "Tree.h"
 #include "Flag.h"
+#include "Ending.h"
 
 #include "LightCamera.h"
 CCartel::CCartel(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -163,7 +164,7 @@ _int CCartel::Update_Scene(const _double & dTimeDelta)
 
 		//플레이어&AI 아이디 설정 -->보스전 아이디는 UI-BACKBAR에서 직접 적어줌
 		_tchar szID[MIN_STR];
-		wsprintf(szID, L"JUSIN103");
+		wsprintf(szID, L"플레이어");
 		m_pUIMgr->Set_FlagPlayersID(OBJID::OBJECT_PLAYER, szID);
 
 		wsprintf(szID, L"동지");
@@ -298,7 +299,7 @@ _int CCartel::Update_Scene(const _double & dTimeDelta)
 	}
 
 
-	// 일단 다시 로비...나중에 엔딩크레딧으로!
+	// 나중에 엔딩크레딧으로!
 	if (CUIMgr::UITYPE_RESULT_Cartel == m_pUIMgr->Get_UIType())
 	{
 		if (CUIMgr::GetInstance()->CheckClickEXITButton())
@@ -317,7 +318,7 @@ _int CCartel::Update_Scene(const _double & dTimeDelta)
 					m_pUIMgr->ClearPointerUI();
 					Engine::CScene*		pScene = nullptr;
 
-					pScene = CLobby::Create(m_pGraphicDev);
+					pScene = CEnding::Create(m_pGraphicDev);
 					if (pScene == nullptr)
 						return E_FAIL;
 
